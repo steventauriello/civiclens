@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civiclens.org/schemas/document.schema.json",
+  "title": "CivicLens Source Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_id",
+    "source_id",
+    "retrieved_at",
+    "content_hash",
+    "mime_type",
+    "storage_uri"
+  ],
+  "properties": {
+    "document_id": { "type": "string", "minLength": 1 },
+    "source_id": { "type": "string", "minLength": 1 },
+    "title": { "type": ["string", "null"] },
+    "published_at": { "type": ["string", "null"], "format": "date-time" },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "fiscal_year": { "type": ["string", "null"] },
+    "version_label": { "type": ["string", "null"] },
+    "canonical_url": { "type": ["string", "null"], "format": "uri" },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$"
+    },
+    "hash_algorithm": {
+      "type": "string",
+      "const": "sha256"
+    },
+    "mime_type": { "type": "string", "minLength": 1 },
+    "storage_uri": { "type": "string", "minLength": 1 },
+    "parser_status": {
+      "type": "string",
+      "enum": ["pending", "parsed", "partial", "failed", "not_applicable"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["unreviewed", "reviewed", "approved", "rejected"]
+    },
+    "notes": { "type": ["string", "null"] }
+  }
+}
