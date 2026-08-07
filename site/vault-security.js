@@ -61,8 +61,14 @@
       badge.className = 'security-session-badge';
       document.querySelector('.topbar')?.appendChild(badge);
     }
-    badge.textContent = authenticated ? 'SECURE SESSION' : 'SIGNED OUT';
-    badge.dataset.state = authenticated ? 'secure' : 'locked';
+    const nextText = authenticated ? 'SECURE SESSION' : 'SIGNED OUT';
+    const nextState = authenticated ? 'secure' : 'locked';
+    if (badge.textContent !== nextText) badge.textContent = nextText;
+    if (badge.dataset.state !== nextState) badge.dataset.state = nextState;
+  }
+
+  function setTextIfChanged(element, value) {
+    if (element && element.textContent !== value) element.textContent = value;
   }
 
   function enhanceStorageDialog() {
@@ -72,10 +78,10 @@
     const forget = document.getElementById('forgetStorageKey');
     const connected = document.getElementById('storageConnectedArea');
 
-    if (label) label.textContent = 'CivicLens owner key';
-    if (help) help.textContent = 'Your key is sent once over HTTPS to create a secure HttpOnly session. The key itself is not saved in browser storage.';
-    if (connect) connect.textContent = 'Secure sign in';
-    if (forget) forget.textContent = 'Sign out on this device';
+    setTextIfChanged(label, 'CivicLens owner key');
+    setTextIfChanged(help, 'Your key is sent once over HTTPS to create a secure HttpOnly session. The key itself is not saved in browser storage.');
+    setTextIfChanged(connect, 'Secure sign in');
+    setTextIfChanged(forget, 'Sign out on this device');
 
     if (connected && !document.getElementById('viewAuditTrail')) {
       const button = document.createElement('button');
