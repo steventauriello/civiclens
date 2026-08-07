@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civiclens.org/schemas/aen_review.schema.json",
+  "title": "CivicLens AEN Review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "review_id",
+    "jurisdiction_id",
+    "question",
+    "scope",
+    "accountability",
+    "effectiveness",
+    "need",
+    "review_status"
+  ],
+  "properties": {
+    "review_id": { "type": "string", "minLength": 1 },
+    "jurisdiction_id": { "type": "string", "minLength": 1 },
+    "subject_type": { "type": "string", "minLength": 1 },
+    "subject_id": { "type": ["string", "null"] },
+    "question": { "type": "string", "minLength": 1 },
+    "scope": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "description": { "type": "string", "minLength": 1 },
+        "start_date": { "type": ["string", "null"], "format": "date" },
+        "end_date": { "type": ["string", "null"], "format": "date" },
+        "fiscal_years": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "accountability": { "$ref": "#/$defs/testResult" },
+    "effectiveness": { "$ref": "#/$defs/testResult" },
+    "need": { "$ref": "#/$defs/testResult" },
+    "contradictory_evidence_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "analyst_review", "approved", "published", "withdrawn"]
+    },
+    "published_at": { "type": ["string", "null"], "format": "date-time" }
+  },
+  "$defs": {
+    "testResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "findings"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["supported", "partially_supported", "insufficient_public_evidence", "exception_identified", "not_applicable"]
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["statement", "evidence_ids"],
+            "properties": {
+              "statement": { "type": "string", "minLength": 1 },
+              "evidence_ids": {
+                "type": "array",
+                "items": { "type": "string" },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "limitations": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}
