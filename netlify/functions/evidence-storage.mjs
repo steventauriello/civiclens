@@ -1,6 +1,5 @@
-import { randomUUID, timingSafeEqual } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import {
-  DeleteObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
   ListObjectsV2Command,
@@ -8,6 +7,11 @@ import {
   S3Client
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import {
+  anonymizedClientFingerprint,
+  sameOrigin,
+  verifySession
+} from './_session.mjs';
 
 const MAX_FILE_SIZE = 500 * 1024 * 1024;
 const ALLOWED_TYPES = new Set([
@@ -22,7 +26,8 @@ function json(data, status = 200) {
     status,
     headers: {
       'content-type': 'application/json; charset=utf-8',
-      'cache-control': 'no-store'
+      'cache-control': 'no-store',
+      'pragma': 'no-cache'
     }
   });
 }
@@ -51,19 +56,6 @@ function s3Client(config) {
       secretAccessKey: config.secretAccessKey
     }
   });
-}
-
-function safeEqual(a, b) {
-  if (typeof a !== 'string' || typeof b !== 'string') return false;
-  const left = Buffer.from(a);
-  const right = Buffer.from(b);
-  if (left.length !== right.length) return false;
-  return timingSafeEqual(left, right);
-}
-
-function requireAdmin(request, config) {
-  const supplied = request.headers.get('x-civiclens-admin-key') || '';
-  return safeEqual(supplied, config.adminKey || '');
 }
 
 function sanitizeSegment(value, fallback = 'unknown') {
@@ -95,6 +87,32 @@ async function writeRecord(client, bucket, record) {
   }));
 }
 
+async function writeAudit(client, config, request, session, action, details = {}) {
+  const timestamp = new Date().toISOString();
+  const [year, month, day] = timestamp.slice(0, 10).split('-');
+  const event = {
+    id: randomUUID(),
+    timestamp,
+    action,
+    actor: {
+      id: session?.sub || 'unknown',
+      role: session?.role || 'unknown'
+    },
+    clientFingerprint: anonymizedClientFingerprint(request, config.adminKey),
+    requestId: request.headers.get('x-nf-request-id') || null,
+    details,
+    version: 1
+  };
+  const keyStamp = timestamp.replace(/[:.]/g, '-');
+  await client.send(new PutObjectCommand({
+    Bucket: config.bucket,
+    Key: `audit/${year}/${month}/${day}/${keyStamp}-${event.id}.json`,
+    Body: JSON.stringify(event, null, 2),
+    ContentType: 'application/json; charset=utf-8',
+    CacheControl: 'no-store'
+  }));
+}
+
 async function listRecords(client, bucket) {
   const records = [];
   let continuationToken;
@@ -109,7 +127,8 @@ async function listRecords(client, bucket) {
     for (const item of page.Contents || []) {
       if (!item.Key?.endsWith('.json')) continue;
       try {
-        records.push(await readJsonObject(client, bucket, item.Key));
+        const record = await readJsonObject(client, bucket, item.Key);
+        if (record.lifecycleStatus !== 'archived') records.push(record);
       } catch (error) {
         console.error('Could not read evidence record', item.Key, error);
       }
@@ -119,6 +138,35 @@ async function listRecords(client, bucket) {
   } while (continuationToken);
 
   return records.sort((a, b) => String(b.uploadedAt).localeCompare(String(a.uploadedAt)));
+}
+
+async function listAuditEvents(client, bucket, requestedLimit = 50) {
+  const keys = [];
+  let continuationToken;
+
+  do {
+    const page = await client.send(new ListObjectsV2Command({
+      Bucket: bucket,
+      Prefix: 'audit/',
+      ContinuationToken: continuationToken
+    }));
+    for (const item of page.Contents || []) {
+      if (item.Key?.endsWith('.json')) keys.push(item.Key);
+    }
+    continuationToken = page.IsTruncated ? page.NextContinuationToken : undefined;
+  } while (continuationToken);
+
+  const limit = Math.max(1, Math.min(Number(requestedLimit) || 50, 100));
+  const newest = keys.sort().reverse().slice(0, limit);
+  const events = [];
+  for (const key of newest) {
+    try {
+      events.push(await readJsonObject(client, bucket, key));
+    } catch (error) {
+      console.error('Could not read audit event', key, error);
+    }
+  }
+  return events.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
 }
 
 function normalizePatch(input = {}) {
@@ -133,13 +181,15 @@ function normalizePatch(input = {}) {
 
 export default async (request) => {
   const config = configuration();
+  const session = verifySession(request, config.adminKey);
 
   if (request.method === 'GET') {
     return json({
       configured: config.ready,
       provider: 'Cloudflare R2',
       maxFileSize: MAX_FILE_SIZE,
-      permanent: true
+      permanent: true,
+      authenticated: Boolean(session)
     });
   }
 
@@ -150,7 +200,8 @@ export default async (request) => {
       code: 'STORAGE_NOT_CONFIGURED'
     }, 503);
   }
-  if (!requireAdmin(request, config)) return json({ error: 'Invalid admin key.' }, 401);
+  if (!sameOrigin(request)) return json({ error: 'Cross-site request rejected.' }, 403);
+  if (!session) return json({ error: 'Secure sign-in required.', code: 'AUTH_REQUIRED' }, 401);
 
   let body;
   try {
@@ -165,6 +216,10 @@ export default async (request) => {
   try {
     if (action === 'list') {
       return json({ records: await listRecords(client, config.bucket) });
+    }
+
+    if (action === 'audit-list') {
+      return json({ events: await listAuditEvents(client, config.bucket, body.limit) });
     }
 
     if (action === 'sign-upload') {
@@ -188,6 +243,13 @@ export default async (request) => {
       });
 
       const uploadUrl = await getSignedUrl(client, command, { expiresIn: 600 });
+      await writeAudit(client, config, request, session, 'evidence.upload_authorized', {
+        recordId: id,
+        filename: file.name,
+        size,
+        mime,
+        fiscalYear: body.metadata?.fiscalYear || ''
+      });
       return json({ id, objectKey, uploadUrl, expiresIn: 600 });
     }
 
@@ -222,10 +284,18 @@ export default async (request) => {
         storageProvider: 'Cloudflare R2',
         storageClass: 'STANDARD',
         immutableOriginal: true,
+        lifecycleStatus: 'active',
         recordVersion: 1
       };
 
       await writeRecord(client, config.bucket, record);
+      await writeAudit(client, config, request, session, 'evidence.upload_completed', {
+        recordId: record.id,
+        filename: record.name,
+        size: record.size,
+        hash: record.hash,
+        objectKey: record.objectKey
+      });
       return json({ record }, 201);
     }
 
@@ -233,6 +303,7 @@ export default async (request) => {
       const id = String(body.id || '');
       if (!id) return json({ error: 'Record ID is required.' }, 400);
       const record = await readJsonObject(client, config.bucket, recordKey(id));
+      if (record.lifecycleStatus === 'archived') return json({ error: 'Evidence record is archived.' }, 410);
       const downloadUrl = await getSignedUrl(
         client,
         new GetObjectCommand({
@@ -242,6 +313,10 @@ export default async (request) => {
         }),
         { expiresIn: 900 }
       );
+      await writeAudit(client, config, request, session, 'evidence.viewed', {
+        recordId: record.id,
+        filename: record.name
+      });
       return json({ record, downloadUrl, expiresIn: 900 });
     }
 
@@ -249,13 +324,20 @@ export default async (request) => {
       const id = String(body.id || '');
       if (!id) return json({ error: 'Record ID is required.' }, 400);
       const record = await readJsonObject(client, config.bucket, recordKey(id));
+      if (record.lifecycleStatus === 'archived') return json({ error: 'Archived records cannot be edited.' }, 409);
+      const patch = normalizePatch(body.patch);
       const updated = {
         ...record,
-        ...normalizePatch(body.patch),
+        ...patch,
         updatedAt: new Date().toISOString(),
         recordVersion: Number(record.recordVersion || 1) + 1
       };
       await writeRecord(client, config.bucket, updated);
+      await writeAudit(client, config, request, session, 'evidence.updated', {
+        recordId: updated.id,
+        fields: Object.keys(patch),
+        status: updated.status
+      });
       return json({ record: updated });
     }
 
@@ -263,9 +345,20 @@ export default async (request) => {
       const id = String(body.id || '');
       if (!id) return json({ error: 'Record ID is required.' }, 400);
       const record = await readJsonObject(client, config.bucket, recordKey(id));
-      await client.send(new DeleteObjectCommand({ Bucket: config.bucket, Key: record.objectKey }));
-      await client.send(new DeleteObjectCommand({ Bucket: config.bucket, Key: recordKey(id) }));
-      return json({ deleted: true, id });
+      const archived = {
+        ...record,
+        lifecycleStatus: 'archived',
+        archivedAt: new Date().toISOString(),
+        archivedBy: session.sub,
+        recordVersion: Number(record.recordVersion || 1) + 1
+      };
+      await writeRecord(client, config.bucket, archived);
+      await writeAudit(client, config, request, session, 'evidence.archived', {
+        recordId: archived.id,
+        filename: archived.name,
+        originalPreserved: true
+      });
+      return json({ deleted: true, archived: true, originalPreserved: true, id });
     }
 
     return json({ error: 'Unknown action.' }, 400);
