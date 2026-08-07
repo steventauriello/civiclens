@@ -201,30 +201,6 @@
     if (answerPanel.hidden) document.body.classList.remove('modal-open');
   }
 
-  function addEvidenceVaultNavigation() {
-    if (primaryNav && !primaryNav.querySelector('[data-vault-link]')) {
-      const topLink = document.createElement('a');
-      topLink.href = 'evidence-vault.html';
-      topLink.className = 'nav-link';
-      topLink.dataset.vaultLink = 'true';
-      topLink.textContent = 'Evidence Vault';
-      topLink.setAttribute('aria-label', 'Open the CivicLens Evidence Vault admin workspace');
-      primaryNav.appendChild(topLink);
-    }
-
-    const sideNav = document.querySelector('.side-nav');
-    if (sideNav && !sideNav.querySelector('[data-vault-link]')) {
-      const sideLink = document.createElement('a');
-      sideLink.href = 'evidence-vault.html';
-      sideLink.className = 'side-link';
-      sideLink.dataset.vaultLink = 'true';
-      sideLink.innerHTML = '<span>06</span> Evidence Vault';
-      sideLink.setAttribute('aria-label', 'Open the CivicLens Evidence Vault admin workspace');
-      const sideCard = sideNav.querySelector('.side-card');
-      sideNav.insertBefore(sideLink, sideCard || null);
-    }
-  }
-
   viewButtons.forEach((button) => {
     button.addEventListener('click', () => setView(button.dataset.viewTarget));
   });
@@ -262,6 +238,5 @@
   renderMoneyFlow();
   renderPeriod(yearSelect.value);
   renderSources();
-  addEvidenceVaultNavigation();
   setView(['overview', 'revenue', 'spending', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
 })();
