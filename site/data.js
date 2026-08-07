@@ -1,28 +1,30 @@
 window.CIVICLENS_DATA = {
   periods: {
     fy2025: {
-      label: "FY 2025 demonstration",
+      label: "FY 2024–25 operating funds",
       metrics: [
-        { label: "Official source systems", value: "12", note: "Cataloged for the Port St. Lucie pilot", icon: "SRC", tone: "dark" },
-        { label: "Verified records", value: "0", note: "No financial records published yet", icon: "CHK" },
-        { label: "Target fiscal years", value: "3", note: "Budget and actual data planned", icon: "FY" },
-        { label: "Evidence standard", value: "Claim-level", note: "Every material claim must be traceable", icon: "EV" }
+        { label: "Operating-fund revenue", value: "$446.7M", note: "Eight funds reported by the City", icon: "IN", tone: "dark" },
+        { label: "Operating-fund spending", value: "$431.5M", note: "Includes reported non-operating outflows", icon: "OUT" },
+        { label: "Funds reported", value: "8", note: "Not yet the entire City government", icon: "FND" },
+        { label: "Evidence status", value: "Sourced", note: "FY 2024–25 fourth-quarter City report", icon: "SRC" }
       ],
       revenue: [
-        { name: "Property and other taxes", share: 31, note: "Must separate City taxes from county, school board, and special districts." },
-        { name: "Utility and enterprise revenue", share: 24, note: "Restricted to the applicable enterprise or service system." },
-        { name: "Fees, permits, and charges", share: 17, note: "Includes service-linked revenue that may be legally restricted." },
-        { name: "State, federal, and grant revenue", share: 13, note: "May include purpose-specific conditions and reporting requirements." },
-        { name: "Debt proceeds and financing", share: 8, note: "Financing is not recurring operating revenue and creates obligations." },
-        { name: "Other revenue", share: 7, note: "Must be reviewed by fund and accounting classification." }
+        { name: "General Fund", share: 43.0, amount: "$192.0M", note: "Citywide operating fund; revenue includes taxes, permits, intergovernmental revenue, charges, fines, miscellaneous, and other." },
+        { name: "Utility Systems", share: 30.2, amount: "$135.1M", note: "Enterprise operating fund. Its money is not interchangeable with the General Fund." },
+        { name: "Stormwater", share: 8.3, amount: "$37.0M", note: "Dedicated operating fund reported separately by the City." },
+        { name: "Medical Insurance", share: 7.8, amount: "$34.9M", note: "Internal-service operating fund; not resident tax revenue." },
+        { name: "Road & Bridge", share: 5.1, amount: "$23.0M", note: "Restricted transportation-related operating fund." },
+        { name: "Building", share: 3.9, amount: "$17.2M", note: "Permit and building-service operating fund." },
+        { name: "Other two operating funds", share: 1.7, amount: "$7.5M", note: "Solid Waste and Golf Course combined." }
       ],
       spending: [
-        { name: "Public safety", share: 35 },
-        { name: "Utilities and public services", share: 24 },
-        { name: "Infrastructure and mobility", share: 18 },
-        { name: "General government", share: 10 },
-        { name: "Parks and community services", share: 7 },
-        { name: "Debt service", share: 6 }
+        { name: "General Fund", share: 48.4, amount: "$208.7M" },
+        { name: "Utility Systems", share: 24.4, amount: "$105.3M" },
+        { name: "Medical Insurance", share: 8.2, amount: "$35.3M" },
+        { name: "Stormwater", share: 7.3, amount: "$31.3M" },
+        { name: "Building", share: 5.3, amount: "$23.0M" },
+        { name: "Road & Bridge", share: 4.9, amount: "$21.0M" },
+        { name: "Other two operating funds", share: 1.5, amount: "$6.8M" }
       ]
     },
     fy2024: {
@@ -53,22 +55,14 @@ window.CIVICLENS_DATA = {
   },
   flow: {
     revenue: [
-      { name: "Taxes", share: 31 },
-      { name: "Utilities", share: 24 },
-      { name: "Fees and charges", share: 17 },
-      { name: "Grants", share: 13 }
+      { name: "Reported revenue", share: 100 }
     ],
     funds: [
-      { name: "General Fund", share: 38 },
-      { name: "Enterprise funds", share: 30 },
-      { name: "Capital funds", share: 20 },
-      { name: "Other restricted funds", share: 12 }
+      { name: "Eight operating funds", share: 100 }
     ],
     uses: [
-      { name: "Operations", share: 55 },
-      { name: "Capital projects", share: 21 },
-      { name: "Debt service", share: 13 },
-      { name: "Other uses", share: 11 }
+      { name: "Reported spending", share: 96.6 },
+      { name: "Net reported change", share: 3.4 }
     ]
   },
   sources: [

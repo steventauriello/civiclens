@@ -83,10 +83,10 @@
           </div>
           <dl class="status-list">
             <div><dt>Official sources cataloged</dt><dd id="catalogedSourceCount">12</dd></div>
-            <div><dt>Verified financial records</dt><dd>0</dd></div>
-            <div><dt>Public release status</dt><dd>Prototype</dd></div>
+            <div><dt>Source-backed financial report</dt><dd>1</dd></div>
+            <div><dt>Public release status</dt><dd>Review data</dd></div>
           </dl>
-          <p class="status-note"><strong>Important:</strong> Financial values in this interface are demonstration data until official Port St. Lucie records are ingested and reconciled.</p>
+          <p class="status-note"><strong>Important:</strong> FY 2024–25 operating-fund totals are drawn from an official City quarterly report. They are unaudited and do not yet represent every City fund.</p>
         </aside>
       </div>
     </section>
@@ -94,8 +94,8 @@
     <section class="notice-bar" aria-label="Prototype notice">
       <div class="shell notice-bar__inner">
         <span class="notice-icon" aria-hidden="true">i</span>
-        <p><strong>Interface prototype:</strong> The experience is functional, but no demonstration figure should be treated as an official City value.</p>
-        <button type="button" data-view-target="sources">Review source plan</button>
+        <p><strong>FY 2024–25 starting point:</strong> These are reported results for eight operating funds. Transfers and missing capital, debt, grant, CRA, and assessment funds remain clearly separated.</p>
+        <button type="button" data-view-target="sources">Open official source</button>
       </div>
     </section>
 
@@ -124,8 +124,7 @@
             </div>
             <label class="select-control">Reporting period
               <select id="yearSelect">
-                <option value="fy2025">FY 2025 demonstration</option>
-                <option value="fy2024">FY 2024 demonstration</option>
+                <option value="fy2025">FY 2024–25 operating funds</option>
               </select>
             </label>
           </div>
@@ -135,11 +134,11 @@
           <div class="dashboard-grid">
             <article class="panel panel--wide">
               <div class="panel__header">
-                <div><span class="panel__eyebrow">Illustrative flow</span><h3>How public money moves</h3></div>
+              <div><span class="panel__eyebrow">Reported operating-fund flow</span><h3>Money in, through funds, and out</h3></div>
                 <button class="text-button" type="button" data-view-target="revenue">Explore revenue →</button>
               </div>
               <div class="money-flow" id="moneyFlow"></div>
-              <p class="panel-footnote">Demonstration proportions only. The production flow will distinguish funds, restrictions, transfers, debt proceeds, appropriations, obligations, and actual payments.</p>
+              <p class="panel-footnote">$446.7M revenue and $431.5M spending are the City’s reported aggregate for eight operating funds. This is not a citywide total: internal transfers may be included, and capital, debt, grant, CRA, and other funds still need to be added and reconciled.</p>
             </article>
 
             <article class="panel evidence-panel">
@@ -148,14 +147,14 @@
               </div>
               <div class="evidence-score">
                 <div class="evidence-ring" style="--score: 18"><span>18<small>%</small></span></div>
-                <div><strong>Foundation stage</strong><p>Official source systems are cataloged. Financial records have not yet been verified for public release.</p></div>
+                <div><strong>First report extracted</strong><p>One official FY 2024–25 year-end operating report is now the source for this view. Citywide reconciliation remains in progress.</p></div>
               </div>
               <button class="button button--secondary button--full" id="showEvidenceButton" type="button">Show the evidence plan</button>
             </article>
 
             <article class="panel panel--wide">
               <div class="panel__header">
-                <div><span class="panel__eyebrow">Spending explorer</span><h3>Illustrative service distribution</h3></div>
+                <div><span class="panel__eyebrow">Reported spending by fund</span><h3>Where the eight funds reported spending</h3></div>
                 <button class="text-button" type="button" data-view-target="spending">Open spending explorer →</button>
               </div>
               <div class="bar-chart" id="overviewSpendChart"></div>
@@ -177,14 +176,14 @@
 
         <section class="view" id="view-revenue" data-view="revenue" hidden>
           <div class="section-heading">
-            <div><p class="section-kicker">Money coming in</p><h2>Revenue explorer</h2><p>Separate taxes, utility charges, fees, grants, debt proceeds, and internal transfers before drawing conclusions.</p></div>
+            <div><p class="section-kicker">Money coming in</p><h2>Reported revenue by fund</h2><p>FY 2024–25 reported revenue from the City’s fourth-quarter operating-funds report. Fund totals are not the same thing as a resident’s property-tax allocation.</p></div>
           </div>
           <div class="metric-grid" id="revenueMetricGrid"></div>
           <article class="panel">
-            <div class="panel__header"><div><span class="panel__eyebrow">Demonstration model</span><h3>Revenue categories</h3></div><span class="tag tag--blue">Not official data</span></div>
+            <div class="panel__header"><div><span class="panel__eyebrow">Official City report</span><h3>Revenue by operating fund</h3></div><span class="tag tag--green">Reported actuals</span></div>
             <div class="data-table-wrap">
               <table class="data-table">
-                <thead><tr><th>Category</th><th>Share</th><th>Accounting note</th><th>Evidence</th></tr></thead>
+                <thead><tr><th>Operating fund</th><th>Reported revenue</th><th>What it means</th><th>Evidence</th></tr></thead>
                 <tbody id="revenueTableBody"></tbody>
               </table>
             </div>
@@ -193,7 +192,7 @@
 
         <section class="view" id="view-spending" data-view="spending" hidden>
           <div class="section-heading">
-            <div><p class="section-kicker">Money going out</p><h2>Spending explorer</h2><p>Compare budget authority with actual expenditure and payment records without double-counting internal transfers.</p></div>
+            <div><p class="section-kicker">Money going out</p><h2>Reported spending by fund</h2><p>FY 2024–25 spending reported across the same eight operating funds. This is not yet a transaction-level vendor-payment view.</p></div>
           </div>
           <div class="filter-strip" role="group" aria-label="Spending filters">
             <label>View by<select id="spendViewSelect"><option>Service area</option><option>Department</option><option>Fund</option><option>Vendor</option></select></label>
@@ -201,7 +200,7 @@
             <label>Fund<select><option>All funds</option><option>General Fund</option><option>Enterprise funds</option><option>Restricted funds</option></select></label>
           </div>
           <article class="panel panel--feature">
-            <div class="panel__header"><div><span class="panel__eyebrow">Demonstration model</span><h3>Spending by service area</h3></div><span class="tag tag--blue">Not official data</span></div>
+            <div class="panel__header"><div><span class="panel__eyebrow">Official City report</span><h3>Spending by operating fund</h3></div><span class="tag tag--green">Reported actuals</span></div>
             <div class="bar-chart bar-chart--large" id="spendingChart"></div>
           </article>
           <article class="panel">
@@ -242,7 +241,7 @@
           <div class="source-summary">
             <div><span>12</span><p>Official source systems cataloged</p></div>
             <div><span>5</span><p>Critical finance and budget entry points</p></div>
-            <div><span>0</span><p>Financial records verified for publication</p></div>
+            <div><span>1</span><p>Financial report extracted for review</p></div>
           </div>
           <article class="panel">
             <div class="panel__header"><div><span class="panel__eyebrow">Port St. Lucie pilot</span><h3>Source systems</h3></div><span class="tag tag--green">Official domains only</span></div>
