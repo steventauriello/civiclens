@@ -22,9 +22,13 @@ The current Annual Budget page lists the following FY 2024-25 documents:
 - Statement of Revenues & Expenditures — 3rd Quarter — 300 KB
 - Statement of Revenues & Expenditures — 4th Quarter — 337 KB
 
+Direct official PDF URLs have now been captured for the FY 2024-25 adopted budget, proposed budget, proposed Budget in Brief, proposed CIP budget, Budget Amendment #1, and millage analysis. The adopted Budget in Brief remains listed on the City's Annual Budget page, but its exact standalone PDF URL still needs verification because search indexing currently conflates its content with the adopted budget PDF.
+
 ### FY 2024-25 reporting gap to investigate
 
 The current Annual Budget page does not list a 2nd Quarter Statement of Revenues & Expenditures for FY 2024-25. CivicLens should search City archives and legislative records before deciding whether a public-record request is needed.
+
+The City's official `PSL On the Pulse` Volume 9 Issue 3 republishes the FY 2024-25 first-quarter financial summary and identifies the reporting period as the quarter ended December 31, 2024. This is useful corroborating evidence while the standalone Q1 PDF URL is still being captured.
 
 ## Multi-year adopted budget coverage
 
@@ -89,9 +93,9 @@ The first pass includes confirmed direct URLs, discovery-page URLs, listed file 
 
 ## Next discovery pass
 
-1. Capture direct PDF URLs for every FY 2024-25 document currently marked `listed_direct_url_pending`.
+1. Capture direct PDF URLs for the FY 2024-25 adopted Budget in Brief and Q1/Q3/Q4 revenue-expenditure statements.
 2. Locate the missing FY 2024-25 Q2 revenue/expenditure statement through archives, agenda attachments, or records channels.
-3. Enumerate FY 2024-25 proposed budget and any additional amendments.
+3. Determine whether FY 2024-25 has any additional budget amendments beyond Amendment #1.
 4. Enumerate FY 2023-24 Budget in Brief, CIP, amendment, millage analysis, and all four quarterly statements.
 5. Capture direct PAFR URLs.
 6. Enumerate the older debt and investment reports at document level.
