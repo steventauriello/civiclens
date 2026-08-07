@@ -9,6 +9,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="vault.css" />
   <link rel="stylesheet" href="storage.css" />
+  <link rel="stylesheet" href="security.css" />
   <style>[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -22,7 +23,7 @@
       <a href="index.html">Public dashboard</a>
       <a class="active" href="evidence-vault.html">Evidence Vault</a>
     </nav>
-    <span class="alpha">ADMIN PROTOTYPE</span>
+    <span class="alpha">ADMIN PREVIEW</span>
   </header>
 
   <main id="main">
@@ -39,7 +40,7 @@
       <div><span>Documents</span><strong id="documentCount">0</strong></div>
       <div><span>Awaiting review</span><strong id="reviewCount">0</strong></div>
       <div><span>Verified</span><strong id="verifiedCount">0</strong></div>
-      <div><span>Storage</span><strong>Local prototype</strong></div>
+      <div><span>Storage</span><strong>Checking…</strong></div>
     </section>
 
     <section class="workspace">
@@ -122,7 +123,7 @@
               <div class="processing-card">
                 <strong>Processing readiness</strong>
                 <ul>
-                  <li><span class="ready">✓</span> Original preserved locally</li>
+                  <li><span class="ready">✓</span> Original evidence preserved</li>
                   <li><span class="pending">○</span> OCR and table extraction — backend required</li>
                   <li><span class="pending">○</span> Financial reconciliation — reviewer required</li>
                   <li><span class="pending">○</span> Public release — approval required</li>
@@ -147,7 +148,7 @@
         <div class="upload-icon">↑</div>
         <strong>Drag files here or tap to upload</strong>
         <p>Choose PDFs, photos, scans, or your phone’s camera when available.</p>
-        <small id="dropHelp">PDF, scanned PDF, JPG, PNG, TIFF • Files remain in this browser in the current prototype.</small>
+        <small id="dropHelp">PDF, scanned PDF, JPG, PNG, TIFF • Signed-in uploads are preserved in permanent private cloud storage.</small>
       </div>
       <div id="selectedFiles" class="selected-files"></div>
 
@@ -174,8 +175,8 @@
       </div>
 
       <div class="disclosure">
-        <strong>Prototype limitation</strong>
-        <p>This version creates a functional local Evidence Vault and viewer. It does not yet upload files to a secure server, run OCR, or publish data to the public dashboard.</p>
+        <strong>Evidence protection</strong>
+        <p>Permanent uploads are private, fingerprinted, and tied to an audit trail. OCR, table extraction, and public publishing are separate review steps.</p>
       </div>
 
       <div class="dialog-actions">
@@ -187,5 +188,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <script src="vault.js"></script>
+  <script src="vault-security.js"></script>
 </body>
 </html>
