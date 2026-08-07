@@ -75,19 +75,45 @@ function validateOfficialUrl(raw) {
   return url;
 }
 
+function sourceHeaders(browserCompatible = false) {
+  if (!browserCompatible) {
+    return {
+      accept: 'application/pdf,*/*;q=0.2',
+      'user-agent': 'CivicLens-Evidence-Preservation/1.0'
+    };
+  }
+
+  return {
+    accept: 'application/pdf,application/octet-stream;q=0.9,*/*;q=0.8',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'no-cache',
+    pragma: 'no-cache',
+    referer: 'https://www.cityofpsl.com/',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+  };
+}
+
+async function requestOfficialSource(url, browserCompatible = false) {
+  return fetch(url, {
+    method: 'GET',
+    redirect: 'manual',
+    headers: sourceHeaders(browserCompatible),
+    signal: AbortSignal.timeout(55000)
+  });
+}
+
 async function fetchOfficialPdf(initialUrl) {
   let current = validateOfficialUrl(initialUrl);
 
   for (let redirect = 0; redirect <= MAX_REDIRECTS; redirect += 1) {
-    const response = await fetch(current, {
-      method: 'GET',
-      redirect: 'manual',
-      headers: {
-        accept: 'application/pdf,*/*;q=0.2',
-        'user-agent': 'CivicLens-Evidence-Preservation/1.0'
-      },
-      signal: AbortSignal.timeout(55000)
-    });
+    let response = await requestOfficialSource(current, false);
+
+    // Some public-sector web application firewalls reject obvious server/bot user agents
+    // even when the underlying public PDF is accessible in a normal browser. Retry a 403
+    // once with browser-compatible headers while keeping the same strict host/path allowlist.
+    if (response.status === 403) {
+      response = await requestOfficialSource(current, true);
+    }
 
     if ([301, 302, 303, 307, 308].includes(response.status)) {
       const location = response.headers.get('location');
@@ -99,7 +125,11 @@ async function fetchOfficialPdf(initialUrl) {
     }
 
     if (!response.ok) {
-      throw Object.assign(new Error(`The City source returned HTTP ${response.status}.`), { status: 502, code: 'SOURCE_FETCH_FAILED' });
+      const code = response.status === 403 ? 'SOURCE_BLOCKED_SERVER_FETCH' : 'SOURCE_FETCH_FAILED';
+      const message = response.status === 403
+        ? 'The City source blocked the secure server import request (HTTP 403).'
+        : `The City source returned HTTP ${response.status}.`;
+      throw Object.assign(new Error(message), { status: 502, code });
     }
 
     const declaredLength = Number(response.headers.get('content-length') || 0);
