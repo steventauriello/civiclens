@@ -117,10 +117,11 @@
     ingestButton.disabled = selectedFiles.length === 0;
   }
 
-  function acceptFiles(files) {
+  function acceptFiles(files, append = false) {
     const allowed = [...files].filter((file) => file.type === 'application/pdf' || file.type.startsWith('image/') || /\.(pdf|png|jpe?g|tiff?)$/i.test(file.name));
     if (allowed.length !== files.length) showToast('Some unsupported files were skipped.', 'error');
-    selectedFiles = allowed;
+    const nextFiles = append ? [...selectedFiles, ...allowed] : allowed;
+    selectedFiles = nextFiles.filter((file, index, all) => all.findIndex((candidate) => candidate.name === file.name && candidate.size === file.size && candidate.lastModified === file.lastModified) === index);
     renderSelectedFiles();
   }
 
@@ -261,14 +262,14 @@
   dropZone.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); fileInput.click(); }
   });
-  fileInput.addEventListener('change', () => acceptFiles(fileInput.files));
+  fileInput.addEventListener('change', () => acceptFiles(fileInput.files, selectedFiles.length > 0));
   ['dragenter', 'dragover'].forEach((eventName) => dropZone.addEventListener(eventName, (event) => {
     event.preventDefault(); dropZone.classList.add('dragover');
   }));
   ['dragleave', 'drop'].forEach((eventName) => dropZone.addEventListener(eventName, (event) => {
     event.preventDefault(); dropZone.classList.remove('dragover');
   }));
-  dropZone.addEventListener('drop', (event) => acceptFiles(event.dataTransfer.files));
+  dropZone.addEventListener('drop', (event) => acceptFiles(event.dataTransfer.files, selectedFiles.length > 0));
   ingestButton.addEventListener('click', ingestFiles);
   librarySearch.addEventListener('input', refreshLibrary);
 
