@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CivicLens helps residents follow public money through official records and evidence." />
+  <meta name="theme-color" content="#071522" />
+  <title>CivicLens — Follow Every Public Dollar</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="topbar">
+    <div class="shell topbar__inner">
+      <button class="brand" type="button" data-view-target="overview" aria-label="CivicLens home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" role="img">
+            <path d="M8 11.5 22 4l14 7.5v13L22 40 8 32.5z" />
+            <path d="M15 15.7 22 12l7 3.7v7.1L22 27l-7-4.2z" />
+            <path d="M22 27v13" />
+          </svg>
+        </span>
+        <span>
+          <strong>CivicLens</strong>
+          <small>Public finance intelligence</small>
+        </span>
+      </button>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <button class="nav-link is-active" type="button" data-view-target="overview">Overview</button>
+        <button class="nav-link" type="button" data-view-target="revenue">Revenue</button>
+        <button class="nav-link" type="button" data-view-target="spending">Spending</button>
+        <button class="nav-link" type="button" data-view-target="aen">AEN Reviews</button>
+        <button class="nav-link" type="button" data-view-target="sources">Sources</button>
+      </nav>
+
+      <div class="topbar__actions">
+        <span class="jurisdiction-chip">
+          <span class="status-dot" aria-hidden="true"></span>
+          Port St. Lucie pilot
+        </span>
+        <button class="icon-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="shell hero__inner">
+        <div class="hero__copy">
+          <div class="eyebrow"><span></span> Evidence-first civic oversight</div>
+          <h1>See where public money comes from.<br /><em>Follow where it goes.</em></h1>
+          <p>CivicLens turns budgets, audits, contracts, payments, projects, and public records into clear answers that residents can verify for themselves.</p>
+
+          <form class="ask-box" id="askForm">
+            <label for="askInput">Ask CivicLens</label>
+            <div class="ask-box__control">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4 4"></path></svg>
+              <input id="askInput" name="question" type="search" autocomplete="off" placeholder="Where did my property taxes go?" />
+              <button type="submit">Ask <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="prompt-row" aria-label="Example questions">
+              <button type="button" data-question="Where did my property taxes go?">Property taxes</button>
+              <button type="button" data-question="How much was spent on public safety?">Public safety</button>
+              <button type="button" data-question="Show contracts and vendor payments">Contracts</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="hero__status" aria-label="Pilot status">
+          <div class="status-card__header">
+            <span>System status</span>
+            <span class="status-pill">ALPHA</span>
+          </div>
+          <div class="status-card__seal" aria-hidden="true">
+            <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="60"></circle><circle cx="80" cy="80" r="43"></circle><path d="M52 92V69l28-16 28 16v23"></path><path d="M61 92V73h38v19M48 100h64"></path><path d="M70 73v19M80 73v19M90 73v19"></path></svg>
+          </div>
+          <dl class="status-list">
+            <div><dt>Official sources cataloged</dt><dd id="catalogedSourceCount">12</dd></div>
+            <div><dt>Verified financial records</dt><dd>0</dd></div>
+            <div><dt>Public release status</dt><dd>Prototype</dd></div>
+          </dl>
+          <p class="status-note"><strong>Important:</strong> Financial values in this interface are demonstration data until official Port St. Lucie records are ingested and reconciled.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="notice-bar" aria-label="Prototype notice">
+      <div class="shell notice-bar__inner">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <p><strong>Interface prototype:</strong> The experience is functional, but no demonstration figure should be treated as an official City value.</p>
+        <button type="button" data-view-target="sources">Review source plan</button>
+      </div>
+    </section>
+
+    <div class="shell app-shell">
+      <aside class="side-nav" aria-label="Section navigation">
+        <p class="side-nav__label">Explore</p>
+        <button class="side-link is-active" type="button" data-view-target="overview"><span>01</span> Financial overview</button>
+        <button class="side-link" type="button" data-view-target="revenue"><span>02</span> Money coming in</button>
+        <button class="side-link" type="button" data-view-target="spending"><span>03</span> Money going out</button>
+        <button class="side-link" type="button" data-view-target="aen"><span>04</span> AEN accountability</button>
+        <button class="side-link" type="button" data-view-target="sources"><span>05</span> Sources & evidence</button>
+        <div class="side-card">
+          <span class="side-card__icon">✓</span>
+          <strong>If we cannot trace it, we do not claim it.</strong>
+          <p>Every published number will link to an official source and calculation path.</p>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <section class="view is-active" id="view-overview" data-view="overview">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Financial overview</p>
+              <h2>Public money at a glance</h2>
+              <p>One clear starting point for understanding revenue, spending, evidence quality, and unresolved data gaps.</p>
+            </div>
+            <label class="select-control">Reporting period
+              <select id="yearSelect">
+                <option value="fy2025">FY 2025 demonstration</option>
+                <option value="fy2024">FY 2024 demonstration</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="metric-grid" id="metricGrid"></div>
+
+          <div class="dashboard-grid">
+            <article class="panel panel--wide">
+              <div class="panel__header">
+                <div><span class="panel__eyebrow">Illustrative flow</span><h3>How public money moves</h3></div>
+                <button class="text-button" type="button" data-view-target="revenue">Explore revenue →</button>
+              </div>
+              <div class="money-flow" id="moneyFlow"></div>
+              <p class="panel-footnote">Demonstration proportions only. The production flow will distinguish funds, restrictions, transfers, debt proceeds, appropriations, obligations, and actual payments.</p>
+            </article>
+
+            <article class="panel evidence-panel">
+              <div class="panel__header">
+                <div><span class="panel__eyebrow">Trust layer</span><h3>Evidence coverage</h3></div>
+              </div>
+              <div class="evidence-score">
+                <div class="evidence-ring" style="--score: 18"><span>18<small>%</small></span></div>
+                <div><strong>Foundation stage</strong><p>Official source systems are cataloged. Financial records have not yet been verified for public release.</p></div>
+              </div>
+              <button class="button button--secondary button--full" id="showEvidenceButton" type="button">Show the evidence plan</button>
+            </article>
+
+            <article class="panel panel--wide">
+              <div class="panel__header">
+                <div><span class="panel__eyebrow">Spending explorer</span><h3>Illustrative service distribution</h3></div>
+                <button class="text-button" type="button" data-view-target="spending">Open spending explorer →</button>
+              </div>
+              <div class="bar-chart" id="overviewSpendChart"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel__header">
+                <div><span class="panel__eyebrow">AEN review</span><h3>Accountability snapshot</h3></div>
+              </div>
+              <div class="aen-mini">
+                <div><span class="aen-letter">A</span><p><strong>Accountability</strong><small>Who approved it? What was promised?</small></p><span class="tag tag--amber">Evidence needed</span></div>
+                <div><span class="aen-letter">E</span><p><strong>Effectiveness</strong><small>What results were measured?</small></p><span class="tag tag--amber">Evidence needed</span></div>
+                <div><span class="aen-letter">N</span><p><strong>Need</strong><small>Why was funding necessary?</small></p><span class="tag tag--amber">Evidence needed</span></div>
+              </div>
+              <button class="button button--secondary button--full" type="button" data-view-target="aen">Open AEN Reviews</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-revenue" data-view="revenue" hidden>
+          <div class="section-heading">
+            <div><p class="section-kicker">Money coming in</p><h2>Revenue explorer</h2><p>Separate taxes, utility charges, fees, grants, debt proceeds, and internal transfers before drawing conclusions.</p></div>
+          </div>
+          <div class="metric-grid" id="revenueMetricGrid"></div>
+          <article class="panel">
+            <div class="panel__header"><div><span class="panel__eyebrow">Demonstration model</span><h3>Revenue categories</h3></div><span class="tag tag--blue">Not official data</span></div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Category</th><th>Share</th><th>Accounting note</th><th>Evidence</th></tr></thead>
+                <tbody id="revenueTableBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="view-spending" data-view="spending" hidden>
+          <div class="section-heading">
+            <div><p class="section-kicker">Money going out</p><h2>Spending explorer</h2><p>Compare budget authority with actual expenditure and payment records without double-counting internal transfers.</p></div>
+          </div>
+          <div class="filter-strip" role="group" aria-label="Spending filters">
+            <label>View by<select id="spendViewSelect"><option>Service area</option><option>Department</option><option>Fund</option><option>Vendor</option></select></label>
+            <label>Stage<select><option>Actual payments</option><option>Adopted budget</option><option>Amended budget</option></select></label>
+            <label>Fund<select><option>All funds</option><option>General Fund</option><option>Enterprise funds</option><option>Restricted funds</option></select></label>
+          </div>
+          <article class="panel panel--feature">
+            <div class="panel__header"><div><span class="panel__eyebrow">Demonstration model</span><h3>Spending by service area</h3></div><span class="tag tag--blue">Not official data</span></div>
+            <div class="bar-chart bar-chart--large" id="spendingChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel__header"><div><span class="panel__eyebrow">Transaction readiness</span><h3>What CivicLens still needs</h3></div></div>
+            <div class="readiness-grid">
+              <div><span class="readiness-status readiness-status--ready">Cataloged</span><strong>Budgets and audited reports</strong><p>Official entry points have been identified.</p></div>
+              <div><span class="readiness-status readiness-status--pending">Researching</span><strong>Vendor payments and check register</strong><p>Transaction-level availability must be confirmed.</p></div>
+              <div><span class="readiness-status readiness-status--pending">Researching</span><strong>Purchase orders and change orders</strong><p>Cross-system identifiers must be tested.</p></div>
+              <div><span class="readiness-status readiness-status--gap">Gap</span><strong>Invoice-level detail</strong><p>May require a targeted public-records request.</p></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="view-aen" data-view="aen" hidden>
+          <div class="section-heading">
+            <div><p class="section-kicker">Accountability • Effectiveness • Need</p><h2>AEN evidence reviews</h2><p>A structured review of what was authorized, what happened, and whether the public record establishes a genuine need.</p></div>
+          </div>
+          <div class="aen-hero">
+            <div class="aen-hero__letters" aria-hidden="true"><span>A</span><span>E</span><span>N</span></div>
+            <div><p class="section-kicker">A review—not an accusation</p><h3>Evidence should lead. Conclusions should follow.</h3><p>CivicLens separates confirmed facts, calculations, agency claims, contradictory evidence, and unresolved gaps. Missing data is never presented as proof of misconduct.</p></div>
+          </div>
+          <div class="aen-grid">
+            <article class="aen-card"><span class="aen-card__number">01</span><h3>Accountability</h3><p>Trace authority, funding, contracts, changes, payments, responsible officials, and audit findings.</p><ul><li>Who approved the expenditure?</li><li>What controls and reporting were required?</li><li>Did actual spending reconcile to the record?</li></ul></article>
+            <article class="aen-card"><span class="aen-card__number">02</span><h3>Effectiveness</h3><p>Compare promised outputs and public outcomes with measurable, time-bound evidence.</p><ul><li>Were objectives defined before spending?</li><li>What result was delivered?</li><li>Was the result independently verified?</li></ul></article>
+            <article class="aen-card"><span class="aen-card__number">03</span><h3>Need</h3><p>Examine the public problem, available alternatives, legal obligations, demand, and fiscal tradeoffs.</p><ul><li>What need was documented?</li><li>Were lower-cost options considered?</li><li>Why was this funding level necessary?</li></ul></article>
+          </div>
+          <article class="panel empty-state">
+            <span class="empty-state__icon" aria-hidden="true">⌁</span>
+            <h3>No public AEN Review has been released yet</h3>
+            <p>The first review will be published only after its source packet has been collected, reconciled, and manually checked.</p>
+          </article>
+        </section>
+
+        <section class="view" id="view-sources" data-view="sources" hidden>
+          <div class="section-heading">
+            <div><p class="section-kicker">Sources & evidence</p><h2>Official source registry</h2><p>Every source is cataloged with ownership, format, update frequency, coverage, retrieval status, and reliability notes.</p></div>
+          </div>
+          <div class="source-summary">
+            <div><span>12</span><p>Official source systems cataloged</p></div>
+            <div><span>5</span><p>Critical finance and budget entry points</p></div>
+            <div><span>0</span><p>Financial records verified for publication</p></div>
+          </div>
+          <article class="panel">
+            <div class="panel__header"><div><span class="panel__eyebrow">Port St. Lucie pilot</span><h3>Source systems</h3></div><span class="tag tag--green">Official domains only</span></div>
+            <div class="source-list" id="sourceList"></div>
+          </article>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <div class="brand brand--footer"><span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 11.5 22 4l14 7.5v13L22 40 8 32.5z"/><path d="M15 15.7 22 12l7 3.7v7.1L22 27l-7-4.2z"/><path d="M22 27v13"/></svg></span><span><strong>CivicLens</strong><small>Follow every public dollar.</small></span></div>
+      <p>Evidence first. Sources visible. Corrections public.</p>
+      <p>Port St. Lucie interface alpha</p>
+    </div>
+  </footer>
+
+  <div class="answer-panel" id="answerPanel" role="dialog" aria-modal="true" aria-labelledby="answerTitle" hidden>
+    <button class="answer-panel__backdrop" type="button" data-close-answer aria-label="Close answer"></button>
+    <section class="answer-panel__sheet">
+      <div class="answer-panel__header">
+        <div><span class="panel__eyebrow">CivicLens response</span><h2 id="answerTitle">Answer</h2></div>
+        <button class="close-button" type="button" data-close-answer aria-label="Close answer">×</button>
+      </div>
+      <div class="answer-panel__body" id="answerBody"></div>
+    </section>
+  </div>
+
+  <div class="evidence-drawer" id="evidenceDrawer" role="dialog" aria-modal="true" aria-labelledby="evidenceTitle" hidden>
+    <button class="evidence-drawer__backdrop" type="button" data-close-evidence aria-label="Close evidence drawer"></button>
+    <aside class="evidence-drawer__panel">
+      <div class="evidence-drawer__header"><div><span class="panel__eyebrow">Traceability</span><h2 id="evidenceTitle">Show the evidence</h2></div><button class="close-button" type="button" data-close-evidence aria-label="Close evidence drawer">×</button></div>
+      <div class="evidence-drawer__body">
+        <div class="evidence-alert"><strong>No official financial claim is being made.</strong><p>This prototype demonstrates how source lineage and confidence will appear once records have been ingested.</p></div>
+        <ol class="evidence-steps">
+          <li><span>1</span><div><strong>Official source</strong><p>Canonical government URL, publisher, reporting period, retrieval date, and document hash.</p></div></li>
+          <li><span>2</span><div><strong>Source location</strong><p>Page, table, row, cell, agenda item, contract identifier, or transaction record.</p></div></li>
+          <li><span>3</span><div><strong>Transformation</strong><p>Every normalization rule and deterministic calculation used to produce the displayed value.</p></div></li>
+          <li><span>4</span><div><strong>Reconciliation</strong><p>Whether detailed records match the official published total, including unresolved variance.</p></div></li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
