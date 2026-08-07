@@ -32,4 +32,42 @@
       return response;
     }
   };
+
+  function clarifyImportFields() {
+    const fiscal = document.getElementById('officialFiscalYear');
+    const title = document.getElementById('officialTitle');
+    const manifest = document.getElementById('officialManifestId');
+
+    if (!fiscal || !title || !manifest) return false;
+
+    fiscal.required = true;
+    fiscal.placeholder = 'Enter fiscal year';
+    fiscal.setAttribute('aria-required', 'true');
+
+    title.required = true;
+    title.placeholder = 'Enter official document title';
+    title.setAttribute('aria-required', 'true');
+
+    manifest.placeholder = 'Optional manifest document ID';
+
+    const fiscalLabel = fiscal.closest('label');
+    const titleLabel = title.closest('label');
+    if (fiscalLabel && !fiscalLabel.querySelector('[data-required-note]')) {
+      fiscalLabel.firstChild.textContent = 'Fiscal year ';
+      fiscalLabel.insertAdjacentHTML('afterbegin', '<span data-required-note style="font-weight:600;color:#53636e">Required</span>');
+    }
+    if (titleLabel && !titleLabel.querySelector('[data-required-note]')) {
+      titleLabel.firstChild.textContent = 'Official title ';
+      titleLabel.insertAdjacentHTML('afterbegin', '<span data-required-note style="font-weight:600;color:#53636e">Required</span>');
+    }
+
+    return true;
+  }
+
+  if (!clarifyImportFields()) {
+    const observer = new MutationObserver(() => {
+      if (clarifyImportFields()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
 })();
