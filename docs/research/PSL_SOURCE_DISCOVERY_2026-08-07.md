@@ -1,6 +1,15 @@
 # Port St. Lucie Source Discovery — 2026-08-07
 
-This research note records the first document-level source discovery pass for CivicLens Issue #1. It is intentionally conservative: unknown fields remain unknown, and a document missing from a current webpage is recorded as a gap to investigate rather than proof that the document does not exist.
+This research note records the document-level source discovery pass for CivicLens Issue #1. It is intentionally conservative: unknown fields remain unknown, and a document missing from a current webpage is recorded as a gap to investigate rather than proof that the document does not exist.
+
+## Verification rule
+
+CivicLens distinguishes between two source states:
+
+- **Listed by the City** — the official City page names the document, but the exact standalone PDF URL has not yet been independently opened and confirmed.
+- **Confirmed direct URL** — the exact official `cityofpsl.com` PDF URL has been opened successfully or otherwise directly confirmed from the City's own source index.
+
+This distinction is important for later evidence provenance and chain-of-custody work.
 
 ## Official discovery pages reviewed
 
@@ -22,56 +31,85 @@ The current Annual Budget page lists the following FY 2024-25 documents:
 - Statement of Revenues & Expenditures — 3rd Quarter — 300 KB
 - Statement of Revenues & Expenditures — 4th Quarter — 337 KB
 
-Direct official PDF URLs have now been captured for the FY 2024-25 adopted budget, proposed budget, proposed Budget in Brief, proposed CIP budget, Budget Amendment #1, and millage analysis. The adopted Budget in Brief remains listed on the City's Annual Budget page, but its exact standalone PDF URL still needs verification because search indexing currently conflates its content with the adopted budget PDF.
+Direct official PDF URLs are confirmed for the FY 2024-25 adopted budget, proposed budget, proposed Budget in Brief, proposed CIP budget, Budget Amendment #1, millage analysis, 1st Quarter statement, and 3rd Quarter statement.
+
+The FY 2024-25 Q1 PDF opened successfully as a 9-page official report. Its memorandum is dated February 21, 2025, and identifies the first-quarter reporting period as the quarter ended December 31, 2024. The report compares budget to actual results across major operating funds.
+
+The FY 2024-25 Q3 PDF also opened successfully as an official 8-page report.
+
+The adopted Budget in Brief remains listed on the City's Annual Budget page, but its exact standalone PDF URL still needs verification because search indexing currently conflates its content with the adopted budget PDF. The Q4 statement is also still listed but its exact standalone URL remains unconfirmed in this pass.
 
 ### FY 2024-25 reporting gap to investigate
 
-The current Annual Budget page does not list a 2nd Quarter Statement of Revenues & Expenditures for FY 2024-25. CivicLens should search City archives and legislative records before deciding whether a public-record request is needed.
+The current Annual Budget page does not list a 2nd Quarter Statement of Revenues & Expenditures for FY 2024-25. CivicLens should search City archives, legislative records, agenda attachments, and records channels before deciding whether a public-record request is needed.
 
-The City's official `PSL On the Pulse` Volume 9 Issue 3 republishes the FY 2024-25 first-quarter financial summary and identifies the reporting period as the quarter ended December 31, 2024. This is useful corroborating evidence while the standalone Q1 PDF URL is still being captured.
+## FY 2023-24 package verification
+
+The Annual Budget page lists the adopted budget, proposed budget, Budget in Brief, CIP plan, Budget Amendment #1, millage analysis, Budget Breakdown fact sheet, and all four quarterly revenue/expenditure statements.
+
+This pass confirmed direct official URLs for:
+
+- Adopted Budget FY 23/24
+- Budget Amendment #1 FY 23/24
+- Millage Rate Analysis FY 23/24
+- 1st Quarter Statement of Revenues & Expenditures
+- 2nd Quarter Statement of Revenues & Expenditures
+- 3rd Quarter Statement of Revenues & Expenditures
+- 4th Quarter Statement of Revenues & Expenditures
+
+The Q2 PDF opened as an official 8-page report and the Q4 PDF opened as an official City PDF. The proposed budget, Budget in Brief, CIP plan, and Budget Breakdown remain listed but still need exact standalone URL verification.
+
+## FY 2022-23 package verification
+
+The Annual Budget page lists the adopted budget, Budget in Brief, two budget amendments, millage analysis, proposed budget presentation, and all four quarterly revenue/expenditure statements.
+
+This pass confirmed direct official URLs for:
+
+- Adopted Budget FY 22/23
+- Budget Amendment #1 FY 22/23
+- Budget Amendment #2 FY 22/23
+
+The remaining FY 2022-23 listed documents stay marked as URL-pending until their exact standalone PDFs are independently verified.
 
 ## Multi-year adopted budget coverage
 
-Direct official PDF URLs were confirmed for:
+Direct official PDF URLs are confirmed for:
 
 - FY 2025-26 Adopted Budget
 - FY 2024-25 Adopted Budget
 - FY 2023-24 Adopted Budget
 - FY 2022-23 Adopted Budget
 
-This satisfies the Issue #1 requirement to enumerate at least three fiscal years of adopted budget documents, although hashes and full ingestion metadata still need to be added after preservation in the Evidence Vault.
+This satisfies the Issue #1 requirement to enumerate at least three fiscal years of adopted budget documents, although SHA-256 values still need to be added after preservation in the Evidence Vault.
 
 ## Audited financial reporting
 
-The Finance Department currently lists Annual Comprehensive Financial Reports for 2025 through 2017. The latest listed report is:
+The manifest includes the City's Annual Comprehensive Financial Reports used for year-end reconciliation. The 2024 ACFR was opened successfully during research. It is a 254-page native-text PDF for the fiscal year ended September 30, 2024. Its table of contents includes government-wide statements, governmental and proprietary fund statements, budget-to-actual schedules, notes, combining schedules, statistical information, debt information, and compliance reports.
 
-- Annual Comprehensive Financial Report 2025 — 7 MB
-
-A direct official PDF URL was captured from the City Finance page.
-
-The 2024 ACFR was opened successfully during research. It is a 254-page native-text PDF for the fiscal year ended September 30, 2024. Its table of contents includes government-wide statements, governmental and proprietary fund statements, budget-to-actual schedules, notes, combining schedules, statistical information, debt information, and compliance reports. This makes it a strong extraction and reconciliation source.
+That makes the ACFR one of the strongest sources for reconciling adopted and amended budgets against audited year-end results.
 
 ## Popular Annual Financial Reports
 
-The Finance page currently lists:
-
-- Popular Annual Financial Report 2024 — 4 MB
-- Popular Annual Financial Report 2023 — 2 MB
-
-No 2025 PAFR was visible on the current Finance page during this pass.
+The Finance page lists Popular Annual Financial Reports for 2024 and 2023. The exact official PDF URL for the 2024 PAFR is now confirmed and added to the manifest. The report is a resident-facing summary of the fiscal year ended September 30, 2024.
 
 ## Treasury reports
 
-Latest reports currently listed on the Finance page:
+The Finance page lists:
 
 - Annual Debt Management Report FY 2023-2024 — 657 KB
+- Annual Debt Management Report FY 2022-2023 — 497 KB
+- Annual Debt Management Report FY 2021-2022 — 379 KB
+- Annual Debt Management Report FY 2020-2021 — 3 MB
 - Annual Investments Report FY 2023-2024 — 2 MB
+- Annual Investments Report FY 2022-2023 — 260 KB
+- Annual Investments Report FY 2021-2022 — 464 KB
+- Annual Investments Report FY 2020-2021 — 6 MB
 
-The page also lists FY 2022-23, FY 2021-22, and FY 2020-21 versions of both report types. No FY 2024-25 debt or investment report was visible on the current Finance page during this pass.
+Direct official URLs are already confirmed in the manifest for the FY 2023-24 debt and investment reports. The older reports remain a later document-level enumeration target.
 
 ## Finance policies located
 
-Direct official PDF URLs were confirmed for:
+Direct official PDF URLs are confirmed for:
 
 - Capital Asset Policy
 - Debt Management Policy
@@ -81,25 +119,37 @@ These documents will be useful when CivicLens interprets capitalization, debt, t
 
 ## Procurement controls located
 
-The City Procurement page lists a Procurement Manual, Purchasing Thresholds, ethics documents, supporting-document requirements, terms and conditions, and vendor guidance. A direct official PDF URL was confirmed for the current Procurement Policy and Procedure Manual.
+The City Procurement page lists a Procurement Manual, Purchasing Thresholds, ethics documents, supporting-document requirements, terms and conditions, and vendor guidance. A direct official PDF URL is confirmed for the current Procurement Policy and Procedure Manual.
 
-## Manifest created
+## Manifest status after this pass
 
 The document-level manifest is stored at:
 
 `data/manifests/port_st_lucie_financial_documents.csv`
 
-The first pass includes confirmed direct URLs, discovery-page URLs, listed file sizes, retrieval date, ingestion priority, status, and extraction notes. SHA-256 fields remain blank until the actual files are preserved and fingerprinted.
+It now contains 42 document/gap rows plus the header. After the current verification pass:
+
+- 27 rows have confirmed direct official PDF URLs.
+- 13 rows remain listed by the City but need exact standalone URL verification.
+- 1 row is an explicit missing-document gap: FY 2024-25 Q2.
+- 1 row is retained as a City-listed direct-source entry pending a separate retrieval/extraction confirmation.
+
+SHA-256 fields remain blank until the actual files are preserved and fingerprinted in the Evidence Vault.
 
 ## Next discovery pass
 
-1. Capture direct PDF URLs for the FY 2024-25 adopted Budget in Brief and Q1/Q3/Q4 revenue-expenditure statements.
-2. Locate the missing FY 2024-25 Q2 revenue/expenditure statement through archives, agenda attachments, or records channels.
-3. Determine whether FY 2024-25 has any additional budget amendments beyond Amendment #1.
-4. Enumerate FY 2023-24 Budget in Brief, CIP, amendment, millage analysis, and all four quarterly statements.
-5. Capture direct PAFR URLs.
-6. Enumerate the older debt and investment reports at document level.
-7. Add Purchasing Thresholds and other procurement-control documents.
-8. Preserve priority documents in the Evidence Vault and fill in SHA-256 hashes.
-9. Record publication dates where the official document or page establishes them.
-10. Mark duplicate, superseded, or replaced documents explicitly rather than deleting history.
+1. Confirm the FY 2024-25 adopted Budget in Brief direct PDF URL.
+2. Confirm the FY 2024-25 Q4 direct PDF URL.
+3. Locate the missing FY 2024-25 Q2 statement through archives, agenda attachments, or records channels.
+4. Determine whether FY 2024-25 has any additional budget amendments beyond Amendment #1.
+5. Confirm remaining FY 2023-24 proposed-budget, Budget in Brief, CIP, and Budget Breakdown URLs.
+6. Confirm remaining FY 2022-23 Budget in Brief, millage, presentation, and quarterly-report URLs.
+7. Enumerate older debt and investment reports at document level.
+8. Add Purchasing Thresholds and other procurement-control documents.
+9. Preserve priority documents in the Evidence Vault and fill in SHA-256 hashes.
+10. Record publication dates where the official document or page establishes them.
+11. Mark duplicate, superseded, or replaced documents explicitly rather than deleting history.
+
+## Flagship investigation handoff
+
+Once the critical FY 2024-25 financial backbone is preserved, CivicLens will use the Port St. Lucie outdoor-gym project as the first end-to-end taxpayer-money trace. That investigation should connect budget authority, amendments, council action, procurement, vendor/contract records, payments, completion, and final cost back to preserved official evidence.
