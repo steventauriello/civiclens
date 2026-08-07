@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CivicLens Evidence Vault for reviewing and cataloging official public records." />
+  <meta name="theme-color" content="#071522" />
+  <title>CivicLens Evidence Vault</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="vault.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Return to CivicLens dashboard">
+      <span class="brand-mark" aria-hidden="true">CL</span>
+      <span><strong>CivicLens</strong><small>Evidence operations</small></span>
+    </a>
+    <nav aria-label="Evidence Vault navigation">
+      <a href="index.html">Public dashboard</a>
+      <a class="active" href="evidence-vault.html">Evidence Vault</a>
+    </nav>
+    <span class="alpha">ADMIN PROTOTYPE</span>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Secure evidence workspace</p>
+        <h1>Evidence Vault</h1>
+        <p>Upload, catalog, inspect, and prepare official records before any information is published to residents.</p>
+      </div>
+      <div class="trust-note"><strong>Evidence rule</strong><span>If we cannot trace it, we do not claim it.</span></div>
+    </section>
+
+    <section class="status-strip" aria-label="Vault status">
+      <div><span>Documents</span><strong id="documentCount">0</strong></div>
+      <div><span>Awaiting review</span><strong id="reviewCount">0</strong></div>
+      <div><span>Verified</span><strong id="verifiedCount">0</strong></div>
+      <div><span>Storage</span><strong>Local prototype</strong></div>
+    </section>
+
+    <section class="workspace">
+      <aside class="library-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Evidence library</p><h2>Official records</h2></div>
+          <button id="openUpload" class="primary-button" type="button">+ Add records</button>
+        </div>
+
+        <label class="search-label" for="librarySearch">Search records</label>
+        <input id="librarySearch" class="search-input" type="search" placeholder="Budget, ACFR, contract, vendor…" />
+
+        <div class="filters" aria-label="Document filters">
+          <button class="filter active" data-filter="all" type="button">All</button>
+          <button class="filter" data-filter="budget" type="button">Budgets</button>
+          <button class="filter" data-filter="audit" type="button">Audits</button>
+          <button class="filter" data-filter="contract" type="button">Contracts</button>
+          <button class="filter" data-filter="other" type="button">Other</button>
+        </div>
+
+        <div id="documentList" class="document-list" aria-live="polite"></div>
+        <div id="emptyLibrary" class="empty-library">
+          <strong>No records uploaded yet</strong>
+          <p>Add an official PDF, scanned document, or image to begin the evidence review workflow.</p>
+        </div>
+      </aside>
+
+      <section class="viewer-panel" aria-label="Document viewer">
+        <div id="viewerEmpty" class="viewer-empty">
+          <div class="seal">CL</div>
+          <h2>Select a record to inspect</h2>
+          <p>The original file, metadata, review status, and evidence notes will appear here.</p>
+          <button id="emptyUpload" class="primary-button" type="button">Upload first record</button>
+        </div>
+
+        <div id="viewerContent" hidden>
+          <header class="viewer-header">
+            <div>
+              <p class="eyebrow" id="viewerType">Official record</p>
+              <h2 id="viewerTitle">Document</h2>
+              <p id="viewerSubtitle"></p>
+            </div>
+            <div class="viewer-actions">
+              <button id="markVerified" class="secondary-button" type="button">Mark verified</button>
+              <button id="removeDocument" class="danger-button" type="button">Remove</button>
+            </div>
+          </header>
+
+          <div class="viewer-grid">
+            <div class="preview-shell">
+              <div class="preview-toolbar">
+                <span id="previewStatus">Original file preview</span>
+                <button id="openOriginal" type="button">Open original ↗</button>
+              </div>
+              <iframe id="pdfPreview" title="PDF document preview" hidden></iframe>
+              <img id="imagePreview" alt="Uploaded document preview" hidden />
+              <div id="unsupportedPreview" class="unsupported" hidden>
+                <strong>Preview unavailable</strong>
+                <p>The file is preserved in your browser, but this format cannot be previewed here.</p>
+              </div>
+            </div>
+
+            <aside class="metadata-panel">
+              <h3>Evidence record</h3>
+              <dl>
+                <div><dt>Status</dt><dd id="metaStatus"></dd></div>
+                <div><dt>Document type</dt><dd id="metaType"></dd></div>
+                <div><dt>Fiscal year</dt><dd id="metaYear"></dd></div>
+                <div><dt>Publisher</dt><dd id="metaPublisher"></dd></div>
+                <div><dt>Source</dt><dd id="metaSource"></dd></div>
+                <div><dt>Uploaded</dt><dd id="metaUploaded"></dd></div>
+                <div><dt>File size</dt><dd id="metaSize"></dd></div>
+                <div><dt>Content fingerprint</dt><dd id="metaHash" class="hash"></dd></div>
+              </dl>
+
+              <label for="reviewNotes">Reviewer notes</label>
+              <textarea id="reviewNotes" rows="6" placeholder="Record extraction issues, missing pages, accounting basis, source confirmation…"></textarea>
+              <button id="saveNotes" class="secondary-button full" type="button">Save notes</button>
+
+              <div class="processing-card">
+                <strong>Processing readiness</strong>
+                <ul>
+                  <li><span class="ready">✓</span> Original preserved locally</li>
+                  <li><span class="pending">○</span> OCR and table extraction — backend required</li>
+                  <li><span class="pending">○</span> Financial reconciliation — reviewer required</li>
+                  <li><span class="pending">○</span> Public release — approval required</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="uploadDialog">
+    <form method="dialog" class="dialog-card" id="uploadForm">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">New evidence record</p><h2>Upload official documents</h2></div>
+        <button class="close-button" value="cancel" aria-label="Close upload window" type="submit">×</button>
+      </div>
+
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-describedby="dropHelp">
+        <input id="fileInput" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,application/pdf,image/*" hidden />
+        <div class="upload-icon">↑</div>
+        <strong>Drag and drop records here</strong>
+        <p>or click to select files</p>
+        <small id="dropHelp">PDF, scanned PDF, JPG, PNG, TIFF • Files remain in this browser in the current prototype.</small>
+      </div>
+      <div id="selectedFiles" class="selected-files"></div>
+
+      <div class="form-grid">
+        <label>Document type
+          <select id="documentType">
+            <option value="budget">Budget or financial report</option>
+            <option value="audit">Audit or ACFR</option>
+            <option value="contract">Contract or procurement</option>
+            <option value="meeting">Council agenda or minutes</option>
+            <option value="invoice">Invoice or payment record</option>
+            <option value="other">Other official record</option>
+          </select>
+        </label>
+        <label>Fiscal year
+          <input id="fiscalYear" type="text" placeholder="FY 2025" />
+        </label>
+        <label>Publisher / agency
+          <input id="publisher" type="text" value="City of Port St. Lucie" />
+        </label>
+        <label>Official source URL
+          <input id="sourceUrl" type="url" placeholder="https://www.cityofpsl.com/…" />
+        </label>
+      </div>
+
+      <div class="disclosure">
+        <strong>Prototype limitation</strong>
+        <p>This version creates a functional local Evidence Vault and viewer. It does not yet upload files to a secure server, run OCR, or publish data to the public dashboard.</p>
+      </div>
+
+      <div class="dialog-actions">
+        <button class="secondary-button" value="cancel" type="submit">Cancel</button>
+        <button id="ingestButton" class="primary-button" value="default" type="button" disabled>Add to Evidence Vault</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="vault.js"></script>
+</body>
+</html>
