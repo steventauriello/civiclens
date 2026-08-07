@@ -78,7 +78,7 @@
         <div class="bar-row__track" aria-label="${escapeHtml(item.name)} ${item.share}%">
           <div class="bar-row__bar" style="width:${(item.share / max) * 100}%"></div>
         </div>
-        <div class="bar-row__value">${item.share}%</div>
+        <div class="bar-row__value">${item.amount ? escapeHtml(item.amount) : `${item.share}%`}</div>
       </div>
     `).join('');
   }
@@ -99,11 +99,11 @@
 
   function renderMoneyFlow() {
     moneyFlow.innerHTML = [
-      renderFlowColumn('Revenue', 'Illustrative', data.flow.revenue),
+      renderFlowColumn('Revenue', 'Reported aggregate', data.flow.revenue),
       '<div class="flow-arrow" aria-hidden="true">→</div>',
       renderFlowColumn('Funds', 'Accounting structure', data.flow.funds),
       '<div class="flow-arrow" aria-hidden="true">→</div>',
-      renderFlowColumn('Uses', 'Illustrative', data.flow.uses)
+      renderFlowColumn('Uses', 'Reported aggregate', data.flow.uses)
     ].join('');
   }
 
@@ -111,9 +111,9 @@
     revenueTableBody.innerHTML = period.revenue.map((item) => `
       <tr>
         <td>${escapeHtml(item.name)}</td>
-        <td><strong>${item.share}%</strong></td>
+        <td><strong>${escapeHtml(item.amount || `${item.share}%`)}</strong></td>
         <td>${escapeHtml(item.note)}</td>
-        <td><span class="tag tag--amber">Pending verification</span></td>
+        <td><a href="https://www.cityofpsl.com/files/assets/public/v/1/departments/office-of-management-amp-budget/documents/fy-24-25-4th-quarter-statement-of-revenues-and-expenditures.pdf" target="_blank" rel="noopener noreferrer">Q4 report ↗</a></td>
       </tr>
     `).join('');
   }
@@ -135,10 +135,10 @@
     const period = data.periods[periodKey] || data.periods.fy2025;
     renderMetrics(metricGrid, period.metrics);
     renderMetrics(revenueMetricGrid, [
-      { label: 'Illustrative tax share', value: `${period.revenue[0].share}%`, note: 'Demonstration only—not an official City value', icon: 'TX', tone: 'dark' },
-      { label: 'Illustrative enterprise share', value: `${period.revenue[1].share}%`, note: 'Must be separated by restricted fund', icon: 'EN' },
-      { label: 'Revenue categories', value: String(period.revenue.length), note: 'Designed to prevent unlike revenues from being mixed', icon: 'CAT' },
-      { label: 'Verification status', value: 'Pending', note: 'Official records have not yet been reconciled', icon: 'QA' }
+      { label: 'Reported revenue', value: '$446.7M', note: 'Eight operating funds reported by the City', icon: 'IN', tone: 'dark' },
+      { label: 'Largest operating fund', value: '$192.0M', note: 'General Fund reported revenue', icon: 'GF' },
+      { label: 'Funds shown', value: '8', note: 'Capital, debt, CRA, grant, and other funds still to come', icon: 'FND' },
+      { label: 'Source basis', value: 'Q4', note: 'Unaudited City quarterly report, fiscal year ended Sept. 30, 2025', icon: 'SRC' }
     ]);
     renderBarChart(overviewSpendChart, period.spending);
     renderBarChart(spendingChart, period.spending);
@@ -157,7 +157,7 @@
     const answer = classifyQuestion(question.trim());
     answerTitle.textContent = answer.title;
     answerBody.innerHTML = `
-      <div class="answer-alert"><strong>Prototype disclosure:</strong> CivicLens is not yet publishing verified Port St. Lucie financial totals.</div>
+      <div class="answer-alert"><strong>Scope disclosure:</strong> CivicLens currently shows only the FY 2024–25 operating-funds report. It does not yet answer citywide or property-tax allocation questions.</div>
       <p>${escapeHtml(answer.intro)}</p>
       <h3>What the evidence currently supports</h3>
       <p>${escapeHtml(answer.explanation)}</p>
