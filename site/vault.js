@@ -423,12 +423,14 @@
   }
 
   function currentUploadMetadata() {
+    const sourceInput = el('sourceUrl');
+    const sourceUrl = window.CivicLensSourceUrl?.cleanInput(sourceInput) || sourceInput.value.trim();
     return {
       type: el('documentType').value,
       typeLabel: el('documentType').selectedOptions[0].textContent,
       fiscalYear: el('fiscalYear').value.trim(),
       publisher: el('publisher').value.trim(),
-      sourceUrl: el('sourceUrl').value.trim()
+      sourceUrl
     };
   }
 
