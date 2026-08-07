@@ -75,6 +75,7 @@
 
           <label class="official-import-field" for="officialSourceUrl">Official City PDF URL
             <input id="officialSourceUrl" type="url" inputmode="url" autocomplete="off" placeholder="https://www.cityofpsl.com/files/assets/public/...pdf" required />
+            <small>Chrome PDF-viewer wrappers and tracking parameters are removed automatically.</small>
           </label>
 
           <div class="official-import-grid">
@@ -245,7 +246,8 @@
     if (!file) return;
     const result = document.getElementById('officialImportResult');
     const button = document.getElementById('runAssistedImport');
-    const url = document.getElementById('officialSourceUrl').value.trim();
+    const sourceInput = document.getElementById('officialSourceUrl');
+    const url = window.CivicLensSourceUrl?.cleanInput(sourceInput) || sourceInput.value.trim();
     const meta = metadata();
 
     button.disabled = true;
@@ -304,7 +306,8 @@
     event.preventDefault();
     const button = document.getElementById('runOfficialImport');
     const result = document.getElementById('officialImportResult');
-    const url = document.getElementById('officialSourceUrl').value.trim();
+    const sourceInput = document.getElementById('officialSourceUrl');
+    const url = window.CivicLensSourceUrl?.cleanInput(sourceInput) || sourceInput.value.trim();
 
     if (!url) return;
 
