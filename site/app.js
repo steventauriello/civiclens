@@ -201,6 +201,30 @@
     if (answerPanel.hidden) document.body.classList.remove('modal-open');
   }
 
+  function addRestrictedVaultNavigation() {
+    if (primaryNav && !primaryNav.querySelector('[data-vault-link]')) {
+      const topLink = document.createElement('a');
+      topLink.href = 'evidence-vault.html';
+      topLink.className = 'nav-link';
+      topLink.dataset.vaultLink = 'true';
+      topLink.textContent = 'Restricted Vault';
+      topLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
+      primaryNav.appendChild(topLink);
+    }
+
+    const sideNav = document.querySelector('.side-nav');
+    if (sideNav && !sideNav.querySelector('[data-vault-link]')) {
+      const sideLink = document.createElement('a');
+      sideLink.href = 'evidence-vault.html';
+      sideLink.className = 'side-link';
+      sideLink.dataset.vaultLink = 'true';
+      sideLink.innerHTML = '<span>06</span> Restricted Vault 🔒';
+      sideLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
+      const sideCard = sideNav.querySelector('.side-card');
+      sideNav.insertBefore(sideLink, sideCard || null);
+    }
+  }
+
   viewButtons.forEach((button) => {
     button.addEventListener('click', () => setView(button.dataset.viewTarget));
   });
@@ -238,5 +262,6 @@
   renderMoneyFlow();
   renderPeriod(yearSelect.value);
   renderSources();
+  addRestrictedVaultNavigation();
   setView(['overview', 'revenue', 'spending', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
 })();
