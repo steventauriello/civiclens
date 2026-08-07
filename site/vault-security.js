@@ -4,6 +4,8 @@
   const LEGACY_SESSION_KEY = 'civiclens-admin-key';
   const SESSION_SENTINEL = 'http-only-session';
 
+  document.body.classList.add('vault-access-checking');
+
   function showToast(message, tone = 'success') {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -53,6 +55,54 @@
     if (existing && existing !== SESSION_SENTINEL) sessionStorage.removeItem(LEGACY_SESSION_KEY);
   }
 
+  function installRestrictedGate() {
+    if (document.getElementById('restrictedGate')) return;
+    const header = document.querySelector('.topbar');
+    const markup = `
+      <section id="restrictedGate" class="restricted-gate" aria-labelledby="restrictedGateTitle">
+        <div class="restricted-gate__card">
+          <div class="restricted-gate__lock" aria-hidden="true">🔒</div>
+          <p class="restricted-gate__eyebrow">Restricted — owner access only</p>
+          <h1 id="restrictedGateTitle">CivicLens Evidence Vault</h1>
+          <p class="restricted-gate__lead">This administrative workspace contains unpublished evidence records and document-management controls.</p>
+          <div class="restricted-gate__notice"><strong>Authorized access only.</strong> Uploading, reviewing, verifying, editing, or archiving evidence requires an authenticated CivicLens owner session. Administrative activity is logged.</div>
+          <form id="restrictedGateForm">
+            <label for="restrictedOwnerKey">CivicLens owner key</label>
+            <input id="restrictedOwnerKey" type="password" autocomplete="current-password" placeholder="Enter owner key" required />
+            <div class="restricted-gate__actions">
+              <button id="restrictedSignIn" class="primary-button" type="submit">Secure sign in</button>
+            </div>
+            <div id="restrictedGateStatus" class="restricted-gate__status" role="status" aria-live="polite"></div>
+          </form>
+          <a class="restricted-gate__back" href="index.html">← Return to public CivicLens</a>
+        </div>
+      </section>`;
+    if (header) header.insertAdjacentHTML('afterend', markup);
+    else document.body.insertAdjacentHTML('afterbegin', markup);
+
+    document.getElementById('restrictedGateForm')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      secureGateLogin();
+    });
+  }
+
+  function showRestrictedGate(message = '') {
+    installRestrictedGate();
+    document.body.classList.remove('vault-access-checking');
+    document.body.classList.add('vault-access-locked');
+    const gate = document.getElementById('restrictedGate');
+    if (gate) gate.hidden = false;
+    const status = document.getElementById('restrictedGateStatus');
+    if (status) status.textContent = message;
+    setTimeout(() => document.getElementById('restrictedOwnerKey')?.focus(), 50);
+  }
+
+  function unlockVaultUi() {
+    document.body.classList.remove('vault-access-checking', 'vault-access-locked');
+    const gate = document.getElementById('restrictedGate');
+    if (gate) gate.hidden = true;
+  }
+
   function installSessionBadge(authenticated) {
     let badge = document.getElementById('securitySessionBadge');
     if (!badge) {
@@ -61,7 +111,7 @@
       badge.className = 'security-session-badge';
       document.querySelector('.topbar')?.appendChild(badge);
     }
-    const nextText = authenticated ? 'SECURE SESSION' : 'SIGNED OUT';
+    const nextText = authenticated ? 'SECURE SESSION' : 'RESTRICTED';
     const nextState = authenticated ? 'secure' : 'locked';
     if (badge.textContent !== nextText) badge.textContent = nextText;
     if (badge.dataset.state !== nextState) badge.dataset.state = nextState;
@@ -160,27 +210,47 @@
     }
   }
 
-  async function secureLogin(button) {
-    const input = document.getElementById('storageAdminKey');
-    const key = input?.value.trim() || '';
-    if (!key) return showToast('Enter the CivicLens owner key.', 'error');
-
-    const oldText = button.textContent;
-    button.disabled = true;
-    button.textContent = 'Signing in securely…';
+  async function performLogin(key, button, statusElement) {
+    if (!key) {
+      if (statusElement) statusElement.textContent = 'Enter the CivicLens owner key.';
+      return;
+    }
+    const oldText = button?.textContent || 'Secure sign in';
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Signing in securely…';
+    }
+    if (statusElement) statusElement.textContent = '';
     try {
       await authRequest('POST', { key });
-      if (input) input.value = '';
       sessionStorage.setItem(LEGACY_SESSION_KEY, SESSION_SENTINEL);
       showToast('Secure Evidence Vault session started.');
       window.location.reload();
     } catch (error) {
-      if (input) input.value = '';
       sessionStorage.removeItem(LEGACY_SESSION_KEY);
-      showToast(error.status === 401 ? 'That owner key is not correct.' : error.message, 'error');
-      button.disabled = false;
-      button.textContent = oldText;
+      if (statusElement) statusElement.textContent = error.status === 401 ? 'Access denied. Check the owner key.' : error.message;
+      else showToast(error.status === 401 ? 'That owner key is not correct.' : error.message, 'error');
+      if (button) {
+        button.disabled = false;
+        button.textContent = oldText;
+      }
     }
+  }
+
+  async function secureGateLogin() {
+    const input = document.getElementById('restrictedOwnerKey');
+    const button = document.getElementById('restrictedSignIn');
+    const status = document.getElementById('restrictedGateStatus');
+    const key = input?.value.trim() || '';
+    if (input) input.value = '';
+    await performLogin(key, button, status);
+  }
+
+  async function secureStorageLogin(button) {
+    const input = document.getElementById('storageAdminKey');
+    const key = input?.value.trim() || '';
+    if (input) input.value = '';
+    await performLogin(key, button, null);
   }
 
   async function secureLogout(button) {
@@ -204,7 +274,7 @@
     if (connect) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      secureLogin(connect);
+      secureStorageLogin(connect);
       return;
     }
 
@@ -216,6 +286,7 @@
     }
   }, true);
 
+  installRestrictedGate();
   const observer = new MutationObserver(enhanceStorageDialog);
   observer.observe(document.body, { childList: true, subtree: true });
   enhanceStorageDialog();
@@ -228,12 +299,19 @@
       if (status.authenticated && sessionStorage.getItem(LEGACY_SESSION_KEY) !== SESSION_SENTINEL) {
         sessionStorage.setItem(LEGACY_SESSION_KEY, SESSION_SENTINEL);
         window.location.reload();
+        return;
       }
-      if (!status.authenticated) sessionStorage.removeItem(LEGACY_SESSION_KEY);
+      if (status.authenticated) {
+        unlockVaultUi();
+      } else {
+        sessionStorage.removeItem(LEGACY_SESSION_KEY);
+        showRestrictedGate();
+      }
     } catch (error) {
       console.error(error);
       installSessionBadge(false);
       sessionStorage.removeItem(LEGACY_SESSION_KEY);
+      showRestrictedGate('The secure sign-in service could not be reached. Try again in a moment.');
     }
   })();
 })();
