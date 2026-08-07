@@ -1,5 +1,6 @@
 [build]
   publish = "site"
+  functions = "netlify/functions"
 
 [[headers]]
   for = "/*"
@@ -8,7 +9,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: blob: https://*.r2.cloudflarestorage.com; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://*.r2.cloudflarestorage.com; font-src 'self'; frame-src 'self' blob: https://*.r2.cloudflarestorage.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 
 [[redirects]]
   from = "/*"
