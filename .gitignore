@@ -1,0 +1,42 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Build output
+.next/
+dist/
+build/
+coverage/
+
+# Local databases and indexes
+*.db
+*.sqlite
+*.sqlite3
+.storage/
+.vector-store/
+
+# Raw data is not committed unless explicitly approved
+data/raw/*
+!data/raw/.gitkeep
+
+# Processed exports may contain large generated files
+data/processed/*
+!data/processed/.gitkeep
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/

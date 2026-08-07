@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://civiclens.org/schemas/financial_record.schema.json",
+  "title": "CivicLens Financial Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "financial_record_id",
+    "jurisdiction_id",
+    "fiscal_year",
+    "stage",
+    "amount",
+    "currency",
+    "evidence_id"
+  ],
+  "properties": {
+    "financial_record_id": { "type": "string", "minLength": 1 },
+    "jurisdiction_id": { "type": "string", "minLength": 1 },
+    "fiscal_year": { "type": "string", "minLength": 1 },
+    "period": { "type": ["string", "null"] },
+    "accounting_basis": {
+      "type": ["string", "null"],
+      "enum": ["cash", "accrual", "modified_accrual", "budgetary", "other", null]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "proposed_budget",
+        "adopted_budget",
+        "amended_budget",
+        "encumbrance",
+        "actual_expenditure",
+        "cash_payment",
+        "revenue_recognized",
+        "cash_receipt",
+        "transfer",
+        "year_end_adjustment"
+      ]
+    },
+    "fund_id": { "type": ["string", "null"] },
+    "org_unit_id": { "type": ["string", "null"] },
+    "account_id": { "type": ["string", "null"] },
+    "program_id": { "type": ["string", "null"] },
+    "project_id": { "type": ["string", "null"] },
+    "vendor_id": { "type": ["string", "null"] },
+    "contract_id": { "type": ["string", "null"] },
+    "amount": { "type": "number" },
+    "currency": { "type": "string", "const": "USD" },
+    "source_label": { "type": ["string", "null"] },
+    "relationship_method": {
+      "type": ["string", "null"],
+      "enum": [
+        "direct_official_identifier",
+        "official_crosswalk",
+        "deterministic_join",
+        "proportional_allocation",
+        "analyst_reviewed_match",
+        "unresolved",
+        null
+      ]
+    },
+    "evidence_id": { "type": "string", "minLength": 1 },
+    "review_status": {
+      "type": "string",
+      "enum": ["unreviewed", "reviewed", "approved", "rejected"]
+    }
+  }
+}
