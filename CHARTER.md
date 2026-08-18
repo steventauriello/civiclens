@@ -70,6 +70,23 @@ The first resident-facing flagship question is:
 
 When revenue is pooled, CivicLens must clearly label any personal tax-dollar allocation as an estimate rather than claiming an individual dollar was earmarked.
 
+### Core Port St. Lucie financial census requirement
+
+CivicLens must build a complete, reconciled financial picture for the City of Port St. Lucie for each covered fiscal year.
+
+That means:
+
+- Identify and total **all City revenue/income**, by source and fund, including taxes, fees, charges for services, grants, intergovernmental revenue, utility or enterprise revenue, investment income, debt proceeds, and other material inflows.
+- Keep external revenue distinct from internal transfers and financing movements so totals are not inflated by double-counting.
+- Identify and total **all City expenditures/outflows**, reconciled to official City totals.
+- Organize expenditures into understandable resident-facing categories and subcategories, such as police/public safety, transportation and infrastructure, parks and recreation, utilities, general government/administration, debt service, capital projects, housing/community development, and other material functions supported by the records.
+- Preserve the official accounting dimensions behind every category, including fund, department, function, program, project, object/account, vendor, and funding source when available.
+- Show both the high-level category totals and the underlying detailed records used to calculate them.
+- Track school-related expenditures only when they are actually City of Port St. Lucie expenditures or City transfers/programs; St. Lucie County School Board revenue and spending must remain a separate jurisdiction and must not be presented as City spending.
+- Reconcile categorized expenditures back to the complete City expenditure total and categorized revenues back to the complete City revenue total, with any unresolved difference clearly disclosed.
+
+The goal is that a resident can move from a simple question such as **“How much did Port St. Lucie spend on police or infrastructure?”** to the exact official records supporting the answer, while also seeing the City's complete revenue and expenditure picture for that fiscal year.
+
 ## 6. Evidence standard
 
 CivicLens follows these rules:
@@ -173,9 +190,17 @@ Current prototype limitation:
 
 Enumerate and preserve the actual Port St. Lucie budget, quarterly, ACFR, millage, capital, debt, investment, procurement, and performance documents for at least three fiscal years.
 
-### Milestone 2 — First reconciled fiscal year
+### Milestone 2 — First reconciled fiscal year and financial census
 
 Extract and normalize one completed fiscal year, keeping adopted budget, amended budget, actual revenue, actual expenditure, transfers, reserves, and debt distinct. Reconcile detailed values to official totals.
+
+For that fiscal year, CivicLens must also:
+
+- Produce the complete City revenue total and categorize every material revenue source.
+- Produce the complete City expenditure total and categorize every material expenditure into understandable functions such as public safety/police, infrastructure/transportation, parks and recreation, utilities, general government, debt service, capital projects, and other applicable categories.
+- Maintain mappings from resident-facing categories back to the City's official funds, departments, functions, programs, projects, and accounts.
+- Verify that category totals reconcile to the City's official totals without double-counting transfers.
+- Document exclusions, jurisdiction boundaries, missing records, and unresolved reconciliation differences.
 
 ### Milestone 3 — Replace demonstration data
 
