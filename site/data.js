@@ -4,7 +4,7 @@ window.CIVICLENS_DATA = {
       label: "FY 2024–25 operating funds",
       metrics: [
         { label: "Operating-fund revenue", value: "$446.7M", note: "Eight funds reported by the City", icon: "IN", tone: "dark" },
-        { label: "Operating-fund spending", value: "$431.5M", note: "Includes reported non-operating outflows", icon: "OUT" },
+        { label: "Operating-fund spending", value: "$431.5M", note: "Rounded fund rows; includes reported non-operating outflows", icon: "OUT" },
         { label: "Funds reported", value: "8", note: "Not yet the entire City government", icon: "FND" },
         { label: "Evidence status", value: "Sourced", note: "FY 2024–25 fourth-quarter City report", icon: "SRC" }
       ],
@@ -119,22 +119,22 @@ window.CIVICLENS_DATA = {
   answers: {
     propertyTax: {
       title: "Where did my property taxes go?",
-      intro: "CivicLens cannot yet provide an official Port St. Lucie allocation because the verified financial records have not been ingested.",
-      explanation: "The production answer will first separate the City's portion of a tax bill from county, school board, and special-district amounts. It will then estimate how pooled City property-tax revenue supported services, clearly labeling the calculation as an estimate rather than claiming an individual dollar was earmarked.",
+      intro: "CivicLens has one sourced FY 2024–25 operating-funds report, but it cannot yet provide a property-tax allocation.",
+      explanation: "A responsible property-tax answer still needs the City's portion of the tax bill separated from county, school-board, and special-district taxes. It also needs citywide spending categories reconciled beyond the eight operating funds before estimating how pooled City property-tax revenue supported services.",
       facts: [
-        ["What is known", "Official budget, audited financial, millage, and quarterly-report entry points are cataloged."],
-        ["What is missing", "Verified fiscal-year totals, fund restrictions, actual expenditures, and the City's exact share of a resident's tax bill."],
+        ["What is known", "The FY 2024–25 fourth-quarter report supports a starting view of eight operating funds."],
+        ["What is missing", "Citywide reconciliation, fund restrictions, capital/debt/grant/CRA/assessment funds, and the City's exact share of a resident's tax bill."],
         ["How the answer will be calculated", "City property-tax amount × verified service-spending proportions, with transfers and restricted funds excluded where appropriate."]
       ]
     },
     publicSafety: {
       title: "How much was spent on public safety?",
-      intro: "No official public-safety spending total has been released through CivicLens yet.",
-      explanation: "A trustworthy total must identify the reporting period, funds included, budget stage, department definitions, internal transfers, capital spending, and actual payments. CivicLens will not combine those categories without disclosure.",
+      intro: "CivicLens does not yet have a verified public-safety service-area total.",
+      explanation: "The current sourced view is organized by operating fund, not by police, fire, emergency management, or other public-safety service areas. A trustworthy public-safety total must identify the reporting period, funds included, department definitions, transfers, capital spending, and actual payments before publishing a number.",
       facts: [
-        ["Required source set", "Adopted budget, amended budget, year-end actuals, audited financial report, and department or fund schedules."],
-        ["Key distinction", "Budget authority is not the same as an actual expenditure or vendor payment."],
-        ["Evidence status", "Source locations are known; detailed values still require extraction and reconciliation."]
+        ["Current evidence", "One FY 2024–25 operating-funds report has been extracted for review."],
+        ["Key distinction", "Fund-level spending is not the same as service-area, department, vendor, or transaction-level spending."],
+        ["Next requirement", "Map official departments and accounts to public-safety categories and reconcile them to source totals."]
       ]
     },
     contracts: {
@@ -148,12 +148,12 @@ window.CIVICLENS_DATA = {
       ]
     },
     generic: {
-      title: "CivicLens is still building the evidence base",
-      intro: "That question is valid, but the current prototype does not yet have enough verified Port St. Lucie financial data to answer it responsibly.",
-      explanation: "CivicLens is designed to answer only from official records, deterministic calculations, and visible source lineage. Unsupported conclusions will be withheld.",
+      title: "CivicLens is building the evidence base",
+      intro: "That question is valid, but the current public view only supports a narrow FY 2024–25 operating-funds answer.",
+      explanation: "CivicLens is designed to answer only from official records, deterministic calculations, and visible source lineage. The next stage is citywide collection, extraction, normalization, and reconciliation so unsupported conclusions stay off the page.",
       facts: [
-        ["Current stage", "Functional public interface and official-source catalog."],
-        ["Next stage", "Document collection, extraction, normalization, and reconciliation."],
+        ["Current stage", "Functional public interface, official-source catalog, and one sourced operating-funds report."],
+        ["Next stage", "Document collection, extraction, normalization, and reconciliation across the full citywide ledger."],
         ["Publication rule", "No material number is published until it can be traced and checked."]
       ]
     }
