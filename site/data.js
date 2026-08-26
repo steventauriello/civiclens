@@ -1,28 +1,30 @@
 window.CIVICLENS_DATA = {
   periods: {
     fy2025: {
-      label: "FY 2025 demonstration",
+      label: "FY 2024–25 operating funds",
       metrics: [
-        { label: "Official source systems", value: "12", note: "Cataloged for the Port St. Lucie pilot", icon: "SRC", tone: "dark" },
-        { label: "Verified records", value: "0", note: "No financial records published yet", icon: "CHK" },
-        { label: "Target fiscal years", value: "3", note: "Budget and actual data planned", icon: "FY" },
-        { label: "Evidence standard", value: "Claim-level", note: "Every material claim must be traceable", icon: "EV" }
+        { label: "Operating-fund revenue", value: "$446.7M", note: "Eight funds reported by the City", icon: "IN", tone: "dark" },
+        { label: "Operating-fund spending", value: "$431.5M", note: "Rounded fund rows; includes reported non-operating outflows", icon: "OUT" },
+        { label: "Funds reported", value: "8", note: "Not yet the entire City government", icon: "FND" },
+        { label: "Evidence status", value: "Sourced", note: "FY 2024–25 fourth-quarter City report", icon: "SRC" }
       ],
       revenue: [
-        { name: "Property and other taxes", share: 31, note: "Must separate City taxes from county, school board, and special districts." },
-        { name: "Utility and enterprise revenue", share: 24, note: "Restricted to the applicable enterprise or service system." },
-        { name: "Fees, permits, and charges", share: 17, note: "Includes service-linked revenue that may be legally restricted." },
-        { name: "State, federal, and grant revenue", share: 13, note: "May include purpose-specific conditions and reporting requirements." },
-        { name: "Debt proceeds and financing", share: 8, note: "Financing is not recurring operating revenue and creates obligations." },
-        { name: "Other revenue", share: 7, note: "Must be reviewed by fund and accounting classification." }
+        { name: "General Fund", share: 43.0, amount: "$192.0M", note: "Citywide operating fund; revenue includes taxes, permits, intergovernmental revenue, charges, fines, miscellaneous, and other." },
+        { name: "Utility Systems", share: 30.2, amount: "$135.1M", note: "Enterprise operating fund. Its money is not interchangeable with the General Fund." },
+        { name: "Stormwater", share: 8.3, amount: "$37.0M", note: "Dedicated operating fund reported separately by the City." },
+        { name: "Medical Insurance", share: 7.8, amount: "$34.9M", note: "Internal-service operating fund; not resident tax revenue." },
+        { name: "Road & Bridge", share: 5.1, amount: "$23.0M", note: "Restricted transportation-related operating fund." },
+        { name: "Building", share: 3.9, amount: "$17.2M", note: "Permit and building-service operating fund." },
+        { name: "Other two operating funds", share: 1.7, amount: "$7.5M", note: "Solid Waste and Golf Course combined." }
       ],
       spending: [
-        { name: "Public safety", share: 35 },
-        { name: "Utilities and public services", share: 24 },
-        { name: "Infrastructure and mobility", share: 18 },
-        { name: "General government", share: 10 },
-        { name: "Parks and community services", share: 7 },
-        { name: "Debt service", share: 6 }
+        { name: "General Fund", share: 48.4, amount: "$208.7M" },
+        { name: "Utility Systems", share: 24.4, amount: "$105.3M" },
+        { name: "Medical Insurance", share: 8.2, amount: "$35.3M" },
+        { name: "Stormwater", share: 7.3, amount: "$31.3M" },
+        { name: "Building", share: 5.3, amount: "$23.0M" },
+        { name: "Road & Bridge", share: 4.9, amount: "$21.0M" },
+        { name: "Other two operating funds", share: 1.5, amount: "$6.8M" }
       ]
     },
     fy2024: {
@@ -53,22 +55,14 @@ window.CIVICLENS_DATA = {
   },
   flow: {
     revenue: [
-      { name: "Taxes", share: 31 },
-      { name: "Utilities", share: 24 },
-      { name: "Fees and charges", share: 17 },
-      { name: "Grants", share: 13 }
+      { name: "Reported revenue", share: 100 }
     ],
     funds: [
-      { name: "General Fund", share: 38 },
-      { name: "Enterprise funds", share: 30 },
-      { name: "Capital funds", share: 20 },
-      { name: "Other restricted funds", share: 12 }
+      { name: "Eight operating funds", share: 100 }
     ],
     uses: [
-      { name: "Operations", share: 55 },
-      { name: "Capital projects", share: 21 },
-      { name: "Debt service", share: 13 },
-      { name: "Other uses", share: 11 }
+      { name: "Reported spending", share: 96.6 },
+      { name: "Net reported change", share: 3.4 }
     ]
   },
   sources: [
@@ -125,22 +119,22 @@ window.CIVICLENS_DATA = {
   answers: {
     propertyTax: {
       title: "Where did my property taxes go?",
-      intro: "CivicLens cannot yet provide an official Port St. Lucie allocation because the verified financial records have not been ingested.",
-      explanation: "The production answer will first separate the City's portion of a tax bill from county, school board, and special-district amounts. It will then estimate how pooled City property-tax revenue supported services, clearly labeling the calculation as an estimate rather than claiming an individual dollar was earmarked.",
+      intro: "CivicLens has one sourced FY 2024–25 operating-funds report, but it cannot yet provide a property-tax allocation.",
+      explanation: "A responsible property-tax answer still needs the City's portion of the tax bill separated from county, school-board, and special-district taxes. It also needs citywide spending categories reconciled beyond the eight operating funds before estimating how pooled City property-tax revenue supported services.",
       facts: [
-        ["What is known", "Official budget, audited financial, millage, and quarterly-report entry points are cataloged."],
-        ["What is missing", "Verified fiscal-year totals, fund restrictions, actual expenditures, and the City's exact share of a resident's tax bill."],
+        ["What is known", "The FY 2024–25 fourth-quarter report supports a starting view of eight operating funds."],
+        ["What is missing", "Citywide reconciliation, fund restrictions, capital/debt/grant/CRA/assessment funds, and the City's exact share of a resident's tax bill."],
         ["How the answer will be calculated", "City property-tax amount × verified service-spending proportions, with transfers and restricted funds excluded where appropriate."]
       ]
     },
     publicSafety: {
       title: "How much was spent on public safety?",
-      intro: "No official public-safety spending total has been released through CivicLens yet.",
-      explanation: "A trustworthy total must identify the reporting period, funds included, budget stage, department definitions, internal transfers, capital spending, and actual payments. CivicLens will not combine those categories without disclosure.",
+      intro: "CivicLens does not yet have a verified public-safety service-area total.",
+      explanation: "The current sourced view is organized by operating fund, not by police, fire, emergency management, or other public-safety service areas. A trustworthy public-safety total must identify the reporting period, funds included, department definitions, transfers, capital spending, and actual payments before publishing a number.",
       facts: [
-        ["Required source set", "Adopted budget, amended budget, year-end actuals, audited financial report, and department or fund schedules."],
-        ["Key distinction", "Budget authority is not the same as an actual expenditure or vendor payment."],
-        ["Evidence status", "Source locations are known; detailed values still require extraction and reconciliation."]
+        ["Current evidence", "One FY 2024–25 operating-funds report has been extracted for review."],
+        ["Key distinction", "Fund-level spending is not the same as service-area, department, vendor, or transaction-level spending."],
+        ["Next requirement", "Map official departments and accounts to public-safety categories and reconcile them to source totals."]
       ]
     },
     contracts: {
@@ -154,12 +148,12 @@ window.CIVICLENS_DATA = {
       ]
     },
     generic: {
-      title: "CivicLens is still building the evidence base",
-      intro: "That question is valid, but the current prototype does not yet have enough verified Port St. Lucie financial data to answer it responsibly.",
-      explanation: "CivicLens is designed to answer only from official records, deterministic calculations, and visible source lineage. Unsupported conclusions will be withheld.",
+      title: "CivicLens is building the evidence base",
+      intro: "That question is valid, but the current public view only supports a narrow FY 2024–25 operating-funds answer.",
+      explanation: "CivicLens is designed to answer only from official records, deterministic calculations, and visible source lineage. The next stage is citywide collection, extraction, normalization, and reconciliation so unsupported conclusions stay off the page.",
       facts: [
-        ["Current stage", "Functional public interface and official-source catalog."],
-        ["Next stage", "Document collection, extraction, normalization, and reconciliation."],
+        ["Current stage", "Functional public interface, official-source catalog, and one sourced operating-funds report."],
+        ["Next stage", "Document collection, extraction, normalization, and reconciliation across the full citywide ledger."],
         ["Publication rule", "No material number is published until it can be traced and checked."]
       ]
     }
