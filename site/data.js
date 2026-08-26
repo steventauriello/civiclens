@@ -145,6 +145,16 @@ window.CIVICLENS_DATA = {
     }
   ],
   answers: {
+    officials: {
+      title: "How can public officials use CivicLens?",
+      intro: "CivicLens gives public officials and residents a shared factual record for following taxpayer dollars through official records.",
+      explanation: "The current Port St. Lucie pilot demonstrates the evidence model: one sourced operating-funds report, a source registry, a department spending tracker, and a private Evidence Vault for preserving records before public claims are made. It is intentionally careful about scope so the tool builds trust instead of overstating what the data proves.",
+      facts: [
+        ["What works now", "A public dashboard, source-backed operating-funds snapshot, department tracking scaffold, source registry, and secure Evidence Vault."],
+        ["Why it matters", "It can reduce confusion around budgets by showing the source, calculation path, and unresolved gaps behind each public claim."],
+        ["Best feedback to ask for", "Which records, agencies, spending categories, and public questions should CivicLens prioritize next?"]
+      ]
+    },
     propertyTax: {
       title: "Where did my property taxes go?",
       intro: "CivicLens has one sourced FY 2024–25 operating-funds report, but it cannot yet provide a property-tax allocation.",
