@@ -31,6 +31,7 @@
 
       <nav class="primary-nav" aria-label="Primary navigation">
         <button class="nav-link is-active" type="button" data-view-target="overview">Overview</button>
+        <button class="nav-link" type="button" data-view-target="control">Control Trace</button>
         <button class="nav-link" type="button" data-view-target="officials">For Officials</button>
         <button class="nav-link" type="button" data-view-target="revenue">Revenue</button>
         <button class="nav-link" type="button" data-view-target="spending">Spending</button>
@@ -106,12 +107,13 @@
       <aside class="side-nav" aria-label="Section navigation">
         <p class="side-nav__label">Explore</p>
         <button class="side-link is-active" type="button" data-view-target="overview"><span>01</span> Financial overview</button>
-        <button class="side-link" type="button" data-view-target="officials"><span>02</span> Public official brief</button>
-        <button class="side-link" type="button" data-view-target="revenue"><span>03</span> Money coming in</button>
-        <button class="side-link" type="button" data-view-target="spending"><span>04</span> Money going out</button>
-        <button class="side-link" type="button" data-view-target="departments"><span>05</span> Department tracker</button>
-        <button class="side-link" type="button" data-view-target="aen"><span>06</span> AEN accountability</button>
-        <button class="side-link" type="button" data-view-target="sources"><span>07</span> Sources & evidence</button>
+        <button class="side-link" type="button" data-view-target="control"><span>02</span> Control total trace</button>
+        <button class="side-link" type="button" data-view-target="officials"><span>03</span> Public official brief</button>
+        <button class="side-link" type="button" data-view-target="revenue"><span>04</span> Money coming in</button>
+        <button class="side-link" type="button" data-view-target="spending"><span>05</span> Money going out</button>
+        <button class="side-link" type="button" data-view-target="departments"><span>06</span> Department tracker</button>
+        <button class="side-link" type="button" data-view-target="aen"><span>07</span> AEN accountability</button>
+        <button class="side-link" type="button" data-view-target="sources"><span>08</span> Sources & evidence</button>
         <div class="side-card">
           <span class="side-card__icon">✓</span>
           <strong>If we cannot trace it, we do not claim it.</strong>
@@ -154,6 +156,7 @@
                 <div class="evidence-ring" style="--score: 18"><span>18<small>%</small></span></div>
                 <div><strong>First report extracted</strong><p>One official FY 2024–25 year-end operating report is now the source for this view. Citywide reconciliation remains in progress.</p></div>
               </div>
+              <button class="button button--secondary button--full" type="button" data-view-target="control">Open control trace</button>
               <button class="button button--secondary button--full" id="showEvidenceButton" type="button">Show the evidence plan</button>
             </article>
 
@@ -179,6 +182,55 @@
           </div>
         </section>
 
+
+        <section class="view" id="view-control" data-view="control" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Positive stop system</p>
+              <h2>FY 2024-25 Control Total Trace</h2>
+              <p>The reconciliation backbone for CivicLens: capture the official total, map extracted records to it, show the variance, and keep every unresolved gap visible.</p>
+            </div>
+          </div>
+
+          <div class="metric-grid" id="controlMetricGrid"></div>
+
+          <article class="panel panel--feature control-hero">
+            <div>
+              <span class="tag tag--blue">Control total trace</span>
+              <h3 id="controlTraceTitle">Positive stop reconciliation</h3>
+              <p id="controlTraceSummary"></p>
+            </div>
+            <div class="control-formula" aria-label="Control total formula">
+              <strong>Official total</strong>
+              <span>-</span>
+              <strong>Mapped detail</strong>
+              <span>=</span>
+              <strong>Variance</strong>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div><span class="panel__eyebrow">FY 2024-25 operating funds</span><h3>Control totals and current tie-out</h3></div>
+              <a class="text-link" id="controlSourceLink" href="#" target="_blank" rel="noopener noreferrer">Open Q4 source</a>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Fund</th><th>Type</th><th>Official control</th><th>Mapped total</th><th>Variance</th><th>Status</th><th>Next trace step</th></tr></thead>
+                <tbody id="controlTraceTableBody"></tbody>
+              </table>
+            </div>
+            <p class="panel-footnote">A zero variance here means CivicLens captured the official Q4 control row. It does not yet mean every department, vendor, payroll, invoice, or project dollar has been traced underneath that row.</p>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div><span class="panel__eyebrow">Known gaps</span><h3>What must be closed before a full-dollar claim</h3></div>
+              <span class="tag tag--amber">Deep trace pending</span>
+            </div>
+            <div class="gap-grid" id="controlGapGrid"></div>
+          </article>
+        </section>
 
         <section class="view" id="view-officials" data-view="officials" hidden>
           <div class="section-heading">

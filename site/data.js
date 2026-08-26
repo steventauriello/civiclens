@@ -104,6 +104,42 @@ window.CIVICLENS_DATA = {
       { name: "Fire services / emergency response", purpose: "Emergency response costs residents may ask about, including any City-paid support or transfers.", funds: "Separate jurisdiction check required", adoptedBudget: "Pending jurisdiction check", actualSpending: "Pending jurisdiction check", status: "Jurisdiction check", statusClass: "tag tag--amber", nextStep: "Confirm what belongs to the City versus St. Lucie County Fire District before publishing." }
     ]
   },
+  controlTrace: {
+    fiscalYear: "FY 2024-25",
+    title: "Control Total Trace",
+    summary: "The positive-stop reconciliation layer for FY 2024-25. CivicLens captures official control totals first, then traces source rows, departments, vendors, contracts, and payments until mapped detail ties back to the official number or the gap is visible.",
+    sourceUrl: "https://www.cityofpsl.com/files/assets/public/v/1/departments/office-of-management-amp-budget/documents/fy-24-25-4th-quarter-statement-of-revenues-and-expenditures.pdf",
+    metrics: [
+      { label: "Revenue control", value: "$446.7M", note: "Eight Q4 operating-fund totals captured", icon: "IN", tone: "dark" },
+      { label: "Spending control", value: "$431.5M", note: "Eight Q4 operating-fund totals captured", icon: "OUT" },
+      { label: "Fund tie-outs", value: "16/16", note: "Revenue and spending controls captured from Q4 report", icon: "TIE" },
+      { label: "Deep trace status", value: "Partial", note: "Department, vendor, payroll, and invoice detail still needed", icon: "GAP" }
+    ],
+    rows: [
+      { fund: "General Fund", type: "Revenue", controlTotal: "$191,998,152", mappedTotal: "$191,998,152", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 1", nextStep: "Break revenue into taxes, permits, intergovernmental, charges, fines, miscellaneous, and transfers." },
+      { fund: "General Fund", type: "Expenditures", controlTotal: "$208,680,698", mappedTotal: "$208,680,698", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 1", nextStep: "Tie departments, payroll, vendors, capital outlay, debt, and non-operating transfers back to this total." },
+      { fund: "Road & Bridge Fund", type: "Revenue", controlTotal: "$22,981,347", mappedTotal: "$22,981,347", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 3", nextStep: "Separate taxes, intergovernmental revenue, service charges, and transfers." },
+      { fund: "Road & Bridge Fund", type: "Expenditures", controlTotal: "$21,020,152", mappedTotal: "$21,020,152", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 3", nextStep: "Map operating, personnel, capital, debt, and transfer detail." },
+      { fund: "Solid Waste Operating Fund", type: "Revenue", controlTotal: "$3,850,906", mappedTotal: "$3,850,906", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 4", nextStep: "Confirm fee-supported revenue and contract/payment records." },
+      { fund: "Solid Waste Operating Fund", type: "Expenditures", controlTotal: "$3,573,810", mappedTotal: "$3,573,810", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 4", nextStep: "Tie spending to collection contracts, administration, and service costs." },
+      { fund: "Building Fund", type: "Revenue", controlTotal: "$17,216,438", mappedTotal: "$17,216,438", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 5", nextStep: "Separate permit revenue, fines, interest, reserves, and other sources." },
+      { fund: "Building Fund", type: "Expenditures", controlTotal: "$22,977,600", mappedTotal: "$22,977,600", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 5", nextStep: "Explain capital outlay and reserve use, including Peacock Building acquisition note." },
+      { fund: "Stormwater Fund", type: "Revenue", controlTotal: "$37,008,749", mappedTotal: "$37,008,749", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 6", nextStep: "Trace service charges, grants, reserves, and interfund transfers." },
+      { fund: "Stormwater Fund", type: "Expenditures", controlTotal: "$31,295,844", mappedTotal: "$31,295,844", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 6", nextStep: "Map drainage operations, capital outlay, debt, and non-operating transfers." },
+      { fund: "Utility Systems Fund", type: "Revenue", controlTotal: "$135,116,530", mappedTotal: "$135,116,530", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 8", nextStep: "Keep enterprise utility revenue separate from citywide taxes." },
+      { fund: "Utility Systems Fund", type: "Expenditures", controlTotal: "$105,332,671", mappedTotal: "$105,332,671", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 8", nextStep: "Trace utility operations, debt interest, capital outlay, and transfers." },
+      { fund: "Golf Course Fund", type: "Revenue", controlTotal: "$3,601,698", mappedTotal: "$3,601,698", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 10", nextStep: "Trace charges for services, miscellaneous revenue, and transfers." },
+      { fund: "Golf Course Fund", type: "Expenditures", controlTotal: "$3,244,781", mappedTotal: "$3,244,781", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 10", nextStep: "Map personnel, operating, capital, and non-operating costs." },
+      { fund: "Medical Insurance Fund", type: "Revenue", controlTotal: "$34,909,396", mappedTotal: "$34,909,396", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 11", nextStep: "Keep internal-service health insurance activity separate from resident tax revenue." },
+      { fund: "Medical Insurance Fund", type: "Expenditures", controlTotal: "$35,342,962", mappedTotal: "$35,342,962", variance: "$0", status: "Control captured", statusClass: "tag tag--green", source: "Q4 statement, page 11", nextStep: "Trace claims, administrative costs, reserves, and internal-service activity." }
+    ],
+    gaps: [
+      { title: "Citywide funds not complete", detail: "The current control trace covers eight operating funds only. Capital, debt, CRA, grant, assessment, and other funds still need control totals." },
+      { title: "Department trace pending", detail: "The department registry is live, but department adopted, amended, and actual totals have not yet been tied back to these controls." },
+      { title: "Transaction detail missing", detail: "Vendor payments, check registers, purchase orders, payroll summaries, contracts, and invoices are still needed for dollar-level tracing." },
+      { title: "Audit cross-check pending", detail: "The FY 2025 ACFR should be uploaded and used to reconcile Q4 unaudited totals against audited year-end reporting." }
+    ]
+  },
   sources: [
     {
       code: "TR",
@@ -194,6 +230,16 @@ window.CIVICLENS_DATA = {
         ["What is live", "The official Port St. Lucie department registry, funding-source notes, evidence status, and extraction queue."],
         ["What is not live yet", "Verified tax-supported totals, department budget-to-actual amounts, vendor-level spending, invoice-level detail, and citywide reconciliation."],
         ["Publication rule", "No department spending number should be displayed until CivicLens can point to the official source and calculation path."]
+      ]
+    },
+    controlTrace: {
+      title: "What is the control total trace?",
+      intro: "The control total trace is CivicLens's positive-stop reconciliation system for FY 2024-25.",
+      explanation: "CivicLens captures official revenue and spending totals first, then requires extracted department, vendor, payroll, contract, invoice, and project detail to add back to those totals. If the mapped detail does not tie out, the difference becomes a visible gap instead of a hidden assumption.",
+      facts: [
+        ["Current control set", "Eight FY 2024-25 operating-fund revenue and expenditure totals from the City Q4 statement."],
+        ["What it proves", "The official fund-level control rows are captured and ready to receive detailed mapping."],
+        ["What remains", "Department, vendor, payroll, invoice, capital, debt, CRA, grant, and other citywide control totals still need reconciliation."]
       ]
     },
     contracts: {

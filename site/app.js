@@ -12,6 +12,12 @@
   const spendingChart = document.getElementById('spendingChart');
   const revenueTableBody = document.getElementById('revenueTableBody');
   const departmentMetricGrid = document.getElementById('departmentMetricGrid');
+  const controlMetricGrid = document.getElementById('controlMetricGrid');
+  const controlTraceTitle = document.getElementById('controlTraceTitle');
+  const controlTraceSummary = document.getElementById('controlTraceSummary');
+  const controlSourceLink = document.getElementById('controlSourceLink');
+  const controlTraceTableBody = document.getElementById('controlTraceTableBody');
+  const controlGapGrid = document.getElementById('controlGapGrid');
   const departmentTableBody = document.getElementById('departmentTableBody');
   const sourceList = document.getElementById('sourceList');
   const askForm = document.getElementById('askForm');
@@ -138,6 +144,35 @@
     `).join('');
   }
 
+  function renderControlTrace() {
+    const trace = data.controlTrace;
+    if (!trace || !controlMetricGrid || !controlTraceTableBody) return;
+
+    renderMetrics(controlMetricGrid, trace.metrics);
+    controlTraceTitle.textContent = trace.title;
+    controlTraceSummary.textContent = trace.summary;
+    controlSourceLink.href = trace.sourceUrl;
+
+    controlTraceTableBody.innerHTML = trace.rows.map((row) => `
+      <tr>
+        <td><strong>${escapeHtml(row.fund)}</strong><br><small>${escapeHtml(row.source)}</small></td>
+        <td>${escapeHtml(row.type)}</td>
+        <td><strong>${escapeHtml(row.controlTotal)}</strong></td>
+        <td>${escapeHtml(row.mappedTotal)}</td>
+        <td>${escapeHtml(row.variance)}</td>
+        <td><span class="${escapeHtml(row.statusClass)}">${escapeHtml(row.status)}</span></td>
+        <td>${escapeHtml(row.nextStep)}</td>
+      </tr>
+    `).join('');
+
+    controlGapGrid.innerHTML = trace.gaps.map((gap) => `
+      <div class="gap-card">
+        <strong>${escapeHtml(gap.title)}</strong>
+        <p>${escapeHtml(gap.detail)}</p>
+      </div>
+    `).join('');
+  }
+
   function renderSources() {
     sourceList.innerHTML = data.sources.map((source) => `
       <article class="source-item">
@@ -168,6 +203,7 @@
   function classifyQuestion(question) {
     const normalized = question.toLowerCase();
     if (normalized.includes('official') || normalized.includes('officials') || normalized.includes('anthony') || normalized.includes('bonna') || normalized.includes('candidate') || normalized.includes('legislator')) return data.answers.officials;
+    if (normalized.includes('control') || normalized.includes('reconcile') || normalized.includes('reconciliation') || normalized.includes('positive stop') || normalized.includes('tie out') || normalized.includes('trace')) return data.answers.controlTrace;
     if (normalized.includes('property') || normalized.includes('tax')) return data.answers.propertyTax;
     if (normalized.includes('department') || normalized.includes('departments') || normalized.includes('budget')) return data.answers.departments;
     if (normalized.includes('police') || normalized.includes('fire') || normalized.includes('safety')) return data.answers.publicSafety;
@@ -240,7 +276,7 @@
       sideLink.href = 'evidence-vault.html';
       sideLink.className = 'side-link';
       sideLink.dataset.vaultLink = 'true';
-      sideLink.innerHTML = '<span>08</span> Restricted Vault 🔒';
+      sideLink.innerHTML = '<span>09</span> Restricted Vault 🔒';
       sideLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
       const sideCard = sideNav.querySelector('.side-card');
       sideNav.insertBefore(sideLink, sideCard || null);
@@ -284,7 +320,8 @@
   renderMoneyFlow();
   renderPeriod(yearSelect.value);
   renderDepartmentTracker();
+  renderControlTrace();
   renderSources();
   addRestrictedVaultNavigation();
-  setView(['overview', 'officials', 'revenue', 'spending', 'departments', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
+  setView(['overview', 'control', 'officials', 'revenue', 'spending', 'departments', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
 })();
