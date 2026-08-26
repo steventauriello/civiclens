@@ -30,6 +30,18 @@ CivicLens organizes evidence using three tests:
 
 CivicLens does not manufacture a political verdict. It presents verified evidence, identifies gaps, and lets residents reach their own conclusions.
 
+## Control Total Trace
+
+CivicLens uses control totals as the positive-stop system for financial tracing. For each fiscal year, fund, department, and spending layer, CivicLens should capture the official total first, then require extracted records to reconcile back to that total or expose the variance as a public gap.
+
+Formula:
+
+```text
+Official control total - mapped detail = variance
+```
+
+See [docs/CONTROL_TOTAL_TRACE.md](docs/CONTROL_TOTAL_TRACE.md) for the FY 2024-25 first control set.
+
 ## Trust standard
 
 - No unsupported financial claims
