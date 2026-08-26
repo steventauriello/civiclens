@@ -1,6 +1,6 @@
 # Department Spending Tracker
 
-CivicLens milestone: get every Port St. Lucie department and taxpayer-funded spending function into one source-backed tracker.
+CivicLens milestone: get every official Port St. Lucie department and taxpayer-funded spending function into one source-backed tracker.
 
 ## North Star
 
@@ -26,7 +26,7 @@ CivicLens should not publish a department dollar total until it can show:
 5. Calculation rule, including inclusions and exclusions.
 6. Reconciliation status against the official report or audit.
 
-Unknown values stay marked as pending. Missing data is a gap, not a conclusion.
+Unknown values stay marked as pending. Missing data is a gap, not a conclusion. A department should not be labeled tax-supported until its funding source is mapped from the official budget or financial records.
 
 ## First Build
 
@@ -40,6 +40,42 @@ The first release adds a department registry to the public interface. It intenti
 | Actual | Placeholder for year-end spending or payments. |
 | Evidence status | Shows whether sources are identified, mapped, reconciled, or missing. |
 | Next step | Keeps extraction work visible. |
+
+
+## Official Department Registry
+
+The tracker should begin from the City's official department list, then reconcile budget/funding source data for each department. Current registry scope:
+
+| Department | Funding-source status |
+| --- | --- |
+| Animal Control | Pending budget/fund mapping |
+| Building | Building Fund / fee-supported mapping required |
+| Business Tax | Pending budget/fund mapping |
+| City Attorney's Office | General Fund likely; verify |
+| City Clerk | General Fund likely; verify |
+| City Manager | General Fund likely; verify |
+| Code Compliance | Pending budget/fund mapping |
+| Communications | General Fund likely; verify |
+| Community Redevelopment Agency (CRA) | CRA / tax-increment mapping required |
+| Emergency Management | General Fund/grants likely; verify |
+| Finance | General Fund likely; verify |
+| Human Resources | General Fund/internal service mapping required |
+| Information Technology | General Fund/capital/contracts mapping required |
+| Keep Port St. Lucie Beautiful | Pending budget/fund mapping |
+| Lien Services | Lien/assessment mapping required |
+| Mayor & City Council | General Fund likely; verify |
+| MIDFLORIDA Event Center | Event/fee/support mapping required |
+| Neighborhood Services | General Fund/grants likely; verify |
+| Office of Management & Budget | General Fund likely; verify |
+| Office of Solid Waste | Solid Waste Fund / fee-supported mapping required |
+| Parks & Recreation | General Fund/capital/golf mapping required |
+| Planning & Zoning | General Fund/development-review mapping required |
+| Police | General Fund/grants likely; verify |
+| Procurement | General Fund likely; verify |
+| Public Works | General Fund/Road & Bridge/Stormwater/capital mapping required |
+| Risk Management | General Fund/internal service mapping required |
+| Special Events | General Fund/event revenue/sponsorship mapping required |
+| Utility Systems | Utility enterprise fund; not interchangeable with General Fund taxes |
 
 ## Extraction Order
 
