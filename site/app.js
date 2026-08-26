@@ -11,6 +11,8 @@
   const overviewSpendChart = document.getElementById('overviewSpendChart');
   const spendingChart = document.getElementById('spendingChart');
   const revenueTableBody = document.getElementById('revenueTableBody');
+  const departmentMetricGrid = document.getElementById('departmentMetricGrid');
+  const departmentTableBody = document.getElementById('departmentTableBody');
   const sourceList = document.getElementById('sourceList');
   const askForm = document.getElementById('askForm');
   const askInput = document.getElementById('askInput');
@@ -118,6 +120,24 @@
     `).join('');
   }
 
+
+  function renderDepartmentTracker() {
+    const tracker = data.departmentTracker;
+    if (!tracker || !departmentMetricGrid || !departmentTableBody) return;
+
+    renderMetrics(departmentMetricGrid, tracker.metrics);
+    departmentTableBody.innerHTML = tracker.departments.map((department) => `
+      <tr>
+        <td><strong>${escapeHtml(department.name)}</strong><br><small>${escapeHtml(department.funds)}</small></td>
+        <td>${escapeHtml(department.purpose)}</td>
+        <td>${escapeHtml(department.adoptedBudget)}</td>
+        <td>${escapeHtml(department.actualSpending)}</td>
+        <td><span class="${escapeHtml(department.statusClass)}">${escapeHtml(department.status)}</span></td>
+        <td>${escapeHtml(department.nextStep)}</td>
+      </tr>
+    `).join('');
+  }
+
   function renderSources() {
     sourceList.innerHTML = data.sources.map((source) => `
       <article class="source-item">
@@ -148,6 +168,7 @@
   function classifyQuestion(question) {
     const normalized = question.toLowerCase();
     if (normalized.includes('property') || normalized.includes('tax')) return data.answers.propertyTax;
+    if (normalized.includes('department') || normalized.includes('departments') || normalized.includes('budget')) return data.answers.departments;
     if (normalized.includes('police') || normalized.includes('fire') || normalized.includes('safety')) return data.answers.publicSafety;
     if (normalized.includes('contract') || normalized.includes('vendor') || normalized.includes('payment')) return data.answers.contracts;
     return { ...data.answers.generic, title: question || data.answers.generic.title };
@@ -218,7 +239,7 @@
       sideLink.href = 'evidence-vault.html';
       sideLink.className = 'side-link';
       sideLink.dataset.vaultLink = 'true';
-      sideLink.innerHTML = '<span>06</span> Restricted Vault 🔒';
+      sideLink.innerHTML = '<span>07</span> Restricted Vault 🔒';
       sideLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
       const sideCard = sideNav.querySelector('.side-card');
       sideNav.insertBefore(sideLink, sideCard || null);
@@ -261,7 +282,8 @@
   const initialView = window.location.hash.replace('#', '');
   renderMoneyFlow();
   renderPeriod(yearSelect.value);
+  renderDepartmentTracker();
   renderSources();
   addRestrictedVaultNavigation();
-  setView(['overview', 'revenue', 'spending', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
+  setView(['overview', 'revenue', 'spending', 'departments', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
 })();
