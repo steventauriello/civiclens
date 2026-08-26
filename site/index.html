@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="CivicLens helps residents follow public money through official records and evidence." />
+  <meta name="description" content="CivicLens helps residents and public officials follow public money through official records, evidence, and transparent calculations." />
   <meta name="theme-color" content="#071522" />
   <title>CivicLens — Follow Every Public Dollar</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
@@ -31,6 +31,7 @@
 
       <nav class="primary-nav" aria-label="Primary navigation">
         <button class="nav-link is-active" type="button" data-view-target="overview">Overview</button>
+        <button class="nav-link" type="button" data-view-target="officials">For Officials</button>
         <button class="nav-link" type="button" data-view-target="revenue">Revenue</button>
         <button class="nav-link" type="button" data-view-target="spending">Spending</button>
         <button class="nav-link" type="button" data-view-target="departments">Departments</button>
@@ -57,7 +58,7 @@
         <div class="hero__copy">
           <div class="eyebrow"><span></span> Evidence-first civic oversight</div>
           <h1>See where public money comes from.<br /><em>Follow where it goes.</em></h1>
-          <p>CivicLens turns budgets, audits, contracts, payments, projects, and public records into clear answers that residents can verify for themselves.</p>
+          <p>CivicLens gives residents and public officials a shared factual record for following taxpayer dollars through budgets, audits, contracts, payments, projects, and public records.</p>
 
           <form class="ask-box" id="askForm">
             <label for="askInput">Ask CivicLens</label>
@@ -69,6 +70,7 @@
             <div class="prompt-row" aria-label="Example questions">
               <button type="button" data-question="Where did my property taxes go?">Property taxes</button>
               <button type="button" data-question="How much was spent on public safety?">Public safety</button>
+              <button type="button" data-question="How can public officials use CivicLens?">For officials</button>
               <button type="button" data-question="Show contracts and vendor payments">Contracts</button>
             </div>
           </form>
@@ -85,9 +87,9 @@
           <dl class="status-list">
             <div><dt>Official sources cataloged</dt><dd id="catalogedSourceCount">12</dd></div>
             <div><dt>Source-backed financial report</dt><dd>1</dd></div>
-            <div><dt>Public release status</dt><dd>Review data</dd></div>
+            <div><dt>Public official demo</dt><dd>Ready to brief</dd></div>
           </dl>
-          <p class="status-note"><strong>Important:</strong> FY 2024–25 operating-fund totals are drawn from an official City quarterly report. They are unaudited and do not yet represent every City fund.</p>
+          <p class="status-note"><strong>Important:</strong> CivicLens is ready to demonstrate the evidence model. FY 2024–25 operating-fund totals are sourced, unaudited, and not yet citywide.</p>
         </aside>
       </div>
     </section>
@@ -95,8 +97,8 @@
     <section class="notice-bar" aria-label="Prototype notice">
       <div class="shell notice-bar__inner">
         <span class="notice-icon" aria-hidden="true">i</span>
-        <p><strong>FY 2024–25 starting point:</strong> These are reported results for eight operating funds. Transfers and missing capital, debt, grant, CRA, and assessment funds remain clearly separated.</p>
-        <button type="button" data-view-target="sources">Open official source</button>
+        <p><strong>Demo scope:</strong> CivicLens currently shows a sourced Port St. Lucie operating-funds slice, a department tracking plan, and the evidence standard needed to scale responsibly.</p>
+        <button type="button" data-view-target="officials">Open demo brief</button>
       </div>
     </section>
 
@@ -104,11 +106,12 @@
       <aside class="side-nav" aria-label="Section navigation">
         <p class="side-nav__label">Explore</p>
         <button class="side-link is-active" type="button" data-view-target="overview"><span>01</span> Financial overview</button>
-        <button class="side-link" type="button" data-view-target="revenue"><span>02</span> Money coming in</button>
-        <button class="side-link" type="button" data-view-target="spending"><span>03</span> Money going out</button>
-        <button class="side-link" type="button" data-view-target="departments"><span>04</span> Department tracker</button>
-        <button class="side-link" type="button" data-view-target="aen"><span>05</span> AEN accountability</button>
-        <button class="side-link" type="button" data-view-target="sources"><span>06</span> Sources & evidence</button>
+        <button class="side-link" type="button" data-view-target="officials"><span>02</span> Public official brief</button>
+        <button class="side-link" type="button" data-view-target="revenue"><span>03</span> Money coming in</button>
+        <button class="side-link" type="button" data-view-target="spending"><span>04</span> Money going out</button>
+        <button class="side-link" type="button" data-view-target="departments"><span>05</span> Department tracker</button>
+        <button class="side-link" type="button" data-view-target="aen"><span>06</span> AEN accountability</button>
+        <button class="side-link" type="button" data-view-target="sources"><span>07</span> Sources & evidence</button>
         <div class="side-card">
           <span class="side-card__icon">✓</span>
           <strong>If we cannot trace it, we do not claim it.</strong>
@@ -122,7 +125,7 @@
             <div>
               <p class="section-kicker">Financial overview</p>
               <h2>Public money at a glance</h2>
-              <p>One clear starting point for understanding revenue, spending, evidence quality, and unresolved data gaps.</p>
+              <p>One clear starting point for understanding money in, money out, evidence quality, and the public-record gaps that still need to be closed.</p>
             </div>
             <label class="select-control">Reporting period
               <select id="yearSelect">
@@ -174,6 +177,69 @@
               <button class="button button--secondary button--full" type="button" data-view-target="aen">Open AEN Reviews</button>
             </article>
           </div>
+        </section>
+
+
+        <section class="view" id="view-officials" data-view="officials" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Public official brief</p>
+              <h2>A shared factual record for taxpayer dollars</h2>
+              <p>CivicLens is a nonpartisan evidence system for turning public budgets, audits, contracts, payments, and records into source-backed answers residents and officials can both verify.</p>
+            </div>
+          </div>
+
+          <div class="officials-hero panel">
+            <div>
+              <span class="tag tag--blue">Port St. Lucie pilot</span>
+              <h3>What this demonstrates today</h3>
+              <p>The current prototype shows how an official City financial report becomes a citizen-readable dashboard without hiding scope limits. It also shows the next layer: department tracking and evidence preservation before public claims are made.</p>
+            </div>
+            <div class="officials-quote">
+              <strong>North Star</strong>
+              <span>Follow every public dollar we can verify.</span>
+            </div>
+          </div>
+
+          <div class="officials-grid">
+            <article class="panel official-card">
+              <span>01</span>
+              <h3>Trust through receipts</h3>
+              <p>Every public number should point back to the official record, table, row, calculation rule, and unresolved variance.</p>
+            </article>
+            <article class="panel official-card">
+              <span>02</span>
+              <h3>Better oversight</h3>
+              <p>Officials can see what is already supported by evidence and which missing records need follow-up before conclusions are drawn.</p>
+            </article>
+            <article class="panel official-card">
+              <span>03</span>
+              <h3>Resident-readable answers</h3>
+              <p>Residents should not need to read a 400-page budget to understand the basic path of public money.</p>
+            </article>
+          </div>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div><span class="panel__eyebrow">Suggested demo path</span><h3>How to review CivicLens in five minutes</h3></div>
+              <span class="tag tag--green">Briefing ready</span>
+            </div>
+            <div class="demo-path">
+              <div><strong>1. Start with Overview</strong><p>Show the sourced FY 2024-25 operating-funds revenue and spending snapshot.</p></div>
+              <div><strong>2. Open Revenue and Spending</strong><p>Explain that current totals are fund-level, not yet full citywide or vendor-level.</p></div>
+              <div><strong>3. Open Departments</strong><p>Show the plan for every department/function that spends public money, with pending fields kept honest.</p></div>
+              <div><strong>4. Open Sources</strong><p>Show the official source registry and the evidence rule: if we cannot trace it, we do not claim it.</p></div>
+            </div>
+          </article>
+
+          <article class="panel officials-ask">
+            <div>
+              <span class="panel__eyebrow">What we are asking for</span>
+              <h3>Feedback from civic leaders</h3>
+              <p>CivicLens is looking for feedback on which public records matter most, where citizens struggle to understand spending, and how a tool like this could improve transparency without becoming partisan or reckless.</p>
+            </div>
+            <button class="button button--secondary" type="button" data-view-target="departments">View department tracker</button>
+          </article>
         </section>
 
         <section class="view" id="view-revenue" data-view="revenue" hidden>
