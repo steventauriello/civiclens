@@ -33,6 +33,7 @@
         <button class="nav-link is-active" type="button" data-view-target="overview">Overview</button>
         <button class="nav-link" type="button" data-view-target="revenue">Revenue</button>
         <button class="nav-link" type="button" data-view-target="spending">Spending</button>
+        <button class="nav-link" type="button" data-view-target="departments">Departments</button>
         <button class="nav-link" type="button" data-view-target="aen">AEN Reviews</button>
         <button class="nav-link" type="button" data-view-target="sources">Sources</button>
       </nav>
@@ -105,8 +106,9 @@
         <button class="side-link is-active" type="button" data-view-target="overview"><span>01</span> Financial overview</button>
         <button class="side-link" type="button" data-view-target="revenue"><span>02</span> Money coming in</button>
         <button class="side-link" type="button" data-view-target="spending"><span>03</span> Money going out</button>
-        <button class="side-link" type="button" data-view-target="aen"><span>04</span> AEN accountability</button>
-        <button class="side-link" type="button" data-view-target="sources"><span>05</span> Sources & evidence</button>
+        <button class="side-link" type="button" data-view-target="departments"><span>04</span> Department tracker</button>
+        <button class="side-link" type="button" data-view-target="aen"><span>05</span> AEN accountability</button>
+        <button class="side-link" type="button" data-view-target="sources"><span>06</span> Sources & evidence</button>
         <div class="side-card">
           <span class="side-card__icon">✓</span>
           <strong>If we cannot trace it, we do not claim it.</strong>
@@ -211,6 +213,33 @@
               <div><span class="readiness-status readiness-status--pending">Researching</span><strong>Purchase orders and change orders</strong><p>Cross-system identifiers must be tested.</p></div>
               <div><span class="readiness-status readiness-status--gap">Gap</span><strong>Invoice-level detail</strong><p>May require a targeted public-records request.</p></div>
             </div>
+          </article>
+        </section>
+
+
+        <section class="view" id="view-departments" data-view="departments" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Department tracker</p>
+              <h2>Every department that spends public money</h2>
+              <p>First-pass registry for mapping City departments and spending functions to adopted budgets, amended budgets, actual spending, and source evidence.</p>
+            </div>
+          </div>
+
+          <div class="metric-grid" id="departmentMetricGrid"></div>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div><span class="panel__eyebrow">Extraction queue</span><h3>Department spending registry</h3></div>
+              <span class="tag tag--amber">Needs extraction</span>
+            </div>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Department/function</th><th>Public purpose</th><th>Budget</th><th>Actual</th><th>Evidence status</th><th>Next step</th></tr></thead>
+                <tbody id="departmentTableBody"></tbody>
+              </table>
+            </div>
+            <p class="panel-footnote">Pending values are intentional. CivicLens should not publish a department total until the number is traced to an official budget, year-end statement, audit schedule, transaction export, or public-records response.</p>
           </article>
         </section>
 
