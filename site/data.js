@@ -65,6 +65,34 @@ window.CIVICLENS_DATA = {
       { name: "Net reported change", share: 3.4 }
     ]
   },
+  departmentTracker: {
+    metrics: [
+      { label: "Department registry", value: "18", note: "Initial City departments and spending functions to reconcile", icon: "DEP", tone: "dark" },
+      { label: "Budget fields", value: "3", note: "Adopted budget, amended budget, and actual spending", icon: "BUD" },
+      { label: "Published totals", value: "0", note: "No department total goes live before source checks", icon: "QA" },
+      { label: "Source path", value: "Identified", note: "Budget, Q4 report, ACFR, agendas, procurement, and records requests", icon: "SRC" }
+    ],
+    departments: [
+      { name: "Police Department", purpose: "Law enforcement, patrol, investigations, and public-safety operations.", funds: "General Fund; grants and capital may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract police budget schedules and reconcile to year-end actuals." },
+      { name: "Public Works", purpose: "Transportation, road maintenance, engineering, traffic, and public infrastructure operations.", funds: "General Fund; Road & Bridge; capital funds may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Map department lines to operating and capital funds." },
+      { name: "Parks & Recreation", purpose: "Parks, recreation programs, facilities, grounds, and community services.", funds: "General Fund; Golf Course; capital funds may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Separate operating costs from capital park projects." },
+      { name: "Utility Systems", purpose: "Water, wastewater, utility operations, maintenance, and customer service.", funds: "Utility Systems enterprise fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Reconcile enterprise-fund activity to department operating lines." },
+      { name: "Building Department", purpose: "Permitting, plan review, inspections, code-related building services, and customer support.", funds: "Building Fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract Building Fund budget-to-actual lines." },
+      { name: "Planning & Zoning", purpose: "Land-use planning, zoning review, development review, and long-range planning.", funds: "General Fund; development-review revenues may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs mapping", statusClass: "tag tag--amber", nextStep: "Confirm whether costs sit under a standalone department or broader development services grouping." },
+      { name: "Neighborhood Services", purpose: "Neighborhood programs, housing support, community services, and code-related activity where applicable.", funds: "General Fund; grants may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs mapping", statusClass: "tag tag--amber", nextStep: "Identify grant-funded lines and separate restricted dollars." },
+      { name: "Finance Department", purpose: "Accounting, financial reporting, treasury, debt, grants accounting, and financial controls.", funds: "General Fund; internal service activity may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract operating budget and link to ACFR reporting responsibilities." },
+      { name: "Office of Management & Budget", purpose: "Budget preparation, performance tracking, management analysis, and citywide financial planning.", funds: "General Fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract OMB budget and connect to published quarterly reports." },
+      { name: "Procurement", purpose: "Purchasing, solicitations, vendor processes, contracts support, and procurement policy.", funds: "General Fund; procurement system records", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Link department cost lines to solicitations, contracts, and vendor records." },
+      { name: "City Manager", purpose: "Executive administration, citywide operations, policy execution, and department oversight.", funds: "General Fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract executive administration cost lines." },
+      { name: "City Clerk", purpose: "Agendas, minutes, public records, elections support, records retention, and legislative documentation.", funds: "General Fund; records systems", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract Clerk budget and connect agenda approvals to spending records." },
+      { name: "City Attorney", purpose: "Legal services, litigation, contract review, ordinances, and legal risk management.", funds: "General Fund; outside counsel costs may appear separately", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs mapping", statusClass: "tag tag--amber", nextStep: "Separate in-house costs from outside legal vendor spending." },
+      { name: "Human Resources", purpose: "Hiring, benefits, employee relations, training, compensation, and workforce administration.", funds: "General Fund; Medical Insurance internal service fund may relate", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs reconciliation", statusClass: "tag tag--amber", nextStep: "Keep HR operating costs separate from citywide employee benefit claims." },
+      { name: "Information Technology", purpose: "Technology operations, security, applications, hardware, networks, and digital services.", funds: "General Fund; capital and contract spending may apply", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs mapping", statusClass: "tag tag--amber", nextStep: "Link department costs to software, hardware, and service contracts." },
+      { name: "Communications", purpose: "Public information, resident communications, media, and outreach.", funds: "General Fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Needs mapping", statusClass: "tag tag--amber", nextStep: "Confirm current department name and extract budget lines." },
+      { name: "Solid Waste", purpose: "Residential waste service administration and related operating activity.", funds: "Solid Waste operating fund", adoptedBudget: "Pending extraction", actualSpending: "Pending extraction", status: "Source identified", statusClass: "tag tag--amber", nextStep: "Extract fund activity and identify contracted service payments." },
+      { name: "Fire services / emergency response", purpose: "Emergency response costs residents may ask about, including any City-paid support or transfers.", funds: "Separate jurisdiction check required", adoptedBudget: "Pending jurisdiction check", actualSpending: "Pending jurisdiction check", status: "Jurisdiction check", statusClass: "tag tag--amber", nextStep: "Confirm what belongs to the City versus St. Lucie County Fire District before publishing." }
+    ]
+  },
   sources: [
     {
       code: "TR",
@@ -135,6 +163,16 @@ window.CIVICLENS_DATA = {
         ["Current evidence", "One FY 2024–25 operating-funds report has been extracted for review."],
         ["Key distinction", "Fund-level spending is not the same as service-area, department, vendor, or transaction-level spending."],
         ["Next requirement", "Map official departments and accounts to public-safety categories and reconcile them to source totals."]
+      ]
+    },
+    departments: {
+      title: "Which departments spend public money?",
+      intro: "CivicLens is starting the department tracker now, but it is not publishing department totals until they are extracted from official records.",
+      explanation: "The first tracker release identifies the departments and spending functions that must be reconciled to adopted budget, amended budget, actual spending, contracts, and payment records. Pending values are shown as gaps on purpose so the public can see what has been sourced and what still needs extraction.",
+      facts: [
+        ["What is live", "A department/function registry, evidence status, and extraction queue for the Port St. Lucie pilot."],
+        ["What is not live yet", "Verified department budget-to-actual totals, vendor-level spending, invoice-level detail, and citywide reconciliation."],
+        ["Publication rule", "No department spending number should be displayed until CivicLens can point to the official source and calculation path."]
       ]
     },
     contracts: {
