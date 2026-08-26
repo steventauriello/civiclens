@@ -167,6 +167,7 @@
 
   function classifyQuestion(question) {
     const normalized = question.toLowerCase();
+    if (normalized.includes('official') || normalized.includes('officials') || normalized.includes('anthony') || normalized.includes('bonna') || normalized.includes('candidate') || normalized.includes('legislator')) return data.answers.officials;
     if (normalized.includes('property') || normalized.includes('tax')) return data.answers.propertyTax;
     if (normalized.includes('department') || normalized.includes('departments') || normalized.includes('budget')) return data.answers.departments;
     if (normalized.includes('police') || normalized.includes('fire') || normalized.includes('safety')) return data.answers.publicSafety;
@@ -239,7 +240,7 @@
       sideLink.href = 'evidence-vault.html';
       sideLink.className = 'side-link';
       sideLink.dataset.vaultLink = 'true';
-      sideLink.innerHTML = '<span>07</span> Restricted Vault 🔒';
+      sideLink.innerHTML = '<span>08</span> Restricted Vault 🔒';
       sideLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
       const sideCard = sideNav.querySelector('.side-card');
       sideNav.insertBefore(sideLink, sideCard || null);
@@ -285,5 +286,5 @@
   renderDepartmentTracker();
   renderSources();
   addRestrictedVaultNavigation();
-  setView(['overview', 'revenue', 'spending', 'departments', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
+  setView(['overview', 'officials', 'revenue', 'spending', 'departments', 'aen', 'sources'].includes(initialView) ? initialView : 'overview', false);
 })();
