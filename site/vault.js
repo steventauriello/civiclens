@@ -131,6 +131,28 @@
     return data;
   }
 
+
+  async function researchApi(body) {
+    const response = await fetch('/api/evidence-research', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-civiclens-admin-key': getAdminKey() },
+      body: JSON.stringify(body)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || 'AI research scan failed.');
+    return data;
+  }
+
+  function renderResearch(result) {
+    const panel = el('researchPanel');
+    const analysis = result.analysis;
+    const totals = analysis.controlTotals.map((item) => `<li><strong>${escapeHtml(item.label)}: ${escapeHtml(item.amount)}</strong><br><span>${escapeHtml(item.basis)} · p. ${escapeHtml(item.page)} · ${escapeHtml(item.confidence)} confidence</span></li>`).join('');
+    const findings = analysis.financialFindings.map((item) => `<li><strong>${escapeHtml(item.finding)}</strong><br><span>p. ${escapeHtml(item.page)} · ${escapeHtml(item.evidence)} · ${escapeHtml(item.confidence)} confidence</span></li>`).join('');
+    const followUp = analysis.followUp.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+    panel.innerHTML = `<p class="eyebrow">AI research · review required</p><h3>Document scan</h3><p>${escapeHtml(analysis.summary)}</p><h4>Proposed control totals</h4><ul>${totals || '<li>No control total proposed.</li>'}</ul><h4>Key findings</h4><ul>${findings || '<li>No finding proposed.</li>'}</ul><h4>Follow-up</h4><ul>${followUp || '<li>No follow-up required.</li>'}</ul><p><strong>Confidence: ${escapeHtml(analysis.confidence)}</strong> · Nothing above is published or added to the Control Trace until reviewed.</p>`;
+    panel.hidden = false;
+  }
+
   function installStorageControls() {
     const tile = document.querySelector('.status-strip > div:last-child');
     if (tile) {
@@ -375,6 +397,8 @@
     el('metaSize').textContent = formatBytes(doc.size);
     el('metaHash').textContent = doc.hash || 'Not recorded';
     el('reviewNotes').value = doc.notes || '';
+    el('researchPanel').hidden = true;
+    el('researchPanel').innerHTML = '';
     el('markVerified').textContent = doc.status === 'verified' ? 'Return to review' : 'Mark verified';
 
     const pdfPreview = el('pdfPreview');
@@ -647,6 +671,24 @@
       showToast('Reviewer notes saved.');
     } catch (error) {
       showToast(error.message, 'error');
+    }
+  });
+
+  el('scanDocument').addEventListener('click', async () => {
+    const doc = selectedRef ? await resolveDocument(selectedRef) : null;
+    if (!doc) return;
+    const button = el('scanDocument');
+    button.disabled = true;
+    button.textContent = 'Scanning…';
+    try {
+      const data = await researchApi({ id: doc.id });
+      renderResearch(data.result);
+      showToast('AI scan complete. Review every proposed total before using it.');
+    } catch (error) {
+      showToast(error.message, 'error');
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Scan with AI';
     }
   });
 
