@@ -300,6 +300,41 @@
     };
   }
 
+
+  const coverageRequirements = [
+    { label: 'Adopted Budget', role: 'Budget baseline', pattern: /adopted[-_ ]?budget/i },
+    { label: 'Budget Amendment #1', role: 'Amended budget baseline', pattern: /budget[-_ ]?amendment[-_ ]?1/i },
+    { label: 'Q1 revenue & expenditure statement', role: 'In-year actuals', pattern: /(1st|q1)[-_ ]?quarter.*(revenue|statement)/i },
+    { label: 'Q2 revenue & expenditure statement', role: 'In-year actuals', pattern: /(2nd|q2)[-_ ]?quarter.*(revenue|statement)/i },
+    { label: 'Q3 revenue & expenditure statement', role: 'In-year actuals', pattern: /(3rd|q3)[-_ ]?quarter.*(revenue|statement)/i },
+    { label: 'Q4 revenue & expenditure statement', role: 'Year-end operating-fund controls', pattern: /(4th|q4)[-_ ]?quarter.*(revenue|statement)/i },
+    { label: 'Annual Comprehensive Financial Report 2025', role: 'Audited year-end cross-check', pattern: /(annual[-_ ]?comprehensive[-_ ]?financial[-_ ]?report|acfr).*2025/i },
+    { label: 'Millage Rate Analysis', role: 'Property-tax context', pattern: /millage[-_ ]?rate[-_ ]?analysis/i },
+    { label: 'Capital Improvement Plan budget', role: 'Capital spending map', pattern: /(proposed[-_ ]?)?cip[-_ ]?budget|capital[-_ ]?improvement/i },
+    { label: 'CRA Annual Report', role: 'Redevelopment funds kept separate', pattern: /cra[-_ ]?annual[-_ ]?report/i }
+  ];
+  const coverageSupportRequirements = [
+    { label: 'Vendor / check registers', role: 'Who was paid', pattern: /(check[-_ ]?register|vendor[-_ ]?(payment|register|spend))/i },
+    { label: 'Payroll summaries', role: 'Personnel spending trace', pattern: /payroll|salary|wage/i },
+    { label: 'Contracts / procurement files', role: 'Commitments and awards', pattern: /contract|procurement|bid|rfp/i },
+    { label: 'Invoices / payment detail', role: 'Transaction support', pattern: /invoice|payment[-_ ]?detail|accounts[-_ ]?payable/i }
+  ];
+
+  function renderCoverageRow(requirement, documents) {
+    const match = documents.find((doc) => requirement.pattern.test(`${doc.name} ${doc.title || ''}`));
+    const state = match ? (match.status === 'verified' ? 'verified' : 'present') : 'missing';
+    const text = state === 'verified' ? 'Verified' : state === 'present' ? 'Present · review needed' : 'Missing';
+    return `<article class="coverage-card coverage-card--${state}"><span class="coverage-state">${state === 'missing' ? '○' : '✓'}</span><div><strong>${escapeHtml(requirement.label)}</strong><small>${escapeHtml(requirement.role)}</small>${match ? `<span class="coverage-source">${escapeHtml(match.name)}</span>` : '<span class="coverage-source">Not in vault</span>'}</div><b>${text}</b></article>`;
+  }
+
+  function renderCoverage(documents) {
+    const corePresent = coverageRequirements.filter((item) => documents.some((doc) => item.pattern.test(`${doc.name} ${doc.title || ''}`))).length;
+    const supportPresent = coverageSupportRequirements.filter((item) => documents.some((doc) => item.pattern.test(`${doc.name} ${doc.title || ''}`))).length;
+    el('coverageCore').innerHTML = coverageRequirements.map((item) => renderCoverageRow(item, documents)).join('');
+    el('coverageSupport').innerHTML = coverageSupportRequirements.map((item) => renderCoverageRow(item, documents)).join('');
+    el('coverageSummary').innerHTML = `<strong>${corePresent}/${coverageRequirements.length}</strong><span>core records present</span><small>${supportPresent}/${coverageSupportRequirements.length} dollar-level record groups present</small>`;
+  }
+
   async function allRecords() {
     const local = (await getAllLocalDocuments()).map((doc) => decorateRecord(doc, 'local'));
     const cloud = remoteRecords.map((doc) => decorateRecord(doc, 'cloud'));
@@ -346,6 +381,7 @@
     el('documentCount').textContent = documents.length;
     el('reviewCount').textContent = documents.filter((doc) => doc.status !== 'verified').length;
     el('verifiedCount').textContent = documents.filter((doc) => doc.status === 'verified').length;
+    renderCoverage(documents);
   }
 
   async function resolveDocument(ref) {
