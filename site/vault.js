@@ -607,6 +607,39 @@
     });
   });
 
+
+  function openEditDialog(doc) {
+    el('editTitle').value = doc.title || doc.name || '';
+    el('editDocumentType').value = doc.type || 'other';
+    el('editFiscalYear').value = doc.fiscalYear || '';
+    el('editPublisher').value = doc.publisher || '';
+    el('editSourceUrl').value = doc.sourceUrl || '';
+    el('editDialog').showModal();
+  }
+
+  async function saveDocumentEdits() {
+    const doc = selectedRef ? await resolveDocument(selectedRef) : null;
+    if (!doc) return;
+    const typeSelect = el('editDocumentType');
+    const sourceUrl = window.CivicLensSourceUrl?.cleanInput(el('editSourceUrl')) || el('editSourceUrl').value.trim();
+    const patch = {
+      title: el('editTitle').value.trim() || doc.name,
+      type: typeSelect.value,
+      typeLabel: typeSelect.selectedOptions[0].textContent,
+      fiscalYear: el('editFiscalYear').value.trim(),
+      publisher: el('editPublisher').value.trim(),
+      sourceUrl
+    };
+    try {
+      const updated = await updateSelectedRecord(patch);
+      el('editDialog').close();
+      await selectDocument(updated._ref);
+      showToast('Evidence record labels updated.');
+    } catch (error) {
+      showToast(error.message, 'error');
+    }
+  }
+
   el('saveNotes').addEventListener('click', async () => {
     try {
       await updateSelectedRecord({ notes: el('reviewNotes').value.trim() });
@@ -616,6 +649,13 @@
       showToast(error.message, 'error');
     }
   });
+
+  el('editDocument').addEventListener('click', async () => {
+    const doc = selectedRef ? await resolveDocument(selectedRef) : null;
+    if (doc) openEditDialog(doc);
+  });
+
+  el('saveDocumentEdits').addEventListener('click', saveDocumentEdits);
 
   el('markVerified').addEventListener('click', async () => {
     const doc = selectedRef ? await resolveDocument(selectedRef) : null;
