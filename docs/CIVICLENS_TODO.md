@@ -104,6 +104,23 @@ Recommended next feature: make CivicLens easier to operate without loosening sec
 - [ ] Add a “missing records” queue tied to the Evidence Coverage Map.
 - [ ] Add a “scan next” queue for revenue control documents.
 
+## Smart Uploader Todo
+
+Goal: make document intake smarter before the record is finalized, so the owner can drag in a PDF and CivicLens helps classify it correctly.
+
+The smart uploader should assist with metadata and extraction, but the final vault record still needs human approval before it becomes official evidence.
+
+- [ ] Add an upload staging screen before final vault submission.
+- [ ] Preview extracted title, publisher, fiscal year, reporting period, document type, and likely source category.
+- [ ] Detect visible dates such as fiscal year ended, adopted budget year, quarter, meeting date, or report date.
+- [ ] Suggest a clean CivicLens title and filename.
+- [ ] Suggest tags such as budget, audit, quarterly statement, millage, CRA, capital, vendor, payroll, contract, invoice, or grant.
+- [ ] Extract likely control totals and show page/table evidence before submission.
+- [ ] Let the owner add or confirm the official source URL.
+- [ ] Show confidence levels and require manual confirmation for low-confidence fields.
+- [ ] Keep the original PDF immutable after submission.
+- [ ] Do not publish extracted findings until human review is complete.
+
 ## AEN Demo Todo
 
 AEN should be demonstrated after CivicLens has at least one source-backed money trail.
@@ -129,7 +146,8 @@ Use these phrases:
 ## Next Best Move
 
 1. Find and upload the missing FY 2024-25 Q2 revenue and expenditure statement.
-2. Run AI research scans on Q4 and ACFR 2025 after record-level approval.
-3. Extract and classify revenue lines into taxpayer-paid versus grants, transfers, debt, and other sources.
-4. Build the first Revenue Intake Control Report.
-5. Only then move into department spending trace.
+2. Build the Smart Uploader staging flow so new PDFs can be classified before final vault submission.
+3. Run AI research scans on Q4 and ACFR 2025 after record-level approval.
+4. Extract and classify revenue lines into taxpayer-paid versus grants, transfers, debt, and other sources.
+5. Build the first Revenue Intake Control Report.
+6. Only then move into department spending trace.
