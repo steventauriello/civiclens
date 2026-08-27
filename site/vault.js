@@ -454,7 +454,8 @@
       typeLabel: el('documentType').selectedOptions[0].textContent,
       fiscalYear: el('fiscalYear').value.trim(),
       publisher: el('publisher').value.trim(),
-      sourceUrl
+      sourceUrl,
+      aiApproved: el('editAiApproved').checked
     };
   }
 
@@ -638,6 +639,7 @@
     el('editFiscalYear').value = doc.fiscalYear || '';
     el('editPublisher').value = doc.publisher || '';
     el('editSourceUrl').value = doc.sourceUrl || '';
+    el('editAiApproved').checked = doc.aiApproved === true;
     el('editDialog').showModal();
   }
 
