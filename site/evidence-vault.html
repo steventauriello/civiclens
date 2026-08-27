@@ -85,6 +85,7 @@
               <p id="viewerSubtitle"></p>
             </div>
             <div class="viewer-actions">
+              <button id="scanDocument" class="primary-button" type="button">Scan with AI</button>
               <button id="editDocument" class="secondary-button" type="button">Edit record</button>
               <button id="markVerified" class="secondary-button" type="button">Mark verified</button>
               <button id="removeDocument" class="danger-button" type="button">Remove</button>
@@ -118,6 +119,7 @@
                 <div><dt>Content fingerprint</dt><dd id="metaHash" class="hash"></dd></div>
               </dl>
 
+              <section id="researchPanel" class="research-panel" hidden aria-live="polite"></section>
               <label for="reviewNotes">Reviewer notes</label>
               <textarea id="reviewNotes" rows="6" placeholder="Record extraction issues, missing pages, accounting basis, source confirmation…"></textarea>
               <button id="saveNotes" class="secondary-button full" type="button">Save notes</button>
