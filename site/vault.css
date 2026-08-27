@@ -34,3 +34,6 @@ dialog#uploadDialog{width:min(760px,calc(100% - 24px));max-height:calc(100dvh - 
   #uploadDialog .dialog-actions{bottom:-14px;margin:12px -14px -14px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column-reverse}
   #uploadDialog .dialog-actions button{width:100%;min-height:48px}
 }
+
+
+.research-panel{margin:18px 0;padding:20px;border:1px solid #b9d9eb;background:#f4fbff}.research-panel h3{margin:.15rem 0 .55rem}.research-panel h4{margin:18px 0 6px;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#315a73}.research-panel p,.research-panel li{color:#35546a}.research-panel ul{margin:6px 0;padding-left:20px}.research-panel li{margin:8px 0}.research-panel li span{font-size:.9rem}.research-panel .eyebrow{margin:0 0 6px}
