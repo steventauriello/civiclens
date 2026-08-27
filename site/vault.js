@@ -332,7 +332,7 @@
     const supportPresent = coverageSupportRequirements.filter((item) => documents.some((doc) => item.pattern.test(`${doc.name} ${doc.title || ''}`))).length;
     el('coverageCore').innerHTML = coverageRequirements.map((item) => renderCoverageRow(item, documents)).join('');
     el('coverageSupport').innerHTML = coverageSupportRequirements.map((item) => renderCoverageRow(item, documents)).join('');
-    el('coverageSummary').innerHTML = `<strong>${corePresent}/${coverageRequirements.length}</strong><span>core records present</span><small>${supportPresent}/${coverageSupportRequirements.length} dollar-level record groups present</small>`;
+    el('coverageSummary').innerHTML = `<strong>${corePresent}/${coverageRequirements.length}</strong><span>core trace packet records present</span><small>${supportPresent}/${coverageSupportRequirements.length} dollar-level record groups present</small>`;
   }
 
   async function allRecords() {

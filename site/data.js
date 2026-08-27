@@ -1,10 +1,10 @@
 window.CIVICLENS_DATA = {
   periods: {
     fy2025: {
-      label: "FY 2024–25 operating funds",
+      label: "FY 2024–25 operating-fund slice",
       metrics: [
-        { label: "Operating-fund revenue", value: "$446.7M", note: "Eight funds reported by the City", icon: "IN", tone: "dark" },
-        { label: "Operating-fund spending", value: "$431.5M", note: "Rounded fund rows; includes reported non-operating outflows", icon: "OUT" },
+        { label: "Operating-fund revenue", value: "$446.7M", note: "Eight funds reported by the City; not full citywide revenue", icon: "IN", tone: "dark" },
+        { label: "Operating-fund spending", value: "$431.5M", note: "Eight-fund slice; not department or vendor-level trace", icon: "OUT" },
         { label: "Funds reported", value: "8", note: "Not yet the entire City government", icon: "FND" },
         { label: "Evidence status", value: "Sourced", note: "FY 2024–25 fourth-quarter City report", icon: "SRC" }
       ],
@@ -55,13 +55,13 @@ window.CIVICLENS_DATA = {
   },
   flow: {
     revenue: [
-      { name: "Reported revenue", share: 100 }
+      { name: "Operating-fund revenue slice", share: 100 }
     ],
     funds: [
       { name: "Eight operating funds", share: 100 }
     ],
     uses: [
-      { name: "Reported spending", share: 96.6 },
+      { name: "Operating-fund spending slice", share: 96.6 },
       { name: "Net reported change", share: 3.4 }
     ]
   },

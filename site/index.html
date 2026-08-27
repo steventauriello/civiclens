@@ -150,11 +150,11 @@
 
             <article class="panel evidence-panel">
               <div class="panel__header">
-                <div><span class="panel__eyebrow">Trust layer</span><h3>Evidence coverage</h3></div>
+                <div><span class="panel__eyebrow">Trace scope</span><h3>Operating-fund slice</h3></div>
               </div>
               <div class="evidence-score">
                 <div class="evidence-ring" style="--score: 18"><span>18<small>%</small></span></div>
-                <div><strong>First report extracted</strong><p>One official FY 2024–25 year-end operating report is now the source for this view. Citywide reconciliation remains in progress.</p></div>
+                <div><strong>First source report extracted</strong><p>This view covers one FY 2024–25 operating-funds report. It is the first trace slice, not the full Port St. Lucie citywide ledger.</p></div>
               </div>
               <button class="button button--secondary button--full" type="button" data-view-target="control">Open control trace</button>
               <button class="button button--secondary button--full" id="showEvidenceButton" type="button">Show the evidence plan</button>
@@ -296,14 +296,14 @@
 
         <section class="view" id="view-revenue" data-view="revenue" hidden>
           <div class="section-heading">
-            <div><p class="section-kicker">Money coming in</p><h2>Reported revenue by fund</h2><p>FY 2024–25 reported revenue from the City’s fourth-quarter operating-funds report. Fund totals are not the same thing as a resident’s property-tax allocation.</p></div>
+            <div><p class="section-kicker">Money coming in</p><h2>Operating-fund revenue by fund</h2><p>FY 2024–25 revenue from the City’s fourth-quarter operating-funds report. This is not the full citywide revenue total and not the final taxpayer-paid revenue classification.</p></div>
           </div>
           <div class="metric-grid" id="revenueMetricGrid"></div>
           <article class="panel">
-            <div class="panel__header"><div><span class="panel__eyebrow">Official City report</span><h3>Revenue by operating fund</h3></div><span class="tag tag--green">Reported actuals</span></div>
+            <div class="panel__header"><div><span class="panel__eyebrow">Official City report</span><h3>Operating-fund revenue only</h3></div><span class="tag tag--green">Reported actuals</span></div>
             <div class="data-table-wrap">
               <table class="data-table">
-                <thead><tr><th>Operating fund</th><th>Reported revenue</th><th>What it means</th><th>Evidence</th></tr></thead>
+                <thead><tr><th>Operating fund</th><th>Reported operating-fund revenue</th><th>What it means</th><th>Evidence</th></tr></thead>
                 <tbody id="revenueTableBody"></tbody>
               </table>
             </div>
@@ -312,7 +312,7 @@
 
         <section class="view" id="view-spending" data-view="spending" hidden>
           <div class="section-heading">
-            <div><p class="section-kicker">Money going out</p><h2>Reported spending by fund</h2><p>FY 2024–25 spending reported across the same eight operating funds. This is not yet a transaction-level vendor-payment view.</p></div>
+            <div><p class="section-kicker">Money going out</p><h2>Operating-fund spending by fund</h2><p>FY 2024–25 spending reported across the same eight operating funds. This is not yet a citywide, department-level, or vendor-payment trace.</p></div>
           </div>
           <div class="filter-strip" role="group" aria-label="Spending filters">
             <label>View by<select id="spendViewSelect"><option>Service area</option><option>Department</option><option>Fund</option><option>Vendor</option></select></label>
