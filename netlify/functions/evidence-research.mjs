@@ -105,3 +105,13 @@ export default async (request) => {
     return json({ error: error.message || 'Research scan failed.' }, 500);
   }
 };
+
+export const config = {
+  path: '/api/evidence-research',
+  rateLimit: {
+    action: 'rate_limit',
+    aggregateBy: ['domain', 'ip'],
+    windowSize: 60,
+    windowLimit: 8
+  }
+};
