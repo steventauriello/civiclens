@@ -79,6 +79,7 @@ export default async (request) => {
     const s3 = client(config);
     const record = await readJson(s3, config.bucket, recordKey(String(id)));
     if (record.lifecycleStatus === 'archived') return json({ error: 'Archived records cannot be researched.' }, 409);
+    if (record.aiApproved !== true) return json({ error: 'AI research is not approved for this record. Open Edit record and explicitly approve it first.', code: 'AI_RESEARCH_NOT_APPROVED' }, 403);
     if (record.mime !== 'application/pdf' && !String(record.name).toLowerCase().endsWith('.pdf')) return json({ error: 'AI research currently supports PDF records only.' }, 415);
 
     const fileUrl = await getSignedUrl(s3, new GetObjectCommand({ Bucket: config.bucket, Key: record.objectKey, ResponseContentType: 'application/pdf' }), { expiresIn: 900 });
