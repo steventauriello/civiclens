@@ -197,13 +197,13 @@
         <div><p class="eyebrow">Evidence record</p><h2>Edit labels and source</h2></div>
         <button class="close-button" value="cancel" aria-label="Close edit window" type="submit">×</button>
       </div>
-      <p class="dialog-help">This updates the record label and audit trail. The original uploaded PDF remains unchanged.</p>
+      <p class="dialog-help">This updates labels and the audit trail only. The original PDF, filename, fingerprint, size, and permanent storage object are read-only.</p>
       <div class="form-grid">
         <label>Document title<input id="editTitle" type="text" required /></label>
         <label>Document type<select id="editDocumentType"><option value="budget">Budget or financial report</option><option value="audit">Audit or ACFR</option><option value="contract">Contract or procurement</option><option value="meeting">Council agenda or minutes</option><option value="invoice">Invoice or payment record</option><option value="other">Other official record</option></select></label>
         <label>Fiscal year<input id="editFiscalYear" type="text" placeholder="FY 2024-25" /></label>
         <label>Publisher / agency<input id="editPublisher" type="text" /></label>
-        <label>Official source URL<input id="editSourceUrl" type="url" placeholder="https://www.cityofpsl.com/…" /></label>
+        <label>Official source URL<input id="editSourceUrl" type="url" placeholder="https://www.cityofpsl.com/…" /></label><label class="ai-approval"><input id="editAiApproved" type="checkbox" /> Approve this record for AI research<br><small>Only enable for records you are comfortable sending to the AI service for analysis. Leave off for restricted, private, legal, personnel, or whistleblower material.</small></label>
       </div>
       <div class="dialog-actions"><button class="secondary-button" value="cancel" type="submit">Cancel</button><button id="saveDocumentEdits" class="primary-button" value="default" type="button">Save changes</button></div>
     </form>
