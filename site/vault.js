@@ -19,6 +19,7 @@
   const fileInput = el('fileInput');
   const dropZone = el('dropZone');
   const selectedFilesEl = el('selectedFiles');
+  const intakeAssistant = el('intakeAssistant');
   const ingestButton = el('ingestButton');
   const documentList = el('documentList');
   const emptyLibrary = el('emptyLibrary');
@@ -462,9 +463,120 @@
     selectedFiles = [];
     fileInput.value = '';
     selectedFilesEl.innerHTML = '';
+    intakeAssistant.hidden = true;
+    intakeAssistant.innerHTML = '';
     ingestButton.disabled = true;
+    el('uploadTitle').value = '';
     el('fiscalYear').value = '';
     el('sourceUrl').value = '';
+  }
+
+  function titleFromFilename(name) {
+    return name
+      .replace(/\.[^.]+$/, '')
+      .replace(/[()]/g, '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\b(fy)\b/gi, 'FY')
+      .replace(/\b(q[1-4])\b/gi, (value) => value.toUpperCase())
+      .replace(/\b(acfr)\b/gi, 'ACFR')
+      .replace(/\b(cra)\b/gi, 'CRA');
+  }
+
+  function inferFiscalYear(text) {
+    if (/(fy|fiscal).*?(24|2024).*?(25|2025)|\b24[-_ ]?25\b/i.test(text)) return 'FY 2024-25';
+    if (/annual[-_ ]?comprehensive[-_ ]?financial[-_ ]?report.*2025|acfr.*2025/i.test(text)) return 'FY 2024-25';
+    const year = text.match(/\b20\d{2}\b/);
+    return year ? `FY ${year[0]}` : '';
+  }
+
+  function inferDocumentType(text) {
+    if (/annual[-_ ]?comprehensive[-_ ]?financial[-_ ]?report|\bacfr\b|audit/i.test(text)) return 'audit';
+    if (/contract|procurement|purchase[-_ ]?order|change[-_ ]?order|vendor|check[-_ ]?register/i.test(text)) return 'contract';
+    if (/invoice|payment[-_ ]?detail/i.test(text)) return 'invoice';
+    if (/agenda|minutes|meeting/i.test(text)) return 'meeting';
+    if (/budget|millage|revenue|expenditure|statement|capital|cip|cra/i.test(text)) return 'budget';
+    return 'other';
+  }
+
+  function intakeMatch(file, documents) {
+    const haystack = `${file.name} ${titleFromFilename(file.name)}`;
+    const core = coverageRequirements.find((item) => item.pattern.test(haystack));
+    const support = coverageSupportRequirements.find((item) => item.pattern.test(haystack));
+    const duplicate = documents.find((doc) => doc.name === file.name || (doc.size === file.size && doc.name.toLowerCase() === file.name.toLowerCase()));
+    const matched = core || support;
+    const alreadyPresent = matched ? documents.some((doc) => doc !== duplicate && matched.pattern.test(`${doc.name} ${doc.title || ''}`)) : false;
+    return { matched, duplicate, alreadyPresent };
+  }
+
+  function buildIntakeSuggestion(file, documents) {
+    const text = file.name;
+    const title = titleFromFilename(file.name);
+    const type = inferDocumentType(text);
+    const fiscalYear = inferFiscalYear(text);
+    const { matched, duplicate, alreadyPresent } = intakeMatch(file, documents);
+    let status = 'New record';
+    let tone = 'neutral';
+    if (duplicate) {
+      status = 'Possible duplicate';
+      tone = 'warning';
+    } else if (matched && !alreadyPresent) {
+      status = 'Fills a known evidence gap';
+      tone = 'success';
+    } else if (matched && alreadyPresent) {
+      status = 'Matches existing packet category';
+      tone = 'warning';
+    }
+    return { file, title, type, fiscalYear, matched, duplicate, alreadyPresent, status, tone };
+  }
+
+  function typeLabel(value) {
+    const option = [...el('documentType').options].find((item) => item.value === value);
+    return option?.textContent || 'Other official record';
+  }
+
+  function applyPrimaryIntakeSuggestion(suggestion) {
+    if (!suggestion) return;
+    el('uploadTitle').value = suggestion.title;
+    el('documentType').value = suggestion.type;
+    if (suggestion.fiscalYear) el('fiscalYear').value = suggestion.fiscalYear;
+    if (!el('publisher').value.trim()) el('publisher').value = 'City of Port St. Lucie';
+  }
+
+  async function renderIntakeAssistant() {
+    if (!selectedFiles.length) {
+      intakeAssistant.hidden = true;
+      intakeAssistant.innerHTML = '';
+      return;
+    }
+    const documents = await allRecords().catch(() => remoteRecords);
+    const suggestions = selectedFiles.map((file) => buildIntakeSuggestion(file, documents));
+    if (suggestions.length === 1) applyPrimaryIntakeSuggestion(suggestions[0]);
+    intakeAssistant.hidden = false;
+    intakeAssistant.innerHTML = `
+      <div class="intake-assistant__head">
+        <div><p class="eyebrow">Smart intake preview</p><h3>Suggested filing details</h3></div>
+        <span>Review before vault lock</span>
+      </div>
+      <div class="intake-suggestions">
+        ${suggestions.map((suggestion) => `
+          <article class="intake-suggestion intake-suggestion--${suggestion.tone}">
+            <div>
+              <strong>${escapeHtml(suggestion.title)}</strong>
+              <p>${escapeHtml(suggestion.file.name)} · ${formatBytes(suggestion.file.size)}</p>
+            </div>
+            <dl>
+              <div><dt>Type</dt><dd>${escapeHtml(typeLabel(suggestion.type))}</dd></div>
+              <div><dt>Fiscal year</dt><dd>${escapeHtml(suggestion.fiscalYear || 'Needs review')}</dd></div>
+              <div><dt>Packet match</dt><dd>${escapeHtml(suggestion.matched?.label || 'No known packet match')}</dd></div>
+              <div><dt>Status</dt><dd>${escapeHtml(suggestion.status)}</dd></div>
+            </dl>
+          </article>
+        `).join('')}
+      </div>
+      <p class="intake-assistant__note">These are intake suggestions only. The original file is still locked after submission, and extracted findings still require review before public use.</p>
+    `;
   }
 
   function renderSelectedFiles() {
@@ -480,18 +592,20 @@
     const nextFiles = append ? [...selectedFiles, ...allowed] : allowed;
     selectedFiles = nextFiles.filter((file, index, all) => all.findIndex((candidate) => candidate.name === file.name && candidate.size === file.size && candidate.lastModified === file.lastModified) === index);
     renderSelectedFiles();
+    renderIntakeAssistant();
   }
 
   function currentUploadMetadata() {
     const sourceInput = el('sourceUrl');
     const sourceUrl = window.CivicLensSourceUrl?.cleanInput(sourceInput) || sourceInput.value.trim();
     return {
+      title: el('uploadTitle').value.trim(),
       type: el('documentType').value,
       typeLabel: el('documentType').selectedOptions[0].textContent,
       fiscalYear: el('fiscalYear').value.trim(),
       publisher: el('publisher').value.trim(),
       sourceUrl,
-      aiApproved: el('editAiApproved').checked
+      aiApproved: false
     };
   }
 

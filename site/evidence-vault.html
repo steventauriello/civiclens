@@ -162,8 +162,12 @@
         <small id="dropHelp">PDF, scanned PDF, JPG, PNG, TIFF • Signed-in uploads are preserved in permanent private cloud storage.</small>
       </div>
       <div id="selectedFiles" class="selected-files"></div>
+      <section id="intakeAssistant" class="intake-assistant" hidden aria-live="polite"></section>
 
       <div class="form-grid">
+        <label>Suggested title
+          <input id="uploadTitle" type="text" placeholder="CivicLens title for this evidence record" />
+        </label>
         <label>Document type
           <select id="documentType">
             <option value="budget">Budget or financial report</option>
