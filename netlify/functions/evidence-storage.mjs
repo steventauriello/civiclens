@@ -170,12 +170,13 @@ async function listAuditEvents(client, bucket, requestedLimit = 50) {
 }
 
 function normalizePatch(input = {}) {
-  const allowed = ['type', 'typeLabel', 'fiscalYear', 'publisher', 'sourceUrl', 'status', 'notes', 'title'];
+  const allowed = ['type', 'typeLabel', 'fiscalYear', 'publisher', 'sourceUrl', 'status', 'notes', 'title', 'aiApproved'];
   const patch = {};
   for (const key of allowed) {
     if (Object.hasOwn(input, key)) patch[key] = input[key];
   }
   if (patch.status && !['review', 'verified'].includes(patch.status)) delete patch.status;
+  if (Object.hasOwn(patch, 'aiApproved')) patch.aiApproved = patch.aiApproved === true;
   return patch;
 }
 
@@ -285,7 +286,8 @@ export default async (request) => {
         storageClass: 'STANDARD',
         immutableOriginal: true,
         lifecycleStatus: 'active',
-        recordVersion: 1
+        recordVersion: 1,
+        aiApproved: false
       };
 
       await writeRecord(client, config.bucket, record);
@@ -325,6 +327,10 @@ export default async (request) => {
       if (!id) return json({ error: 'Record ID is required.' }, 400);
       const record = await readJsonObject(client, config.bucket, recordKey(id));
       if (record.lifecycleStatus === 'archived') return json({ error: 'Archived records cannot be edited.' }, 409);
+      const immutableFields = ['objectKey', 'hash', 'hashAlgorithm', 'hashSource', 'mime', 'size', 'name', 'uploadedAt', 'immutableOriginal'];
+      const requestedFields = Object.keys(body.patch || {});
+      const forbiddenField = requestedFields.find((key) => immutableFields.includes(key));
+      if (forbiddenField) return json({ error: `Original evidence field "${forbiddenField}" is immutable. Create a linked derived record instead.` }, 409);
       const patch = normalizePatch(body.patch);
       const updated = {
         ...record,
