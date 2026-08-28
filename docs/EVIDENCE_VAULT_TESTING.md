@@ -3,7 +3,7 @@
 Use this checklist before merging the current Evidence Vault pull request.
 
 - Open the Netlify Deploy Preview.
-- Confirm the Evidence Vault is reachable from the main CivicLens dashboard.
+- Confirm the Evidence Vault is reachable from the main TRACE dashboard.
 - Confirm the upload dialog fits on desktop and mobile.
 - Confirm PDF preview rendering works.
 - Confirm the storage status tile reports the configured backend state.

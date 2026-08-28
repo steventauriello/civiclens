@@ -70,7 +70,7 @@
 
           <div class="official-import-trust">
             <strong>Official City sources only</strong>
-            <p>CivicLens verifies the City URL first. It attempts a secure server retrieval; if the City's firewall blocks that request, CivicLens switches to a browser-assisted preservation path and keeps the source-verification distinction in the evidence record.</p>
+            <p>TRACE verifies the City URL first. It attempts a secure server retrieval; if the City's firewall blocks that request, TRACE switches to a browser-assisted preservation path and keeps the source-verification distinction in the evidence record.</p>
           </div>
 
           <label class="official-import-field" for="officialSourceUrl">Official City PDF URL
@@ -115,7 +115,7 @@
 
           <section id="assistedImportPanel" class="official-import-fallback" hidden>
             <strong>Browser-assisted preservation</strong>
-            <p>The City is blocking CivicLens's server from downloading this public PDF. Open the official PDF in your browser, save it to Files if needed, then select that PDF below. CivicLens will upload it directly to private R2 and the server will independently compute SHA-256 from the stored object.</p>
+            <p>The City is blocking TRACE's server from downloading this public PDF. Open the official PDF in your browser, save it to Files if needed, then select that PDF below. TRACE will upload it directly to private R2 and the server will independently compute SHA-256 from the stored object.</p>
             <a id="openOfficialPdf" class="secondary-button official-source-link" target="_blank" rel="noopener noreferrer">1. Open official City PDF ↗</a>
             <label class="official-import-field assisted-file-label" for="assistedOfficialFile">2. Choose the official PDF from Files
               <input id="assistedOfficialFile" type="file" accept="application/pdf,.pdf" />
@@ -254,7 +254,7 @@
     button.textContent = 'Preserving & server-hashing…';
     result.hidden = false;
     result.dataset.tone = 'working';
-    result.textContent = 'Uploading the selected PDF directly to private R2. CivicLens will then read the stored object on the server, validate the PDF signature, calculate SHA-256, check for duplicates, and write the audit receipt.';
+    result.textContent = 'Uploading the selected PDF directly to private R2. TRACE will then read the stored object on the server, validate the PDF signature, calculate SHA-256, check for duplicates, and write the audit receipt.';
 
     try {
       const auth = await assistedApi({
@@ -284,7 +284,7 @@
 
       if (finalized.duplicate) {
         result.dataset.tone = 'success';
-        result.textContent = `Exact duplicate confirmed by server SHA-256. No second copy was kept. CivicLens attached the official source metadata to the existing record: ${finalized.record.hash}. Reloading the vault…`;
+        result.textContent = `Exact duplicate confirmed by server SHA-256. No second copy was kept. TRACE attached the official source metadata to the existing record: ${finalized.record.hash}. Reloading the vault…`;
         showToast('Duplicate confirmed; official metadata attached to existing evidence.');
       } else {
         result.dataset.tone = 'success';
@@ -317,7 +317,7 @@
     button.textContent = 'Retrieving & fingerprinting…';
     result.hidden = false;
     result.dataset.tone = 'working';
-    result.textContent = 'CivicLens is trying to retrieve the official City PDF on the secure server.';
+    result.textContent = 'TRACE is trying to retrieve the official City PDF on the secure server.';
 
     try {
       const response = await fetch(IMPORT_URL, {
@@ -341,11 +341,11 @@
           if (browserFile) {
             assistedFile = browserFile;
             assistedMode = 'browser-cors-direct';
-            result.textContent = `Your browser retrieved the official City PDF directly (${formatBytes(browserFile.size)}). CivicLens is preserving it now and will fingerprint the stored R2 object on the server.`;
+            result.textContent = `Your browser retrieved the official City PDF directly (${formatBytes(browserFile.size)}). TRACE is preserving it now and will fingerprint the stored R2 object on the server.`;
             await preserveAssistedFile(browserFile, assistedMode);
             return;
           }
-          revealAssisted(url, 'The City blocks CivicLens server retrieval and does not permit a direct browser data fetch. Use the browser-assisted steps below.');
+          revealAssisted(url, 'The City blocks TRACE server retrieval and does not permit a direct browser data fetch. Use the browser-assisted steps below.');
           return;
         }
         throw new Error(data.error || 'Official source import failed.');

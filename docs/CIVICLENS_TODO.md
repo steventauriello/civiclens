@@ -1,6 +1,6 @@
-# CivicLens Working Todo
+# TRACE Working Todo
 
-This is the live working checklist for the Port St. Lucie pilot. Keep this document focused on the core CivicLens path:
+This is the live working checklist for the Port St. Lucie pilot. Keep this document focused on the core TRACE path:
 
 ```text
 Original source -> Control total -> Extracted detail -> Variance -> Public answer
@@ -8,7 +8,7 @@ Original source -> Control total -> Extracted detail -> Variance -> Public answe
 
 ## Current Truth
 
-- CivicLens is an alpha proof of concept, not a completed full-city audit.
+- TRACE is an alpha proof of concept, not a completed full-city audit.
 - The evidence vault can preserve original PDFs as immutable source records.
 - Public pages currently show an FY 2024-25 operating-fund slice, not the full Port St. Lucie citywide ledger.
 - The control-total trace exists for the first operating-fund layer.
@@ -82,7 +82,7 @@ Do not mix these with grants, debt proceeds, transfers, investment earnings, or 
 
 ## Evidence Vault Hardening Todo
 
-The vault is CivicLens infrastructure. Treat it as a protected system, not a casual feature.
+The vault is TRACE infrastructure. Treat it as a protected system, not a casual feature.
 
 - [ ] Add automated tests for immutable original PDF fields.
 - [ ] Test that metadata edits cannot change original file hash, object key, size, MIME type, upload timestamp, or original filename.
@@ -95,7 +95,7 @@ The vault is CivicLens infrastructure. Treat it as a protected system, not a cas
 
 ## Vault Inventory and Research Queue
 
-Recommended next feature: make CivicLens easier to operate without loosening security.
+Recommended next feature: make TRACE easier to operate without loosening security.
 
 - [ ] Show every uploaded document in a clear inventory table.
 - [ ] Show status columns: verified, awaiting review, AI approved, scanned, needs scan, archived.
@@ -106,14 +106,14 @@ Recommended next feature: make CivicLens easier to operate without loosening sec
 
 ## Smart Uploader Todo
 
-Goal: make document intake smarter before the record is finalized, so the owner can drag in a PDF and CivicLens helps classify it correctly.
+Goal: make document intake smarter before the record is finalized, so the owner can drag in a PDF and TRACE helps classify it correctly.
 
 The smart uploader should assist with metadata and extraction, but the final vault record still needs human approval before it becomes official evidence.
 
 - [ ] Add an upload staging screen before final vault submission.
 - [ ] Preview extracted title, publisher, fiscal year, reporting period, document type, and likely source category.
 - [ ] Detect visible dates such as fiscal year ended, adopted budget year, quarter, meeting date, or report date.
-- [ ] Suggest a clean CivicLens title and filename.
+- [ ] Suggest a clean TRACE title and filename.
 - [ ] Suggest tags such as budget, audit, quarterly statement, millage, CRA, capital, vendor, payroll, contract, invoice, or grant.
 - [ ] Extract likely control totals and show page/table evidence before submission.
 - [ ] Let the owner add or confirm the official source URL.
@@ -123,7 +123,7 @@ The smart uploader should assist with metadata and extraction, but the final vau
 
 ## AEN Demo Todo
 
-AEN should be demonstrated after CivicLens has at least one source-backed money trail.
+AEN should be demonstrated after TRACE has at least one source-backed money trail.
 
 - [ ] Build the first AEN demo from a real source packet.
 - [ ] Separate facts, calculations, agency claims, conflicts, and gaps.

@@ -1,6 +1,6 @@
 # Port St. Lucie Public-Records Plan
 
-CivicLens should use records requests only after checking published sources. Requests should be narrow, machine-readable where possible, date-bounded, and designed to avoid unnecessary staff burden.
+TRACE should use records requests only after checking published sources. Requests should be narrow, machine-readable where possible, date-bounded, and designed to avoid unnecessary staff burden.
 
 ## Purpose
 

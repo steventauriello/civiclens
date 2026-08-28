@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://civiclens.org/schemas/source.schema.json",
-  "title": "CivicLens Source",
+  "title": "TRACE Source",
   "type": "object",
   "additionalProperties": false,
   "required": [

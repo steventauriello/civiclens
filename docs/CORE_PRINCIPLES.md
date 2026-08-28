@@ -12,7 +12,7 @@ Every answer should provide a path to the source document, relevant page or reco
 
 ## 3. Accounting context matters
 
-CivicLens must not flatten unlike concepts. Budget, appropriation, encumbrance, expenditure, payment, transfer, reserve, debt proceeds, and fund balance must remain distinct.
+TRACE must not flatten unlike concepts. Budget, appropriation, encumbrance, expenditure, payment, transfer, reserve, debt proceeds, and fund balance must remain distinct.
 
 ## 4. Missing data is not misconduct
 
@@ -38,7 +38,7 @@ Corrections must include what changed, why it changed, when it changed, and whic
 
 ## 8. Privacy by design
 
-CivicLens focuses on public institutional finance. Personal data should not be collected or exposed unless it is lawfully public, necessary to the public-interest purpose, and handled with appropriate safeguards.
+TRACE focuses on public institutional finance. Personal data should not be collected or exposed unless it is lawfully public, necessary to the public-interest purpose, and handled with appropriate safeguards.
 
 ## 9. Security is part of trust
 
@@ -54,11 +54,11 @@ A researcher should be able to reproduce a published number from the cited sourc
 
 ## 12. Political independence
 
-CivicLens follows evidence regardless of which party, official, institution, program, or policy benefits from the result.
+TRACE follows evidence regardless of which party, official, institution, program, or policy benefits from the result.
 
 ## 13. Official records remain authoritative
 
-CivicLens is an independent interpretation layer. It does not replace official financial systems, audits, legal records, or agency determinations.
+TRACE is an independent interpretation layer. It does not replace official financial systems, audits, legal records, or agency determinations.
 
 ## 14. Residents come first
 

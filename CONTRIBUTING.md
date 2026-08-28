@@ -1,6 +1,6 @@
-# Contributing to CivicLens
+# Contributing to TRACE
 
-CivicLens handles public-finance information. Contributions must protect accuracy, source traceability, privacy, and political independence.
+TRACE handles public-finance information. Contributions must protect accuracy, source traceability, privacy, and political independence.
 
 ## Before contributing
 

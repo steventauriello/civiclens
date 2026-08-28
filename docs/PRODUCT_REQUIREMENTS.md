@@ -1,4 +1,4 @@
-# CivicLens Product Requirements Document
+# TRACE Product Requirements Document
 
 **Version:** 0.1  
 **Pilot jurisdiction:** City of Port St. Lucie, Florida  
@@ -6,7 +6,7 @@
 
 ## 1. Product summary
 
-CivicLens is an evidence-first public-finance intelligence platform. It ingests official records, normalizes financial and civic data, connects related evidence, and answers resident questions in plain English with citations.
+TRACE is an evidence-first public-finance intelligence platform. It ingests official records, normalizes financial and civic data, connects related evidence, and answers resident questions in plain English with citations.
 
 ## 2. Primary problem
 
@@ -140,7 +140,7 @@ Common questions should return an initial sourced response within five seconds a
 
 ### Portability
 
-Jurisdiction-specific ingestion logic must be isolated from the shared CivicLens core.
+Jurisdiction-specific ingestion logic must be isolated from the shared TRACE core.
 
 ## 8. Data-quality rules
 
@@ -179,6 +179,6 @@ The Port St. Lucie alpha is ready when:
 - Percentage of answers with complete claim-level evidence
 - Reconciliation success rate
 - Time required for a resident to answer a core question
-- User comprehension before and after using CivicLens
+- User comprehension before and after using TRACE
 - Number of source gaps identified and resolved
 - Number and severity of corrections

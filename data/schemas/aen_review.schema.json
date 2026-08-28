@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://civiclens.org/schemas/aen_review.schema.json",
-  "title": "CivicLens AEN Review",
+  "title": "TRACE AEN Review",
   "type": "object",
   "additionalProperties": false,
   "required": [

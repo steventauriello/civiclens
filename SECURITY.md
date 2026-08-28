@@ -1,6 +1,6 @@
 # Security Policy
 
-CivicLens depends on public trust. Security failures can compromise source integrity, expose protected information, or produce misleading public answers.
+TRACE depends on public trust. Security failures can compromise source integrity, expose protected information, or produce misleading public answers.
 
 ## Reporting a vulnerability
 

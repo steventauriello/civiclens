@@ -107,7 +107,7 @@ window.CIVICLENS_DATA = {
   controlTrace: {
     fiscalYear: "FY 2024-25",
     title: "Control Total Trace",
-    summary: "The positive-stop reconciliation layer for FY 2024-25. CivicLens captures official control totals first, then traces source rows, departments, vendors, contracts, and payments until mapped detail ties back to the official number or the gap is visible.",
+    summary: "The positive-stop reconciliation layer for FY 2024-25. TRACE captures official control totals first, then traces source rows, departments, vendors, contracts, and payments until mapped detail ties back to the official number or the gap is visible.",
     sourceUrl: "https://www.cityofpsl.com/files/assets/public/v/1/departments/office-of-management-amp-budget/documents/fy-24-25-4th-quarter-statement-of-revenues-and-expenditures.pdf",
     metrics: [
       { label: "Revenue control", value: "$446.7M", note: "Eight Q4 operating-fund totals captured", icon: "IN", tone: "dark" },
@@ -193,18 +193,18 @@ window.CIVICLENS_DATA = {
   ],
   answers: {
     officials: {
-      title: "How can public officials use CivicLens?",
-      intro: "CivicLens gives public officials and residents a shared factual record for following taxpayer dollars through official records.",
+      title: "How can public officials use TRACE?",
+      intro: "TRACE gives public officials and residents a shared factual record for following taxpayer dollars through official records.",
       explanation: "The current Port St. Lucie pilot demonstrates the evidence model: one sourced operating-funds report, a source registry, a department spending tracker, and a private Evidence Vault for preserving records before public claims are made. It is intentionally careful about scope so the tool builds trust instead of overstating what the data proves.",
       facts: [
         ["What works now", "A public dashboard, source-backed operating-funds snapshot, department tracking scaffold, source registry, and secure Evidence Vault."],
         ["Why it matters", "It can reduce confusion around budgets by showing the source, calculation path, and unresolved gaps behind each public claim."],
-        ["Best feedback to ask for", "Which records, agencies, spending categories, and public questions should CivicLens prioritize next?"]
+        ["Best feedback to ask for", "Which records, agencies, spending categories, and public questions should TRACE prioritize next?"]
       ]
     },
     propertyTax: {
       title: "Where did my property taxes go?",
-      intro: "CivicLens has one sourced FY 2024–25 operating-funds report, but it cannot yet provide a property-tax allocation.",
+      intro: "TRACE has one sourced FY 2024–25 operating-funds report, but it cannot yet provide a property-tax allocation.",
       explanation: "A responsible property-tax answer still needs the City's portion of the tax bill separated from county, school-board, and special-district taxes. It also needs citywide spending categories reconciled beyond the eight operating funds before estimating how pooled City property-tax revenue supported services.",
       facts: [
         ["What is known", "The FY 2024–25 fourth-quarter report supports a starting view of eight operating funds."],
@@ -214,7 +214,7 @@ window.CIVICLENS_DATA = {
     },
     publicSafety: {
       title: "How much was spent on public safety?",
-      intro: "CivicLens does not yet have a verified public-safety service-area total.",
+      intro: "TRACE does not yet have a verified public-safety service-area total.",
       explanation: "The current sourced view is organized by operating fund, not by police, fire, emergency management, or other public-safety service areas. A trustworthy public-safety total must identify the reporting period, funds included, department definitions, transfers, capital spending, and actual payments before publishing a number.",
       facts: [
         ["Current evidence", "One FY 2024–25 operating-funds report has been extracted for review."],
@@ -224,18 +224,18 @@ window.CIVICLENS_DATA = {
     },
     departments: {
       title: "Which departments spend public money?",
-      intro: "CivicLens now includes the official City department registry, but it is not publishing department totals until each department is mapped to official budget and funding-source records.",
+      intro: "TRACE now includes the official City department registry, but it is not publishing department totals until each department is mapped to official budget and funding-source records.",
       explanation: "The tracker lists the City departments residents need to follow, then keeps the dollar fields pending until adopted budget, amended budget, actual spending, contracts, and payment records are extracted and reconciled. It also separates likely tax-supported departments from fee, enterprise, grant, CRA, and jurisdiction-check items until the budget proves the funding source.",
       facts: [
         ["What is live", "The official Port St. Lucie department registry, funding-source notes, evidence status, and extraction queue."],
         ["What is not live yet", "Verified tax-supported totals, department budget-to-actual amounts, vendor-level spending, invoice-level detail, and citywide reconciliation."],
-        ["Publication rule", "No department spending number should be displayed until CivicLens can point to the official source and calculation path."]
+        ["Publication rule", "No department spending number should be displayed until TRACE can point to the official source and calculation path."]
       ]
     },
     controlTrace: {
       title: "What is the control total trace?",
-      intro: "The control total trace is CivicLens's positive-stop reconciliation system for FY 2024-25.",
-      explanation: "CivicLens captures official revenue and spending totals first, then requires extracted department, vendor, payroll, contract, invoice, and project detail to add back to those totals. If the mapped detail does not tie out, the difference becomes a visible gap instead of a hidden assumption.",
+      intro: "The control total trace is TRACE's positive-stop reconciliation system for FY 2024-25.",
+      explanation: "TRACE captures official revenue and spending totals first, then requires extracted department, vendor, payroll, contract, invoice, and project detail to add back to those totals. If the mapped detail does not tie out, the difference becomes a visible gap instead of a hidden assumption.",
       facts: [
         ["Current control set", "Eight FY 2024-25 operating-fund revenue and expenditure totals from the City Q4 statement."],
         ["What it proves", "The official fund-level control rows are captured and ready to receive detailed mapping."],
@@ -244,7 +244,7 @@ window.CIVICLENS_DATA = {
     },
     contracts: {
       title: "Show contracts and vendor payments",
-      intro: "CivicLens has identified the official procurement and meeting systems, but transaction-level coverage has not yet been confirmed.",
+      intro: "TRACE has identified the official procurement and meeting systems, but transaction-level coverage has not yet been confirmed.",
       explanation: "The goal is to connect solicitations, contracts, amendments, purchase orders, invoices, payments, projects, agenda approvals, and vendors. Any missing link will be shown as a documented data gap rather than treated as evidence of wrongdoing.",
       facts: [
         ["Cataloged", "Procurement portal, procurement department, City Clerk meetings, and public-records request channel."],
@@ -253,9 +253,9 @@ window.CIVICLENS_DATA = {
       ]
     },
     generic: {
-      title: "CivicLens is building the evidence base",
+      title: "TRACE is building the evidence base",
       intro: "That question is valid, but the current public view only supports a narrow FY 2024–25 operating-funds answer.",
-      explanation: "CivicLens is designed to answer only from official records, deterministic calculations, and visible source lineage. The next stage is citywide collection, extraction, normalization, and reconciliation so unsupported conclusions stay off the page.",
+      explanation: "TRACE is designed to answer only from official records, deterministic calculations, and visible source lineage. The next stage is citywide collection, extraction, normalization, and reconciliation so unsupported conclusions stay off the page.",
       facts: [
         ["Current stage", "Functional public interface, official-source catalog, and one sourced operating-funds report."],
         ["Next stage", "Document collection, extraction, normalization, and reconciliation across the full citywide ledger."],

@@ -1,10 +1,10 @@
 # Port St. Lucie Source Discovery — 2026-08-07
 
-This research note records the document-level source discovery pass for CivicLens Issue #1. It is intentionally conservative: unknown fields remain unknown, and a document missing from a current webpage is recorded as a gap to investigate rather than proof that the document does not exist.
+This research note records the document-level source discovery pass for TRACE Issue #1. It is intentionally conservative: unknown fields remain unknown, and a document missing from a current webpage is recorded as a gap to investigate rather than proof that the document does not exist.
 
 ## Verification rule
 
-CivicLens distinguishes between two source states:
+TRACE distinguishes between two source states:
 
 - **Listed by the City** — the official City page names the document, but the exact standalone PDF URL has not yet been independently opened and confirmed.
 - **Confirmed direct URL** — the exact official `cityofpsl.com` PDF URL has been opened successfully or otherwise directly confirmed from the City's own source index.
@@ -41,7 +41,7 @@ The adopted Budget in Brief remains listed on the City's Annual Budget page, but
 
 ### FY 2024-25 reporting gap to investigate
 
-The current Annual Budget page does not list a 2nd Quarter Statement of Revenues & Expenditures for FY 2024-25. CivicLens should search City archives, legislative records, agenda attachments, and records channels before deciding whether a public-record request is needed.
+The current Annual Budget page does not list a 2nd Quarter Statement of Revenues & Expenditures for FY 2024-25. TRACE should search City archives, legislative records, agenda attachments, and records channels before deciding whether a public-record request is needed.
 
 ## FY 2023-24 package verification
 
@@ -115,7 +115,7 @@ Direct official PDF URLs are confirmed for:
 - Debt Management Policy
 - Investment Policy (City Council Directed Policy #2023-01)
 
-These documents will be useful when CivicLens interprets capitalization, debt, treasury, and accounting treatment.
+These documents will be useful when TRACE interprets capitalization, debt, treasury, and accounting treatment.
 
 ## Procurement controls located
 
@@ -152,4 +152,4 @@ SHA-256 fields remain blank until the actual files are preserved and fingerprint
 
 ## Flagship investigation handoff
 
-Once the critical FY 2024-25 financial backbone is preserved, CivicLens will use the Port St. Lucie outdoor-gym project as the first end-to-end taxpayer-money trace. That investigation should connect budget authority, amendments, council action, procurement, vendor/contract records, payments, completion, and final cost back to preserved official evidence.
+Once the critical FY 2024-25 financial backbone is preserved, TRACE will use the Port St. Lucie outdoor-gym project as the first end-to-end taxpayer-money trace. That investigation should connect budget authority, amendments, council action, procurement, vendor/contract records, payments, completion, and final cost back to preserved official evidence.

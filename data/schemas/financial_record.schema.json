@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://civiclens.org/schemas/financial_record.schema.json",
-  "title": "CivicLens Financial Record",
+  "title": "TRACE Financial Record",
   "type": "object",
   "additionalProperties": false,
   "required": [

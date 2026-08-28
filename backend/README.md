@@ -1,6 +1,6 @@
 # Backend
 
-The CivicLens API, domain logic, authentication, calculation service, reconciliation service, and administrative workflows will live here.
+The TRACE API, domain logic, authentication, calculation service, reconciliation service, and administrative workflows will live here.
 
 Core rule: deterministic code calculates financial results; the AI explains approved evidence and calculations.
 

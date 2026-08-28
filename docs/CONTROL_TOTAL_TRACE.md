@@ -1,10 +1,10 @@
 # FY 2024-25 Control Total Trace
 
-CivicLens needs a positive-stop reconciliation layer before it can claim full-dollar traceability. The control total trace is that layer.
+TRACE needs a positive-stop reconciliation layer before it can claim full-dollar traceability. The control total trace is that layer.
 
 ## Purpose
 
-A control total is the official number CivicLens must tie back to before publishing a stronger claim. Uploading documents is not enough by itself. CivicLens needs to prove that extracted records add back to the official totals, or show the exact unresolved gap.
+A control total is the official number TRACE must tie back to before publishing a stronger claim. Uploading documents is not enough by itself. TRACE needs to prove that extracted records add back to the official totals, or show the exact unresolved gap.
 
 Core rule:
 
@@ -29,7 +29,7 @@ A trace row can move through these states:
 | Status | Meaning |
 | --- | --- |
 | Control pending | The official total has not been captured yet. |
-| Control captured | CivicLens has captured the source row and official total. |
+| Control captured | TRACE has captured the source row and official total. |
 | Partially mapped | Some detail has been extracted under the control total. |
 | Reconciled | Mapped detail equals the official control total, with variance explained or zero. |
 | Gap | Mapped detail does not equal the official total, or a needed source is missing. |
