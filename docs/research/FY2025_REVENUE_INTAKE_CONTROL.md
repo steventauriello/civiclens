@@ -6,7 +6,7 @@
 
 1. [City of Port St. Lucie Annual Comprehensive Financial Report 2025](https://www.cityofpsl.com/files/assets/public/v/1/departments/finance/financial-reports/annual-comprehensive-financial-reports/annual-comprehensive-financial-report-2025.pdf)
    - Audited financial report for the fiscal year ended September 30, 2025.
-   - Key source pages in this note: PDF pages 34 and 51 (report pages 14 and 31).
+   - Key source pages in this note: PDF pages 34, 47, and 51 (report pages 14, 27, and 31).
 2. [FY 2024-25 Fourth Quarter Statement of Revenues and Expenditures](https://www.cityofpsl.com/files/assets/public/v/1/departments/office-of-management-amp-budget/documents/fy-24-25-4th-quarter-statement-of-revenues-and-expenditures.pdf)
    - City quarterly year-end report.
    - Unaudited operating-fund reporting; used for the existing eight-fund control trace.
