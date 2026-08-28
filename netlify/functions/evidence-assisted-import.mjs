@@ -278,8 +278,8 @@ export default async (request) => {
         sourceContentMatch: retrievalMode === 'browser-cors-direct' ? 'browser-direct' : 'review-required',
         sourceVerificationMethod: retrievalMode,
         sourceVerificationNote: retrievalMode === 'browser-cors-direct'
-          ? 'The owner browser retrieved the allowlisted City URL directly; the stored bytes were independently SHA-256 hashed by the CivicLens server.'
-          : 'The City blocks CivicLens server retrieval. The owner selected the PDF obtained from the official URL; exact source/file matching remains a reviewer step.',
+          ? 'The owner browser retrieved the allowlisted City URL directly; the stored bytes were independently SHA-256 hashed by the TRACE server.'
+          : 'The City blocks TRACE server retrieval. The owner selected the PDF obtained from the official URL; exact source/file matching remains a reviewer step.',
         manifestDocumentId: metadata.manifestDocumentId || duplicate.manifestDocumentId || '',
         hashAlgorithm: 'SHA-256',
         hashSource: 'server-r2-assisted-match',
@@ -345,8 +345,8 @@ export default async (request) => {
       sourceContentMatch: retrievalMode === 'browser-cors-direct' ? 'browser-direct' : 'review-required',
       sourceVerificationMethod: retrievalMode,
       sourceVerificationNote: retrievalMode === 'browser-cors-direct'
-        ? 'The owner browser retrieved the allowlisted City URL directly; the stored bytes were independently SHA-256 hashed by the CivicLens server.'
-        : 'The City blocks CivicLens server retrieval. The owner selected the PDF obtained from the official URL; exact source/file matching remains a reviewer step.',
+        ? 'The owner browser retrieved the allowlisted City URL directly; the stored bytes were independently SHA-256 hashed by the TRACE server.'
+        : 'The City blocks TRACE server retrieval. The owner selected the PDF obtained from the official URL; exact source/file matching remains a reviewer step.',
       manifestDocumentId: metadata.manifestDocumentId || '',
       ingestMethod: 'browser-assisted-official-source',
       status: 'review',

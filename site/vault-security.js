@@ -63,18 +63,18 @@
         <div class="restricted-gate__card">
           <div class="restricted-gate__lock" aria-hidden="true">🔒</div>
           <p class="restricted-gate__eyebrow">Restricted — owner access only</p>
-          <h1 id="restrictedGateTitle">CivicLens Evidence Vault</h1>
+          <h1 id="restrictedGateTitle">TRACE Evidence Vault</h1>
           <p class="restricted-gate__lead">This administrative workspace contains unpublished evidence records and document-management controls.</p>
-          <div class="restricted-gate__notice"><strong>Authorized access only.</strong> Uploading, reviewing, verifying, editing, or archiving evidence requires an authenticated CivicLens owner session. Administrative activity is logged.</div>
+          <div class="restricted-gate__notice"><strong>Authorized access only.</strong> Uploading, reviewing, verifying, editing, or archiving evidence requires an authenticated TRACE owner session. Administrative activity is logged.</div>
           <form id="restrictedGateForm">
-            <label for="restrictedOwnerKey">CivicLens owner key</label>
+            <label for="restrictedOwnerKey">TRACE owner key</label>
             <input id="restrictedOwnerKey" type="password" autocomplete="current-password" placeholder="Enter owner key" required />
             <div class="restricted-gate__actions">
               <button id="restrictedSignIn" class="primary-button" type="submit">Secure sign in</button>
             </div>
             <div id="restrictedGateStatus" class="restricted-gate__status" role="status" aria-live="polite"></div>
           </form>
-          <a class="restricted-gate__back" href="index.html">← Return to public CivicLens</a>
+          <a class="restricted-gate__back" href="index.html">← Return to public TRACE</a>
         </div>
       </section>`;
     if (header) header.insertAdjacentHTML('afterend', markup);
@@ -128,7 +128,7 @@
     const forget = document.getElementById('forgetStorageKey');
     const connected = document.getElementById('storageConnectedArea');
 
-    setTextIfChanged(label, 'CivicLens owner key');
+    setTextIfChanged(label, 'TRACE owner key');
     setTextIfChanged(help, 'Your key is sent once over HTTPS to create a secure HttpOnly session. The key itself is not saved in browser storage.');
     setTextIfChanged(connect, 'Secure sign in');
     setTextIfChanged(forget, 'Sign out on this device');
@@ -175,7 +175,7 @@
             <div><p class="eyebrow">Security record</p><h2>Evidence Vault audit trail</h2></div>
             <button class="close-button" id="closeAuditDialog" type="button" aria-label="Close audit trail">×</button>
           </div>
-          <p class="audit-intro">CivicLens records administrative activity so changes to the evidence library can be traced.</p>
+          <p class="audit-intro">TRACE records administrative activity so changes to the evidence library can be traced.</p>
           <div id="auditEvents" class="audit-events"><p>Loading audit events…</p></div>
         </section>
       </dialog>`);
@@ -212,7 +212,7 @@
 
   async function performLogin(key, button, statusElement) {
     if (!key) {
-      if (statusElement) statusElement.textContent = 'Enter the CivicLens owner key.';
+      if (statusElement) statusElement.textContent = 'Enter the TRACE owner key.';
       return;
     }
     const oldText = button?.textContent || 'Secure sign in';

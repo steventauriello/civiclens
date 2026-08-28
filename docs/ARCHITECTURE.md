@@ -2,7 +2,7 @@
 
 ## Architectural goals
 
-CivicLens must be evidence-first, jurisdiction-portable, reproducible, secure, and understandable to nontechnical users.
+TRACE must be evidence-first, jurisdiction-portable, reproducible, secure, and understandable to nontechnical users.
 
 ## System overview
 
@@ -84,7 +84,7 @@ OCR should be a fallback, not the default.
 
 ### 5. Normalization layer
 
-Maps source labels to canonical CivicLens concepts without deleting the original labels.
+Maps source labels to canonical TRACE concepts without deleting the original labels.
 
 Examples:
 

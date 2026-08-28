@@ -1,4 +1,6 @@
-# CivicLens Project Charter
+# TRACE Project Charter
+
+> **TRACE** stands for **Taxpayer Revenue Accountability & Control Engine**.
 
 **Status:** Active north-star document  
 **Pilot jurisdiction:** City of Port St. Lucie, Florida  
@@ -6,7 +8,7 @@
 
 ## 1. North Star
 
-CivicLens exists to help everyday Americans understand, verify, and follow public dollars through official records so government spending becomes more transparent, accountable, efficient, and understandable.
+TRACE exists to help everyday Americans understand, verify, and follow public dollars through official records so government spending becomes more transparent, accountable, efficient, and understandable.
 
 Our simplest promise is:
 
@@ -16,11 +18,11 @@ Our simplest promise is:
 
 Public financial information is fragmented across budgets, audits, procurement portals, meeting records, project systems, public-record repositories, scanned documents, and accounting reports. The information is technically public but often too difficult for an ordinary resident to find, connect, and understand.
 
-CivicLens turns those records into clear, searchable, evidence-backed explanations without replacing the official source.
+TRACE turns those records into clear, searchable, evidence-backed explanations without replacing the official source.
 
 ## 3. Mission
 
-CivicLens will:
+TRACE will:
 
 - Help residents see where public money comes from and where it goes.
 - Separate adopted budgets, amended budgets, obligations, actual expenditures, payments, transfers, debt, and reserves.
@@ -32,7 +34,7 @@ CivicLens will:
 
 ## 4. AEN Framework
 
-CivicLens organizes reviews around three tests:
+TRACE organizes reviews around three tests:
 
 ### Accountability
 
@@ -68,11 +70,11 @@ The first resident-facing flagship question is:
 
 > Where did my property-tax dollars go?
 
-When revenue is pooled, CivicLens must clearly label any personal tax-dollar allocation as an estimate rather than claiming an individual dollar was earmarked.
+When revenue is pooled, TRACE must clearly label any personal tax-dollar allocation as an estimate rather than claiming an individual dollar was earmarked.
 
 ### Core Port St. Lucie financial census requirement
 
-CivicLens must build a complete, reconciled financial picture for the City of Port St. Lucie for each covered fiscal year.
+TRACE must build a complete, reconciled financial picture for the City of Port St. Lucie for each covered fiscal year.
 
 That means:
 
@@ -89,7 +91,7 @@ The goal is that a resident can move from a simple question such as **“How muc
 
 ## 6. Evidence standard
 
-CivicLens follows these rules:
+TRACE follows these rules:
 
 1. If we cannot trace it, we do not claim it.
 2. Official records remain the source of truth.
@@ -104,7 +106,7 @@ CivicLens follows these rules:
 
 ## 7. Source strategy
 
-CivicLens will use official records first, including:
+TRACE will use official records first, including:
 
 - Annual budgets and budget-in-brief reports
 - Budget amendments
@@ -122,7 +124,7 @@ CivicLens will use official records first, including:
 
 ## 8. Physical and scanned documents
 
-CivicLens must eventually support upload and review of:
+TRACE must eventually support upload and review of:
 
 - Digital PDFs
 - Scanned PDFs
@@ -146,9 +148,9 @@ Residents should be able to:
 - See whether data is verified, estimated, incomplete, or awaiting review.
 - Run or inspect an AEN Review.
 
-## 10. What CivicLens is not
+## 10. What TRACE is not
 
-CivicLens is not:
+TRACE is not:
 
 - A partisan campaign platform.
 - A replacement for government accounting or independent audits.
@@ -177,7 +179,7 @@ Completed:
 - Product foundation and documentation
 - Initial data schemas and source registry
 - Public-record acquisition plan
-- Functional responsive CivicLens prototype
+- Functional responsive TRACE prototype
 - Netlify deployment for the Port St. Lucie pilot
 
 Current prototype limitation:
@@ -194,7 +196,7 @@ Enumerate and preserve the actual Port St. Lucie budget, quarterly, ACFR, millag
 
 Extract and normalize one completed fiscal year, keeping adopted budget, amended budget, actual revenue, actual expenditure, transfers, reserves, and debt distinct. Reconcile detailed values to official totals.
 
-For that fiscal year, CivicLens must also:
+For that fiscal year, TRACE must also:
 
 - Produce the complete City revenue total and categorize every material revenue source.
 - Produce the complete City expenditure total and categorize every material expenditure into understandable functions such as public safety/police, infrastructure/transportation, parks and recreation, utilities, general government, debt service, capital projects, and other applicable categories.
@@ -227,12 +229,12 @@ Before building a feature, ask:
 - Does it preserve accounting context?
 - Does it reduce confusion rather than add complexity?
 - Is it useful to residents and credible to auditors, journalists, and public officials?
-- Does it move CivicLens closer to verified real-world data?
+- Does it move TRACE closer to verified real-world data?
 
 If the answer is no, it is not the next priority.
 
 ## 15. Long-term vision
 
-Start with Port St. Lucie. Prove the model. Then make the CivicLens core reusable for cities, counties, school districts, special districts, states, and federal agencies.
+Start with Port St. Lucie. Prove the model. Then make the TRACE core reusable for cities, counties, school districts, special districts, states, and federal agencies.
 
 The long-term goal is not merely to publish more information. It is to democratize the ability to understand institutions and hold them accountable using evidence.

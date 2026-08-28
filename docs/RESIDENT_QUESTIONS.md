@@ -22,7 +22,7 @@ This list guides data collection and product scope. Questions are organized by w
 - Did my City tax increase because of the rate, taxable value, or both?
 - How much property-tax revenue did the City budget and actually recognize?
 - What percentage of City revenue came from property taxes?
-- How would a stated amount of City property tax be allocated across services using CivicLens' published estimate method?
+- How would a stated amount of City property tax be allocated across services using TRACE' published estimate method?
 - Which services are funded primarily by other revenue sources?
 
 ## Revenue questions
@@ -102,7 +102,7 @@ This list guides data collection and product scope. Questions are organized by w
 - What happens if the proposal is not funded?
 - Could reform, reprioritization, management changes, or existing balances address the problem?
 
-## Questions CivicLens must answer cautiously
+## Questions TRACE must answer cautiously
 
 - “Was this fraud?” requires an authoritative finding, not an unexplained number.
 - “Was this corrupt?” requires evidence beyond cost, delay, or political disagreement.

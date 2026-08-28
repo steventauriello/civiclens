@@ -10,7 +10,7 @@ It is a three-test rule for evaluating requests for additional public funding an
 
 Is the money already collected protected, authorized, traceable, and responsibly managed?
 
-### Evidence CivicLens should collect
+### Evidence TRACE should collect
 
 - Legal authority and stated purpose
 - Adopted budget and amendments
@@ -31,7 +31,7 @@ Is the money already collected protected, authorized, traceable, and responsibly
 - **Insufficient public evidence:** Available public records do not establish accountability.
 - **Exception identified:** An audit, variance, control failure, or unexplained discrepancy requires review.
 
-CivicLens must not label an exception as fraud unless an authoritative finding supports that conclusion.
+TRACE must not label an exception as fraud unless an authoritative finding supports that conclusion.
 
 ## E — Effectiveness
 
@@ -39,7 +39,7 @@ CivicLens must not label an exception as fraud unless an authoritative finding s
 
 Did the program, project, or expenditure produce the result it was created to achieve?
 
-### Evidence CivicLens should collect
+### Evidence TRACE should collect
 
 - Stated objective
 - Baseline condition
@@ -59,7 +59,7 @@ Efficiency and effectiveness are related but not identical.
 - **Efficiency** asks whether resources were used economically.
 - **Effectiveness** asks whether the intended result was achieved.
 
-A program can be inexpensive and ineffective, or costly but effective. CivicLens should display both when data permits, while preserving **Effectiveness** as the E in AEN.
+A program can be inexpensive and ineffective, or costly but effective. TRACE should display both when data permits, while preserving **Effectiveness** as the E in AEN.
 
 ## N — Need
 
@@ -67,7 +67,7 @@ A program can be inexpensive and ineffective, or costly but effective. CivicLens
 
 Is additional funding truly necessary, or could the problem be solved through reform, reprioritization, management, policy, or existing resources?
 
-### Evidence CivicLens should collect
+### Evidence TRACE should collect
 
 - Documented problem and scale
 - Current demand and capacity
@@ -98,7 +98,7 @@ Every review should contain:
 
 ## No automatic political verdict
 
-CivicLens may summarize whether each test is supported by the available evidence, but it should not tell users how to vote or claim that an expenditure is inherently good or bad. The platform's job is to make the evidence understandable and auditable.
+TRACE may summarize whether each test is supported by the available evidence, but it should not tell users how to vote or claim that an expenditure is inherently good or bad. The platform's job is to make the evidence understandable and auditable.
 
 ## Initial Port St. Lucie use case
 

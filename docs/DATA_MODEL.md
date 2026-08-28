@@ -1,6 +1,6 @@
 # Data Model
 
-The CivicLens data model must preserve official accounting meaning while making records comparable across years and jurisdictions.
+The TRACE data model must preserve official accounting meaning while making records comparable across years and jurisdictions.
 
 ## Core entities
 
@@ -238,7 +238,7 @@ Every normalized record must preserve:
 
 ## Money-flow relationships
 
-CivicLens should represent relationships without pretending that all public money is individually earmarked.
+TRACE should represent relationships without pretending that all public money is individually earmarked.
 
 ```text
 Revenue source → Fund → Budget authority → Department/program/project

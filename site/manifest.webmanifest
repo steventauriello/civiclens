@@ -1,7 +1,7 @@
 {
-  "name": "CivicLens",
-  "short_name": "CivicLens",
-  "description": "Evidence-first public finance intelligence.",
+  "name": "TRACE — Taxpayer Revenue Accountability & Control Engine",
+  "short_name": "TRACE",
+  "description": "Every dollar. Every document. Every gap.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f7fa",

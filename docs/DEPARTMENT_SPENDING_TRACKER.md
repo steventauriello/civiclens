@@ -1,6 +1,6 @@
 # Department Spending Tracker
 
-CivicLens milestone: get every official Port St. Lucie department and taxpayer-funded spending function into one source-backed tracker.
+TRACE milestone: get every official Port St. Lucie department and taxpayer-funded spending function into one source-backed tracker.
 
 ## North Star
 
@@ -17,7 +17,7 @@ The department tracker is the bridge between high-level fund totals and the ques
 
 ## Evidence Standard
 
-CivicLens should not publish a department dollar total until it can show:
+TRACE should not publish a department dollar total until it can show:
 
 1. Official source name and URL.
 2. Fiscal year and reporting period.
@@ -88,7 +88,7 @@ The tracker should begin from the City's official department list, then reconcil
 
 ## Acceptance Criteria
 
-A department is ready for dollar display when CivicLens can answer:
+A department is ready for dollar display when TRACE can answer:
 
 - Adopted budget: sourced?
 - Amended budget: sourced?

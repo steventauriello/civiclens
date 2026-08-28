@@ -1,16 +1,18 @@
-# CivicLens
+# TRACE — Taxpayer Revenue Accountability & Control Engine
+
+> Every dollar. Every document. Every gap.
 
 ## Follow Every Public Dollar
 
-CivicLens is an evidence-first civic intelligence platform designed to help everyday Americans understand how public money is collected, budgeted, spent, and measured.
+TRACE is an evidence-first civic intelligence platform designed to help everyday Americans understand how public money is collected, budgeted, spent, and measured.
 
 The first implementation focuses on the City of Port St. Lucie, Florida. The long-term goal is a reusable platform that can support cities, counties, school districts, states, and other public institutions.
 
 ## Core promise
 
-CivicLens will trace every public dollar that can be supported by official records and show residents the evidence behind every answer.
+TRACE will trace every public dollar that can be supported by official records and show residents the evidence behind every answer.
 
-## What CivicLens will answer
+## What TRACE will answer
 
 - How much revenue did the city receive?
 - Where did the money come from?
@@ -22,17 +24,17 @@ CivicLens will trace every public dollar that can be supported by official recor
 
 ## AEN Review
 
-CivicLens organizes evidence using three tests:
+TRACE organizes evidence using three tests:
 
 - **Accountability** — Was the money authorized, traceable, safeguarded, and reported?
 - **Effectiveness** — Did the spending accomplish the result it was created to achieve?
 - **Need** — Is additional funding truly necessary, or could reform, management, policy, or existing resources solve the problem?
 
-CivicLens does not manufacture a political verdict. It presents verified evidence, identifies gaps, and lets residents reach their own conclusions.
+TRACE does not manufacture a political verdict. It presents verified evidence, identifies gaps, and lets residents reach their own conclusions.
 
 ## Control Total Trace
 
-CivicLens uses control totals as the positive-stop system for financial tracing. For each fiscal year, fund, department, and spending layer, CivicLens should capture the official total first, then require extracted records to reconcile back to that total or expose the variance as a public gap.
+TRACE uses control totals as the positive-stop system for financial tracing. For each fiscal year, fund, department, and spending layer, TRACE should capture the official total first, then require extracted records to reconcile back to that total or expose the variance as a public gap.
 
 Formula:
 
@@ -89,4 +91,4 @@ See [`docs/ROADMAP.md`](docs/ROADMAP.md) for the build sequence and [`docs/DATA_
 
 ## Independence notice
 
-CivicLens is an independent project. It is not affiliated with, endorsed by, or operated by the City of Port St. Lucie or any other government agency.
+TRACE is an independent project. It is not affiliated with, endorsed by, or operated by the City of Port St. Lucie or any other government agency.

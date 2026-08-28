@@ -215,7 +215,7 @@
     const answer = classifyQuestion(question.trim());
     answerTitle.textContent = answer.title;
     answerBody.innerHTML = `
-      <div class="answer-alert"><strong>Scope disclosure:</strong> CivicLens currently shows only the FY 2024–25 operating-funds report. It does not yet answer citywide or property-tax allocation questions.</div>
+      <div class="answer-alert"><strong>Scope disclosure:</strong> TRACE currently shows only the FY 2024–25 operating-funds report. It does not yet answer citywide or property-tax allocation questions.</div>
       <p>${escapeHtml(answer.intro)}</p>
       <h3>What the evidence currently supports</h3>
       <p>${escapeHtml(answer.explanation)}</p>
@@ -266,7 +266,7 @@
       topLink.className = 'nav-link';
       topLink.dataset.vaultLink = 'true';
       topLink.textContent = 'Restricted Vault';
-      topLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
+      topLink.setAttribute('aria-label', 'Open the restricted TRACE Evidence Vault');
       primaryNav.appendChild(topLink);
     }
 
@@ -277,7 +277,7 @@
       sideLink.className = 'side-link';
       sideLink.dataset.vaultLink = 'true';
       sideLink.innerHTML = '<span>09</span> Restricted Vault 🔒';
-      sideLink.setAttribute('aria-label', 'Open the restricted CivicLens Evidence Vault');
+      sideLink.setAttribute('aria-label', 'Open the restricted TRACE Evidence Vault');
       const sideCard = sideNav.querySelector('.side-card');
       sideNav.insertBefore(sideLink, sideCard || null);
     }

@@ -1,6 +1,6 @@
 # Port St. Lucie Data Catalog v0.1
 
-This catalog identifies official sources for the CivicLens Port St. Lucie pilot. It is an inventory, not a claim that every source has already been ingested or reconciled.
+This catalog identifies official sources for the TRACE Port St. Lucie pilot. It is an inventory, not a claim that every source has already been ingested or reconciled.
 
 ## Status legend
 
@@ -50,7 +50,7 @@ This catalog identifies official sources for the CivicLens Port St. Lucie pilot.
 
 ### Important limitation
 
-A property-tax bill includes multiple taxing authorities. CivicLens must isolate the City of Port St. Lucie portion before estimating how a resident's City taxes relate to City services. Pooled General Fund revenue cannot be represented as individually earmarked pennies; allocations must be labeled as estimates based on an explicit method.
+A property-tax bill includes multiple taxing authorities. TRACE must isolate the City of Port St. Lucie portion before estimating how a resident's City taxes relate to City services. Pooled General Fund revenue cannot be represented as individually earmarked pennies; allocations must be labeled as estimates based on an explicit method.
 
 ## 5. Procurement, contracts, and vendors
 
@@ -125,7 +125,7 @@ Beginning fund balance
 = ending fund balance
 ```
 
-The accounting presentation may differ by fund and report. CivicLens must document the exact reconciliation used rather than force every source into a single formula.
+The accounting presentation may differ by fund and report. TRACE must document the exact reconciliation used rather than force every source into a single formula.
 
 ## Known gaps
 

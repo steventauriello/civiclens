@@ -1,8 +1,8 @@
-# CivicLens Public Official Demo Brief
+# TRACE Public Official Demo Brief
 
 ## One-sentence pitch
 
-CivicLens helps residents and public officials follow taxpayer dollars through official records, transparent calculations, and visible evidence gaps.
+TRACE helps residents and public officials follow taxpayer dollars through official records, transparent calculations, and visible evidence gaps.
 
 ## What the current demo shows
 
@@ -13,7 +13,7 @@ CivicLens helps residents and public officials follow taxpayer dollars through o
 - Secure Evidence Vault for preserving records before public claims are published.
 - AEN framework: Accountability, Effectiveness, Need.
 
-## What CivicLens does not claim yet
+## What TRACE does not claim yet
 
 - It does not claim a full citywide surplus or deficit.
 - It does not yet show every department's verified budget-to-actual totals.
@@ -23,7 +23,7 @@ CivicLens helps residents and public officials follow taxpayer dollars through o
 
 ## Why this matters for public officials
 
-CivicLens can help public officials, residents, watchdogs, and agencies work from the same factual record. Instead of turning budgets into arguments first, the system asks:
+TRACE can help public officials, residents, watchdogs, and agencies work from the same factual record. Instead of turning budgets into arguments first, the system asks:
 
 1. What is the official source?
 2. What number does it support?
@@ -37,7 +37,7 @@ CivicLens can help public officials, residents, watchdogs, and agencies work fro
 - Which state, county, city, school district, or special-district records should be prioritized?
 - Where do officials see the biggest transparency gaps?
 - Would a source-backed public finance tool help improve trust in government spending?
-- What should CivicLens avoid so it stays credible and nonpartisan?
+- What should TRACE avoid so it stays credible and nonpartisan?
 
 ## Demo path
 

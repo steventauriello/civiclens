@@ -172,10 +172,10 @@
           </div>
           <div class="storage-provider-card">
             <div><span class="storage-provider-dot" id="storageProviderDot"></span><strong id="storageProviderTitle">Checking storage…</strong></div>
-            <p id="storageProviderMessage">Checking the CivicLens storage backend.</p>
+            <p id="storageProviderMessage">Checking the TRACE storage backend.</p>
           </div>
           <div id="storageUnlockArea">
-            <label class="storage-key-label" for="storageAdminKey">CivicLens admin key</label>
+            <label class="storage-key-label" for="storageAdminKey">TRACE admin key</label>
             <input id="storageAdminKey" type="password" autocomplete="current-password" placeholder="Enter admin key" />
             <p class="storage-help">The key is kept only for this browser session and is never stored in the repository.</p>
             <button class="primary-button full" id="connectStorage" type="button">Unlock cloud storage</button>
@@ -237,7 +237,7 @@
     } else {
       if (status) status.textContent = 'Cloud locked';
       if (title) title.textContent = 'Cloudflare R2 is configured';
-      if (message) message.textContent = 'Enter the CivicLens admin key to view and upload permanent evidence records.';
+      if (message) message.textContent = 'Enter the TRACE admin key to view and upload permanent evidence records.';
       if (dot) dot.dataset.state = 'locked';
       if (unlockArea) unlockArea.hidden = false;
       if (connectedArea) connectedArea.hidden = true;
@@ -262,7 +262,7 @@
 
   async function connectStorage() {
     const key = el('storageAdminKey').value.trim();
-    if (!key) return showToast('Enter the CivicLens admin key.', 'error');
+    if (!key) return showToast('Enter the TRACE admin key.', 'error');
     sessionStorage.setItem(ADMIN_KEY_SESSION, key);
     el('connectStorage').disabled = true;
     el('connectStorage').textContent = 'Connecting…';

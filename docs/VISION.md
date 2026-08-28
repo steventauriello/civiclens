@@ -1,6 +1,6 @@
 # Vision
 
-CivicLens will become a trusted public-intelligence layer that makes government finances understandable at every level.
+TRACE will become a trusted public-intelligence layer that makes government finances understandable at every level.
 
 ## Near-term vision
 
@@ -19,7 +19,7 @@ A resident in any participating jurisdiction should be able to:
 
 ## Platform vision
 
-CivicLens should be reusable rather than hard-coded for one city. Each jurisdiction will have its own source adapters and accounting map, but the core platform will share:
+TRACE should be reusable rather than hard-coded for one city. Each jurisdiction will have its own source adapters and accounting map, but the core platform will share:
 
 - Source registry
 - Document ingestion
@@ -33,7 +33,7 @@ CivicLens should be reusable rather than hard-coded for one city. Each jurisdict
 
 ## What success looks like
 
-CivicLens succeeds when:
+TRACE succeeds when:
 
 1. Residents can understand public finances without specialized training.
 2. Every material answer can be traced back to evidence.
@@ -41,6 +41,6 @@ CivicLens succeeds when:
 4. Journalists and researchers spend less time finding records and more time evaluating them.
 5. Better information leads to better decisions, reduced waste, and stronger public trust.
 
-## What CivicLens is not
+## What TRACE is not
 
-CivicLens is not a partisan scoring machine, an accusation generator, or a substitute for an official audit. It is an independent evidence and explanation system designed to make public records usable.
+TRACE is not a partisan scoring machine, an accusation generator, or a substitute for an official audit. It is an independent evidence and explanation system designed to make public records usable.

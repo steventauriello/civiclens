@@ -79,7 +79,7 @@ function sourceHeaders(browserCompatible = false) {
   if (!browserCompatible) {
     return {
       accept: 'application/pdf,*/*;q=0.2',
-      'user-agent': 'CivicLens-Evidence-Preservation/1.0'
+      'user-agent': 'TRACE-Evidence-Preservation/1.0'
     };
   }
 

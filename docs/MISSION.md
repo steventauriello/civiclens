@@ -1,6 +1,6 @@
 # Mission
 
-CivicLens exists to help everyday Americans follow public money from collection to outcome.
+TRACE exists to help everyday Americans follow public money from collection to outcome.
 
 We turn difficult government budgets, financial reports, contracts, votes, audits, and public records into clear answers that residents can verify for themselves.
 
@@ -10,9 +10,9 @@ Public financial information is often technically public but practically inacces
 
 That information gap weakens public trust and makes it harder to distinguish responsible spending from waste, fraud, abuse, ineffective programs, or unsupported claims.
 
-## The CivicLens response
+## The TRACE response
 
-CivicLens will:
+TRACE will:
 
 1. Identify official public-finance sources.
 2. Preserve the meaning and accounting context of those records.
@@ -23,7 +23,7 @@ CivicLens will:
 
 ## Who we serve
 
-CivicLens is built first for residents, especially people who work, pay taxes, raise families, and want to understand what government is doing with their money without becoming accountants or professional researchers.
+TRACE is built first for residents, especially people who work, pay taxes, raise families, and want to understand what government is doing with their money without becoming accountants or professional researchers.
 
 It is also intended to help journalists, public officials, auditors, researchers, and civic organizations work from the same verifiable facts.
 
