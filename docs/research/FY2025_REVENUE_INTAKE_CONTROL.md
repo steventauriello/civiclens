@@ -17,11 +17,11 @@ The ACFR's **Statement of Activities** reports total FY 2024-25 primary-governme
 
 | Audited control | Amount | Source |
 | --- | ---: | --- |
-| Total City revenue | **$616,359,?** | Do not publish from this draft until the exact amount is rechecked against the original table. |
+| Total City revenue | **$616,360,499** | ACFR PDF page 47 / report page 27, Statement of Activities |
 
-### Correction Required Before Publication
+### Reconciliation Note
 
-The current text extraction and table show **$616,360 thousand** in the Management's Discussion and Analysis summary, while the detailed Statement of Activities should be used as the publication control after a page-level visual review. TRACE must not publish a dollar-level control from this note until the exact source cell is manually confirmed.
+The Management's Discussion and Analysis summary rounds total revenue to **$616.360 million** (PDF page 34 / report page 14). The detailed audited Statement of Activities provides the exact publication control: **$616,360,499** (PDF page 47 / report page 27).
 
 ## What Is Already Clear
 
